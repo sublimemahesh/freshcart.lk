@@ -7,12 +7,12 @@ if (isset($_POST['create'])) {
     $PRODUCT = new Product(NULL);
     $VALID = new Validator();
 
-    $PRODUCT->type = $_POST['id'];
+    $PRODUCT->categories = $_POST['id'];
     $PRODUCT->name = $_POST['name'];
     $PRODUCT->short_description = $_POST['short_description'];
     $PRODUCT->description = $_POST['description'];
 
-    $dir_dest = '../../upload/product-type/product/';
+    $dir_dest = '../../upload/product-categories/product/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -37,7 +37,6 @@ if (isset($_POST['create'])) {
     $PRODUCT->image_name = $imgName;
 
     $VALID->check($PRODUCT, [
-
         'name' => ['required' => TRUE],
         'short_description' => ['required' => TRUE],
         'description' => ['required' => TRUE],
@@ -67,11 +66,13 @@ if (isset($_POST['create'])) {
 }
 
 if (isset($_POST['update'])) {
-    $dir_dest = '../../upload/product-type/product/';
+
+    $dir_dest = '../../upload/product-categories/product/';
 
     $handle = new Upload($_FILES['image']);
 
     $imgName = null;
+
 
     if ($handle->uploaded) {
         $handle->image_resize = true;
@@ -94,13 +95,12 @@ if (isset($_POST['update'])) {
     $PRODUCT = new Product($_POST['id']);
 
     $PRODUCT->image_name = $_POST['oldImageName'];
-    $PRODUCT->name =$_POST['name'];
+    $PRODUCT->name = $_POST['name'];
     $PRODUCT->short_description = $_POST['short_description'];
     $PRODUCT->description = $_POST['description'];
 
     $VALID = new Validator();
     $VALID->check($PRODUCT, [
-
         'name' => ['required' => TRUE],
         'short_description' => ['required' => TRUE],
         'description' => ['required' => TRUE],

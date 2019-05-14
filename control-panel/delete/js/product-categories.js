@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.delete-product-type').click(function () {
+    $('.delete-product-categories').click(function () {
 
         var id = $(this).attr("data-id");
 
@@ -14,7 +14,7 @@ $(document).ready(function () {
         }, function () {
 
             $.ajax({
-                url: "delete/ajax/product-type.php",
+                url: "delete/ajax/product-categories.php",
                 type: "POST",
                 data: {id: id, option: 'delete'},
                 dataType: "JSON",

@@ -5,7 +5,7 @@ $id = '';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
-$PRODUCT_TYPE = new ProductType($id);
+$PRODUCT_CATEGORIES = new ProductCategories($id);
 ?> 
 <!DOCTYPE html>
 
@@ -44,10 +44,10 @@ $PRODUCT_TYPE = new ProductType($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Create Products</h2>
+                                <h2>Create <?php echo $PRODUCT_CATEGORIES->name ?> Products</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-product-type.php">
+                                        <a href="manage-product-categories.php">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
@@ -87,7 +87,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                         </div>
                                     </div>
                                     <div class="col-md-12"> 
-                                        <input type="hidden" id="id" value="<?php echo $PRODUCT_TYPE->id; ?>" name="id"/>
+                                        <input type="hidden" id="id" value="<?php echo $PRODUCT_CATEGORIES->id; ?>" name="id"/>
                                         <input type="submit" name="create" class="btn btn-primary TYPEm-t-15 waves-effect" value="create"/>
                                     </div>
                                 </form>
@@ -103,13 +103,13 @@ $PRODUCT_TYPE = new ProductType($id);
                                             ?>
                                             <div class="col-md-3"  id="div<?php echo $product['id']; ?>">
                                                 <div class="photo-img-container">
-                                                    <img src="../upload/product-type/product/<?php echo $product['image_name']; ?>" class="img-responsive ">
+                                                    <img src="../upload/product-categories/product/<?php echo $product['image_name']; ?>" class="img-responsive img-thumbnail">
                                                 </div>
                                                 <div class="img-caption">
                                                     <p class="maxlinetitle"><?php echo $product['name']; ?></p>
                                                     <div class="d">
-                                                        <a href="#" class="delete-product" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
-                                                        <a href="edit-product.php?id=<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
+                                                        <a href="#" class="delete-product" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
+                                                        <a href="edit-product.php?id=<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                         <a href="arrange-products.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
                                                     </div>
                                                 </div>

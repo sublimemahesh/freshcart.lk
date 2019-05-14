@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 $id = $_GET['id'];
 
 
-   $PRODUCT= Product::getProductsById($id);
+$PRODUCT = Product::getProductsById($id);
 ?>
 <!DOCTYPE html>
 <html> 
@@ -32,27 +32,37 @@ $id = $_GET['id'];
 
         <section class="content">
             <div class="container-fluid">  
+                <?php
+                if (isset($_GET['message'])) {
 
-                <!-- Vertical Layout -->
-                <div class="row clearfix">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card">
-                            <div class="header">
+                    $MESSAGE = New Message($_GET['message']);
+                    ?>
+                    <div class="alert alert-<?php echo $MESSAGE->status; ?>" role = "alert">
+                        <?php echo $MESSAGE->description; ?>
+                    </div>
+                    <?php
+                }
+                ?>
+                <!--Vertical Layout -->
+                <div class = "row clearfix">
+                    <div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class = "card">
+                            <div class = "header">
                                 <h2>Arrange Products</h2>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="view-products.php?id=<?php echo $id ;?>">
-                                            <i class="material-icons">list</i> 
+                                <ul class = "header-dropdown">
+                                    <li class = "">
+                                        <a href = "view-products.php?id=<?php echo $id; ?>">
+                                            <i class = "material-icons">list</i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="body">
-                                <form method="post" action="post-and-get/product.php" class="form-horizontal" >
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12 arrange-container">
-                                                <ul id="sortable">
+                            <div class = "body">
+                                <form method = "post" action = "post-and-get/product.php" class = "form-horizontal" >
+                                    <div class = "panel-body">
+                                        <div class = "row">
+                                            <div class = "col-md-12 arrange-container">
+                                                <ul id = "sortable">
                                                     <?php
                                                     if (count($PRODUCT) > 0) {
                                                         foreach ($PRODUCT as $key => $img) {
@@ -60,7 +70,7 @@ $id = $_GET['id'];
                                                             <div class="col-md-3" style="list-style: none;">
                                                                 <li class="ui-state-default">
                                                                     <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/product-type/product/<?php echo $img["image_name"]; ?>" alt=""/>
+                                                                    <img class="img-responsive" src="../upload/product-categories/product/<?php echo $img["image_name"]; ?>" alt=""/>
                                                                     <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
                                                                 </li>
@@ -75,7 +85,7 @@ $id = $_GET['id'];
 
                                                 </ul>  
                                                 <div class="row">
-                                                    <div class="col-sm-12 text-center" style="margin-top: 19px;">
+                                                    <div class="col-sm-12 text-center" style="margin-top: 19px;"> 
                                                         <input type="submit" class="btn btn-info" id="btn-submit" value="Save Images" name="save-data">
                                                     </div>
                                                 </div>
