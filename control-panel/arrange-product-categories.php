@@ -2,14 +2,14 @@
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$PRODUCT_TYPE = new ProductType(NULL);
+$PRODUCT_CATEGORIES = new ProductCategories(NULL);
 ?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Products</title>
+        <title>Arrange Product Categories</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -29,35 +29,45 @@ $PRODUCT_TYPE = new ProductType(NULL);
 
         <section class="content">
             <div class="container-fluid">  
+                <?php
+                if (isset($_GET['message'])) {
 
+                    $MESSAGE = New Message($_GET['message']);
+                    ?>
+                    <div class="alert alert-<?php echo $MESSAGE->status; ?>" role = "alert">
+                        <?php echo $MESSAGE->description; ?>
+                    </div>
+                    <?php
+                }
+                ?>
                 <!-- Vertical Layout -->
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Arrange Products</h2>
+                                <h2>Arrange Product Categories</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="view-products.php?id=<?php echo $id; ?>">
+                                        <a href="manage-product-categories.php">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="body">
-                                <form method="post" action="post-and-get/product-type.php" class="form-horizontal" >
+                                <form method="post" action="post-and-get/products-categories.php" class="form-horizontal" >
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 arrange-container">
                                                 <ul id="sortable">
                                                     <?php
-                                                    if (count($PRODUCT_TYPE) > 0) {
-                                                        foreach ($PRODUCT_TYPE->all() as $key => $img) {
+                                                    if (count($PRODUCT_CATEGORIES) > 0) {
+                                                        foreach ($PRODUCT_CATEGORIES->all() as $key => $img) {
                                                             ?>
                                                             <div class="col-md-3" style="list-style: none;">
                                                                 <li class="ui-state-default">
                                                                     <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/product-type/<?php echo $img["image_name"]; ?> " alt=""/>
+                                                                    <img class="img-responsive  " src="../upload/product-categories/icon/<?php echo $img["icon"]; ?> " alt=""/>
                                                                     <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
                                                                 </li>

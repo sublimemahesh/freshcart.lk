@@ -1,21 +1,13 @@
 <?php
-//
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-
-$id = '';
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-}
-$PRODUCT = new Product($id);
-?> 
-
+?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Products</title>
+        <title>Products Categories </title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -45,56 +37,82 @@ $PRODUCT = new Product($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>
-                                    Edit Products
-                                </h2>
-
+                                <h2>Create Products Categories </h2>
+                                <ul class="header-dropdown">
+                                    <li class="">
+                                        <a href="manage-product-categories.php">
+                                            <i class="material-icons">list</i> 
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal" method="post" action="post-and-get/product.php" enctype="multipart/form-data"> 
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="name" class="form-control"  value="<?php echo $PRODUCT->name; ?>"  name="name"  required="TRUE">
-                                                <label class="form-label">Title</label>
+                                <form class="form-horizontal"  method="post" action="post-and-get/products-categories.php" enctype="multipart/form-data"> 
+
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                            <label for="name">Name</label>
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label for="name" class="hidden-lg hidden-md">Name</label>
+                                                    <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">                                       
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="file" id="image" class="form-control" value="<?php echo $PRODUCT->image_name; ?>"  name="image">
-                                                <img src="../upload/product-categories/product/<?php echo $PRODUCT->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
+
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                            <label for="icon">Icon</label>
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label for="icon" class="hidden-lg hidden-md">Icon</label>
+                                                    <input type="file" id="icon" class="form-control" name="icon"   >
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="short_description" class="form-control" value="<?php echo $PRODUCT->short_description; ?>"  name="short_description">
-                                                <label class="form-label">Short Description</label>
+
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                            <label for="banner">Banner</label>
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label for="banner" class="hidden-lg hidden-md">Banner</label>
+                                                    <input type="file" id="banner" class="form-control" name="banner"   >
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <label for="description">Description</label>
-                                        <div class="form-line">
-                                            <textarea id="description" name="description" class="form-control" rows="5"><?php echo $PRODUCT->description; ?></textarea> 
+                                    </div> 
+
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>
+
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <input type="hidden" id="oldImageName" value="<?php echo $PRODUCT->image_name; ?>" name="oldImageName"/>
-                                        <input type="hidden" id="id" value="<?php echo $PRODUCT->id; ?>" name="id"/> 
-                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="update">Save Changes</button>
-                                    </div>
-                                    <div class="row clearfix">  </div>
-                                    <hr/>
+
+                                </form>
+                                <div class="row clearfix">  </div>
+                                <hr/>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
                 <!-- #END# Vertical Layout -->
+
             </div>
         </section>
 

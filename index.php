@@ -2,7 +2,7 @@
 <html lang="en-US"> 
     <head>
 
-        <title>Super Shop | Home style 06</title>
+        <title>Supiri market.lk </title>
 
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -10,7 +10,9 @@
         <meta name="keywords" content="" />
         <meta name="robots" content="noodp,index,follow" />
         <meta name='revisit-after' content='1 days' />
-
+        
+        <link rel="icon" href="images/logo-favicon.png" type="images/logo-favicon.png">
+        
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet'>
         <link rel="stylesheet" type="text/css" href="css/libs/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="css/libs/font-linearicons.css"/>

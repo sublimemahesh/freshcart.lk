@@ -5,9 +5,9 @@ include_once(dirname(__FILE__) . '/../../auth.php');
 
 if ($_POST['option'] == 'delete') {
 
-    $PRODUCT_TYPE = new ProductType($_POST['id']);
+    $PRODUCT_CATEGORIES = new ProductCategories($_POST['id']);
   
-    $result = $PRODUCT_TYPE->delete();
+    $result = $PRODUCT_CATEGORIES->delete();
 
     if ($result) {
         $data = array("status" => TRUE);

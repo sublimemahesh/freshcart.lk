@@ -528,23 +528,23 @@
                 <li class="qqq">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
-                        <span>Product Type</span>
+                        <span>Product Categories</span>
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="create-product-type.php">
+                            <a href="create-product-categories.php">
                                 <i class="material-icons">add</i>
                                 <span>Add New</span>
                             </a>
                         </li>
                         <li>
-                            <a href="manage-product-type.php">
+                            <a href="manage-product-categories.php">
                                 <i class="material-icons">list</i>
                                 <span>Manage</span>
                             </a>
                         </li>
                         <li>
-                            <a href="arrange-product-type.php">
+                            <a href="arrange-product-categories.php">
                                 <i class="material-icons">compare_arrows</i>
                                 <span>Arrange</span>
                             </a>
