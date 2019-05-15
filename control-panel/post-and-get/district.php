@@ -37,7 +37,7 @@ if (isset($_POST['add-district'])) {
     }
 }
 
-if (isset($_POST['edit-district'])) {
+if (isset($_POST['update'])) {
     $DISTRICT = new District($_POST['id']);
 
     $DISTRICT->name = $_POST['name'];

@@ -81,7 +81,7 @@ $DIS = new District($id);
                                             <input type="hidden" id="id" value="<?php echo $DIS->id; ?>" name="id"/>
                                             <input type="hidden" id="authToken" value="<?php echo $_SESSION["authToken"]; ?>" name="authToken"/>
 
-                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="edit-district" value="submit">Save Changes</button>
+                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="submit">Save Changes</button>
                                         </div>
                                     </div>
                                 </form>
