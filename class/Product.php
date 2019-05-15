@@ -14,7 +14,8 @@
 class Product {
 
     public $id;
-    public $categories;
+    public $category;
+    public $brand;
     public $name;
     public $image_name;
     public $short_description;
@@ -31,7 +32,8 @@ class Product {
             $result = mysql_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
-            $this->categories = $result['categories'];
+            $this->category = $result['category'];
+            $this->brand = $result['brand'];
             $this->name = $result['name'];
             $this->image_name = $result['image_name'];
             $this->short_description = $result['short_description'];
@@ -44,8 +46,9 @@ class Product {
 
     public function create() {
 
-        $query = "INSERT INTO `product` (`categories`,`name`,`image_name`,`short_description`,`description`,`queue`) VALUES  ('"
-                . $this->categories . "','"
+        $query = "INSERT INTO `product` (`category`,`brand`,`name`,`image_name`,`short_description`,`description`,`queue`) VALUES  ('"
+                . $this->category . "','"
+                . $this->brand . "','"
                 . $this->name . "', '"
                 . $this->image_name . "', '"
                 . $this->short_description . "', '"
@@ -83,7 +86,8 @@ class Product {
     public function update() {
 
         $query = "UPDATE  `product` SET "
-                . "`categories` ='" . $this->categories . "', "
+                . "`category` ='" . $this->category . "', "
+                . "`brand` ='" . $this->brand . "', "
                 . "`name` ='" . $this->name . "', "
                 . "`image_name` ='" . $this->image_name . "', "
                 . "`short_description` ='" . $this->short_description . "', "
@@ -114,7 +118,7 @@ class Product {
 
     public function getProductsById($product) {
 
-        $query = 'SELECT * FROM `product` WHERE categories="' . $product . '"   ORDER BY queue ASC';
+        $query = 'SELECT * FROM `product` WHERE category="' . $product . '"   ORDER BY queue ASC';
 
         $db = new Database();
 

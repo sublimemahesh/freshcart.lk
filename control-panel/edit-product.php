@@ -7,6 +7,12 @@ $id = '';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
+
+$category = '';
+if (isset($_GET['category'])) {
+    $category = $_GET['category'];
+}
+
 $PRODUCT = new Product($id);
 ?> 
 
@@ -15,7 +21,7 @@ $PRODUCT = new Product($id);
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Products</title>
+        <title>Edit Product</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -46,12 +52,42 @@ $PRODUCT = new Product($id);
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Edit Products
+                                    Edit Product
                                 </h2>
-
+                                <ul class="header-dropdown">
+                                    <li class="">
+                                        <a href="view-products.php?id=<?php echo $category ?>">
+                                            <i class="material-icons">list</i> 
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="body">
                                 <form class="form-horizontal" method="post" action="post-and-get/product.php" enctype="multipart/form-data"> 
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <select class="form-control" autocomplete="off" id="brand"  name="brand"  required="true" > 
+                                                    <option> -- Please Select the Brand -- </option> 
+                                                    <?php
+                                                    $BRAND = new Brand(NULL);
+                                                    foreach ($BRAND->all() as $key => $brand) {
+                                                        if ($brand['id'] == $PRODUCT->brand) {
+                                                            ?>
+                                                            <option selected="" value="<?php echo $brand['id']; ?>" required="true" > <?php echo $brand['name'] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option  value="<?php echo $brand['id']; ?>" required="true" > <?php echo $brand['name'] ?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select> 
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -64,7 +100,7 @@ $PRODUCT = new Product($id);
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="file" id="image" class="form-control" value="<?php echo $PRODUCT->image_name; ?>"  name="image">
-                                                <img src="../upload/product-categories/product/<?php echo $PRODUCT->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
+                                                <img src="../upload/product-categories/product/photos/<?php echo $PRODUCT->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
                                             </div>
                                         </div>
                                     </div>

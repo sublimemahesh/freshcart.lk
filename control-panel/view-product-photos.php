@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 
-$PRODUCT_CATEGORIES = new ProductCategories($id);
+$PRODUCT_CATEGORIES = new Product($id);
 ?> 
 <!DOCTYPE html>
 
