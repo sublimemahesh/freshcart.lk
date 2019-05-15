@@ -4,14 +4,14 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 
 if (isset($_POST['create'])) {
 
-    $ACTIVITY_PHOTO = new ActivitiesPhoto(NULL);
+    $PRODUCT_PHOTO = new ProductPhoto(NULL);
     $VALID = new Validator();
 
-    $ACTIVITY_PHOTO->activities = $_POST['id'];
-    $ACTIVITY_PHOTO->caption = $_POST['caption'];
+    $PRODUCT_PHOTO->product = $_POST['id'];
+    $PRODUCT_PHOTO->caption = $_POST['caption'];
 
-    $dir_dest = '../../upload/activity/gallery/';
-    $dir_dest_thumb = '../../upload/activity/gallery/thumb/';
+    $dir_dest = '../../upload/product-categories/product/photos/gallery/';
+    $dir_dest_thumb = '../../upload/product-categories/product/photos/gallery/thumb/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -25,8 +25,8 @@ if (isset($_POST['create'])) {
         $handle->file_new_name_ext = 'jpg';
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $img;
-        $handle->image_x = 900;
-        $handle->image_y = 500;
+        $handle->image_x = 600;
+        $handle->image_y = 900;
 
         $handle->Process($dir_dest);
 
@@ -42,8 +42,8 @@ if (isset($_POST['create'])) {
         $handle->file_new_name_ext = 'jpg';
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $img;
-        $handle->image_x = 250;
-        $handle->image_y = 175;
+        $handle->image_x = 200;
+        $handle->image_y = 300;
 
         $handle->Process($dir_dest_thumb);
 
@@ -53,15 +53,15 @@ if (isset($_POST['create'])) {
         }
     }
 
-    $ACTIVITY_PHOTO->image_name = $imgName;
+    $PRODUCT_PHOTO->image_name = $imgName;
 
-    $VALID->check($ACTIVITY_PHOTO, [
+    $VALID->check($PRODUCT_PHOTO, [
         'caption' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {
-        $ACTIVITY_PHOTO->create();
+        $PRODUCT_PHOTO->create();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -84,8 +84,8 @@ if (isset($_POST['create'])) {
 
 if (isset($_POST['update'])) {
 
-    $dir_dest = '../../upload/activity/gallery/';
-    $dir_dest_thumb = '../../upload/activity/gallery/thumb/';
+    $dir_dest = '../../upload/product-categories/product/photos/gallery/';
+    $dir_dest_thumb = '../../upload/product-categories/product/photos/gallery/thumb/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -98,8 +98,8 @@ if (isset($_POST['update'])) {
         $handle->file_new_name_ext = FALSE;
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $img;
-        $handle->image_x = 900;
-        $handle->image_y = 500;
+        $handle->image_x = 600;
+        $handle->image_y = 900;
 
         $handle->Process($dir_dest);
 
@@ -115,8 +115,8 @@ if (isset($_POST['update'])) {
         $handle->file_new_name_ext = FALSE;
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $img;
-        $handle->image_x = 250;
-        $handle->image_y = 175;
+        $handle->image_x = 200;
+        $handle->image_y = 300;
 
         $handle->Process($dir_dest_thumb);
 
@@ -126,19 +126,19 @@ if (isset($_POST['update'])) {
         }
     }
 
-    $ACTIVITY_PHOTO = new ActivitiesPhoto($_POST['id']);
+    $PRODUCT_PHOTO = new ProductPhoto($_POST['id']);
 
-    $ACTIVITY_PHOTO->image_name = $_POST['oldImageName'];
-    $ACTIVITY_PHOTO->caption = $_POST['caption'];
+    $PRODUCT_PHOTO->image_name = $_POST['oldImageName'];
+    $PRODUCT_PHOTO->caption = $_POST['caption'];
 
     $VALID = new Validator();
-    $VALID->check($ACTIVITY_PHOTO, [
+    $VALID->check($PRODUCT_PHOTO, [
         'caption' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {
-        $ACTIVITY_PHOTO->update();
+        $PRODUCT_PHOTO->update();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -164,7 +164,7 @@ if (isset($_POST['save-data'])) {
     foreach ($_POST['sort'] as $key => $img) {
         $key = $key + 1;
 
-        $ACTIVITY_PHOTO = ActivitiesPhoto::arrange($key, $img);
+        $PRODUCT_PHOTO = ProductPhoto::arrange($key, $img);
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
