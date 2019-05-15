@@ -77,11 +77,9 @@ $DISTRICT = new District(NULL);
                                                         <td><?php echo $key; ?></td> 
                                                         <td><?php echo $district['name']; ?></td> 
                                                         <td>  
-
                                                             <a href="edit-district.php?id=<?php echo $district['id']; ?>" title="Edit District"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> |  
                                                             <a href="create-city.php?id=<?php echo $district['id']; ?>" title="Add City"> <button class="glyphicon glyphicon-map-marker edit-btn btn-warning"></button></a> |  
                                                             <a href="#"  class="delete-district" data-id="<?php echo $district['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
-
                                                         </td>
                                                     </tr>
                                                     <?php
