@@ -56,8 +56,8 @@ include_once(dirname(__FILE__) . '/auth.php');
                                         <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
                                             <div class="form-group">
                                                 <div class="form-line"> 
-                                                    <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" >
-                                                    <label class="form-label">Name</label>
+                                                    <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" placeholder="Enter Name." >
+                                                    
                                                 </div>
                                             </div>
                                         </div>
