@@ -1,13 +1,13 @@
-﻿<?php
+<?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-?> 
-﻿<!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Tour Package</title>
+        <title>Manage Brand</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -32,49 +32,57 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Manage Tour Package
+                                    Manage Manage Brand
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
-                                        <a href="create-tour-package-normal.php">
+                                        <a href="create-brand.php">
                                             <i class="material-icons">add</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="body">
-                                <!--                                <div class="table-responsive">-->
+
                                 <div>
                                     <div class="row clearfix">
                                         <?php
-                                        $TOUR_PACKAGE = TourPackage::all();
-                                        if (count($TOUR_PACKAGE) > 0) {
-                                            foreach ($TOUR_PACKAGE as $key => $tour_package) {
+                                        $BRAND = new Brand(NULL);
+                                        $BRAND = $BRAND->all();
+                                        if (count($BRAND) > 0) {
+                                            foreach ($BRAND as $key => $brand) {
                                                 ?>
-                                                <div class="col-md-3"  id="div<?php echo $tour_package['id']; ?>">
+                                                <div class="col-md-3"  id="div<?php echo $brand['id']; ?>">
                                                     <div class="photo-img-container">
-                                                        <img src="../upload/tour-package/<?php echo $tour_package['image_name']; ?>" class="img-responsive ">
+                                                        <?php
+                                                        if ($brand['logo'] == NULL) {
+                                                            ?>
+                                                        <img src="../upload/product-categories/product-no-image.jpg" class="img-responsive img-thumbnail">
+
+                                                        <?php } else { ?>
+                                                        <img src="../upload/product-categories/product/brands/logo/<?php echo $brand['logo']; ?>" class="img-responsive img-thumbnail">
+
+                                                        <?php } ?>
                                                     </div>
                                                     <div class="img-caption">
-                                                        <p class="maxlinetitle"><?php echo $tour_package['title']; ?></p>
+                                                        <p class="maxlinetitle"><?php echo $brand['name']; ?></p>
                                                         <div class="d">
-                                                            <a href="#"  class="delete-tour-normal" data-id="<?php echo $tour_package['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
-                                                            <a href="edit-tour-package-normal.php?id=<?php echo $tour_package['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
-                                                            <a href="arrange-tour-package.php?id=<?php echo $tour_package['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
-                                                            <a href="view-tour-photos-normal.php?id=<?php echo $tour_package['id']; ?>">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
-                                                        </div>
+                                                            <a href="#"  class="delete-brand" data-id="<?php echo $brand['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
+                                                            <a href="edit-brand.php?id=<?php echo $brand['id']; ?>" title="Edit Brand"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
+                                                            <a href="arrange-brand.php" title="Arrange Brand">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
+                                                         </div>
                                                     </div>
                                                 </div>
                                                 <?php
                                             }
                                         } else {
                                             ?> 
-                                            <b style="padding-left: 15px;">No packages in the database.</b> 
+                                            <b style="padding-left: 15px;">No Brands in the database.</b> 
                                         <?php } ?> 
 
                                     </div>
                                 </div>
-                                <!--                                </div>-->
+
                             </div>
                         </div>
                     </div>
@@ -105,9 +113,8 @@ include_once(dirname(__FILE__) . '/auth.php');
         <script src="plugins/sweetalert/sweetalert.min.js"></script>
         <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
         <script src="js/pages/ui/dialogs.js"></script>
-        <script src="js/demo.js"></script>
-        <script src="delete/js/tour-package-normal.js" type="text/javascript"></script>
-
+        <script src="js/demo.js"></script> 
+        <script src="delete/js/brand.js" type="text/javascript"></script>
     </body>
 
 </html> 

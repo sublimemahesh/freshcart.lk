@@ -2,19 +2,14 @@
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$id = '';
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-}
-$ACTIVITY = new Activities($id);
-?> 
-
+$BRAND = new Brand(NULL);
+?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Activities</title>
+        <title>Arrange Brand</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -35,72 +30,75 @@ $ACTIVITY = new Activities($id);
         <section class="content">
             <div class="container-fluid">  
                 <?php
-                $vali = new Validator();
+                if (isset($_GET['message'])) {
 
-                $vali->show_message();
+                    $MESSAGE = New Message($_GET['message']);
+                    ?>
+                    <div class="alert alert-<?php echo $MESSAGE->status; ?>" role = "alert">
+                        <?php echo $MESSAGE->description; ?>
+                    </div>
+                    <?php
+                }
                 ?>
                 <!-- Vertical Layout -->
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>
-                                    Edit Activity
-                                </h2>
+                                <h2>Arrange Brands</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-activity.php">
+                                        <a href="manage-brand.php">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal" method="post" action="post-and-get/activity.php" enctype="multipart/form-data"> 
+                                <form method="post" action="post-and-get/brand.php" class="form-horizontal" >
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12 arrange-container">
+                                                <ul id="sortable">
+                                                    <?php
+                                                    if (count($BRAND) > 0) {
+                                                        foreach ($BRAND->all() as $key => $img) {
+                                                            ?>
+                                                            <div class="col-md-3" style="list-style: none;">
+                                                                <li class="ui-state-default">
+                                                                    <span class="number-class">(<?php echo $key + 1; ?>)</span>
+                                                                    <img class="img-responsive  " src="../upload/product-categories/product/brands/logo/<?php echo $img["logo"]; ?> " alt=""/>
+                                                                    <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="title" class="form-control"  value="<?php echo $ACTIVITY->title; ?>"  name="title"  required="TRUE">
-                                                <label class="form-label">Title</label>
+                                                                </li>
+                                                            </div>
+
+                                                            <?php
+                                                        }
+                                                    } else {
+                                                        ?> 
+                                                        <b>No images in the database.</b> 
+                                                    <?php } ?> 
+
+                                                </ul>  
+                                                <div class="row">
+                                                    <div class="col-sm-12 text-center" style="margin-top: 19px;">
+                                                        <input type="submit" class="btn btn-info" id="btn-submit" value="Save Images" name="save-data">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                     </div>
-                                    <div class="col-md-12">                                       
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="file" id="image" class="form-control" value="<?php echo $ACTIVITY->image_name; ?>"  name="image">
-                                                <img src="../upload/activity/<?php echo $ACTIVITY->image_name; ?>" id="image" class="view-edit-img img img-responsive img-thumbnail" name="image" alt="old image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="short_description" class="form-control" value="<?php echo $ACTIVITY->short_description; ?>"  name="short_description">
-                                                <label class="form-label">Short Description</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <label for="description">Description</label>
-                                        <div class="form-line">
-                                            <textarea id="description" name="description" class="form-control" rows="5"><?php echo $ACTIVITY->description; ?></textarea> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="hidden" id="oldImageName" value="<?php echo $ACTIVITY->image_name; ?>" name="oldImageName"/>
-                                        <input type="hidden" id="id" value="<?php echo $ACTIVITY->id; ?>" name="id"/>
-<!--                                            <input type="hidden" id="authToken" value="<?php echo $_SESSION["authToken"]; ?>" name="authToken"/>-->
-                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="update">Save Changes</button>
-                                    </div>
-                                    <div class="row clearfix">  </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+
                 <!-- #END# Vertical Layout -->
+
             </div>
         </section>
 
@@ -112,8 +110,13 @@ $ACTIVITY = new Activities($id);
         <script src="js/admin.js"></script>
         <script src="js/demo.js"></script>
         <script src="js/add-new-ad.js" type="text/javascript"></script>
+        <script src="delete/js/slider.js" type="text/javascript"></script>
 
+        <script src="plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
+        <script src="js/pages/ui/dialogs.js"></script>
 
+        <script src="plugins/jquery-ui/jquery-ui.js" type="text/javascript"></script>
         <script src="tinymce/js/tinymce/tinymce.min.js"></script>
         <script>
             tinymce.init({
@@ -141,6 +144,13 @@ $ACTIVITY = new Activities($id);
             });
 
 
+        </script>
+
+        <script>
+            $(function () {
+                $("#sortable").sortable();
+                $("#sortable").disableSelection();
+            });
         </script>
     </body>
 

@@ -3,18 +3,16 @@ include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
 $id = '';
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-}
-$TOUR_PACKAGE = new TourPackage($id);
-?> 
+$id = $_GET['id'];
 
+$BRAND = new Brand($id);
+?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Tour Package</title>
+        <title>Edit Brand </title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -36,6 +34,7 @@ $TOUR_PACKAGE = new TourPackage($id);
             <div class="container-fluid">  
                 <?php
                 $vali = new Validator();
+
                 $vali->show_message();
                 ?>
                 <!-- Vertical Layout -->
@@ -43,74 +42,76 @@ $TOUR_PACKAGE = new TourPackage($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>
-                                    Edit Tour Package
-                                </h2>
+                                <h2>Edit Brand </h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-tour-package-normal.php">
+                                        <a href="manage-brand.php">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal" method="post" action="post-and-get/tour-package.php" enctype="multipart/form-data"> 
+                                <form class="form-horizontal"  method="post" action="post-and-get/brand.php" enctype="multipart/form-data"> 
 
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="title" class="form-control"  value="<?php echo $TOUR_PACKAGE->title; ?>"  name="title"  required="TRUE">
-                                                <label class="form-label">Title</label>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                            <label for="name">Name</label>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="price" class="form-control"  value="<?php echo $TOUR_PACKAGE->price; ?>"  name="price"  required="TRUE">
-                                                <label class="form-label">Price</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">                                       
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="file" id="image" class="form-control" value="<?php echo $TOUR_PACKAGE->image_name; ?>"  name="image">
-                                                <img src="../upload/tour-package/<?php echo $TOUR_PACKAGE->image_name; ?>" id="image" class="view-edit-img img img-responsive img-thumbnail" name="image" alt="old image">
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label for="name" class="hidden-lg hidden-md">Name</label>
+                                                    <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" value="<?php echo $BRAND->name ?>">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                            <label for="logo">Logo</label>
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <div class="form-group">
+                                                <label for="logo" class="hidden-lg hidden-md">Logo</label>
+                                                <input type="file" id="logo" class="form-control" name="logo" >
+                                                <?php if ($BRAND->logo == NULL) { ?>
+                                                    <img src="../upload/product-categories/product-no-image.jpg" class="img-responsive img-thumbnail">
 
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="short_description" class="form-control" value="<?php echo $TOUR_PACKAGE->short_description; ?>"  name="short_description">
-                                                <label class="form-label">Short Description</label>
+                                                <?php } else { ?>
+                                                    <img src="../upload/product-categories/product/brands/logo/<?php echo $BRAND->logo; ?>" class="img-responsive img-thumbnail">
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <label for="description">Description</label>
-                                        <div class="form-line">
-                                            <textarea id="description" name="description" class="form-control" rows="5"><?php echo $TOUR_PACKAGE->description; ?></textarea> 
+
+                                     
+
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <input type="hidden" id="oldImageIcon" value="<?php echo $BRAND->logo; ?>" name="oldImageLogo"/> 
+                                            <input type="hidden" id="id" value="<?php echo $BRAND->id; ?>" name="id"/>
+                                            <input type="submit" name="update" class="btn btn-primary m-t-15 waves-effect" value="update"/>
+
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <input type="hidden" id="oldImageName" value="<?php echo $TOUR_PACKAGE->image_name; ?>" name="oldImageName"/>
-                                        <input type="hidden" id="id" value="<?php echo $TOUR_PACKAGE->id; ?>" name="id"/>
-<!--                                            <input type="hidden" id="authToken" value="<?php echo $_SESSION["authToken"]; ?>" name="authToken"/>-->
-                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="update">Save Changes</button>
-                                    </div>
-                                    <div class="row clearfix">  </div>
-                                    <hr/>
+
+                                </form>
+                                <div class="row clearfix">  </div>
+                                <hr/>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
                 <!-- #END# Vertical Layout -->
+
             </div>
         </section>
 

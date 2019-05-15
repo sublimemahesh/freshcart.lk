@@ -472,32 +472,32 @@
                                     </a>
                                  
                                 </li>-->
-<!--                <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">chevron_right</i>
-                        <span>Photo Album</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="create-photo-album.php">
-                                <i class="material-icons">add</i>
-                                <span>Add New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage-photo-album.php">
-                                <i class="material-icons">list</i>
-                                <span>Manage</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="arrange-photo-album.php">
-                                <i class="material-icons">compare_arrows</i>
-                                <span>Arrange</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>-->
+                <!--                <li>
+                                    <a href="javascript:void(0);" class="menu-toggle">
+                                        <i class="material-icons">chevron_right</i>
+                                        <span>Photo Album</span>
+                                    </a>
+                                    <ul class="ml-menu">
+                                        <li>
+                                            <a href="create-photo-album.php">
+                                                <i class="material-icons">add</i>
+                                                <span>Add New</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="manage-photo-album.php">
+                                                <i class="material-icons">list</i>
+                                                <span>Manage</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="arrange-photo-album.php">
+                                                <i class="material-icons">compare_arrows</i>
+                                                <span>Arrange</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>-->
                 <!--                <li>
                                     <a href="javascript:void(0);" class="menu-toggle">
                                         <i class="material-icons">chevron_right</i>
@@ -552,6 +552,33 @@
                     </ul>
                 </li> 
 
+                <li class="qqq">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Brands</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="create-brand.php">
+                                <i class="material-icons">add</i>
+                                <span>Add New</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage-brand.php">
+                                <i class="material-icons">list</i>
+                                <span>Manage</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="arrange-brand.php">
+                                <i class="material-icons">compare_arrows</i>
+                                <span>Arrange</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li> 
+
                 <!--                <li>
                                     <a href="javascript:void(0);" class="menu-toggle">
                                         <i class="material-icons">chevron_right</i>
@@ -578,32 +605,32 @@
                                         </li>
                                     </ul>
                                 </li>-->
-<!--                <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">chevron_right</i>
-                        <span>Guest Comments</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="create-comment.php">
-                                <i class="material-icons">add</i>
-                                <span>Add New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage-comments.php">
-                                <i class="material-icons">list</i>
-                                <span>Manage</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="arrange-comments.php">
-                                <i class="material-icons">compare_arrows</i>
-                                <span>Arrange</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>-->
+                <!--                <li>
+                                    <a href="javascript:void(0);" class="menu-toggle">
+                                        <i class="material-icons">chevron_right</i>
+                                        <span>Guest Comments</span>
+                                    </a>
+                                    <ul class="ml-menu">
+                                        <li>
+                                            <a href="create-comment.php">
+                                                <i class="material-icons">add</i>
+                                                <span>Add New</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="manage-comments.php">
+                                                <i class="material-icons">list</i>
+                                                <span>Manage</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="arrange-comments.php">
+                                                <i class="material-icons">compare_arrows</i>
+                                                <span>Arrange</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>-->
             </ul>
         </div>
         <!-- #Menu -->

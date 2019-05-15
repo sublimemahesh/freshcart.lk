@@ -1,17 +1,13 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-
-$id = $_GET['id'];
-
-$TOUR_PACKAGE_PHOTO = TourPackagePhotosNormal::getTourPhotosById($id);
 ?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Activities</title>
+        <title>Create Brand </title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -31,58 +27,70 @@ $TOUR_PACKAGE_PHOTO = TourPackagePhotosNormal::getTourPhotosById($id);
 
         <section class="content">
             <div class="container-fluid">  
+                <?php
+                $vali = new Validator();
 
+                $vali->show_message();
+                ?>
                 <!-- Vertical Layout -->
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Arrange Tour Packages photos</h2>
+                                <h2>Create Brand</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-activity.php">
+                                        <a href="manage-brand.php">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="body">
-                                <form method="post" action="post-and-get/tour-normal-photo.php" class="form-horizontal" >
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12 arrange-container">
-                                                <ul id="sortable">
-                                                    <?php
-                                                    if (count($TOUR_PACKAGE_PHOTO) > 0) {
-                                                        foreach ($TOUR_PACKAGE_PHOTO as $key => $img) {
-                                                            ?>
-                                                            <div class="col-md-3" style="list-style: none;">
-                                                                <li class="ui-state-default">
-                                                                    <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/tour-package/gallery/thumb/<?php echo $img["image_name"]; ?>" alt=""/>
-                                                                    <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
+                                <form class="form-horizontal"  method="post" action="post-and-get/brand.php" enctype="multipart/form-data"> 
 
-                                                                </li>
-                                                            </div>
-
-                                                            <?php
-                                                        }
-                                                    } else {
-                                                        ?> 
-                                                        <b>No images in the database.</b> 
-                                                    <?php } ?> 
-
-                                                </ul>  
-                                                <div class="row">
-                                                    <div class="col-sm-12 text-center" style="margin-top: 19px;">
-                                                        <input type="submit" class="btn btn-info" id="btn-submit" value="Save Images" name="save-data">
-                                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                            <label for="name">Name</label>
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <div class="form-group">
+                                                <div class="form-line"> 
+                                                    <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" >
+                                                    <label class="form-label">Name</label>
                                                 </div>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
-                                </form>
 
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                            <label for="logo">Logo</label>
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label for="logo" class="hidden-lg hidden-md">Logo</label>
+                                                    <input type="file" id="logo" class="form-control" name="logo"   >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+
+                                        </div>
+                                        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 p-bottom">
+                                            <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <div class="row clearfix">  </div>
+                                <hr/>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -102,13 +110,8 @@ $TOUR_PACKAGE_PHOTO = TourPackagePhotosNormal::getTourPhotosById($id);
         <script src="js/admin.js"></script>
         <script src="js/demo.js"></script>
         <script src="js/add-new-ad.js" type="text/javascript"></script>
-        <script src="delete/js/slider.js" type="text/javascript"></script>
 
-        <script src="plugins/sweetalert/sweetalert.min.js"></script>
-        <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
-        <script src="js/pages/ui/dialogs.js"></script>
 
-        <script src="plugins/jquery-ui/jquery-ui.js" type="text/javascript"></script>
         <script src="tinymce/js/tinymce/tinymce.min.js"></script>
         <script>
             tinymce.init({
@@ -136,13 +139,6 @@ $TOUR_PACKAGE_PHOTO = TourPackagePhotosNormal::getTourPhotosById($id);
             });
 
 
-        </script>
-
-        <script>
-            $(function () {
-                $("#sortable").sortable();
-                $("#sortable").disableSelection();
-            });
         </script>
     </body>
 
