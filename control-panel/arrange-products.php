@@ -70,7 +70,7 @@ $PRODUCT = Product::getProductsById($id);
                                                             <div class="col-md-3" style="list-style: none;">
                                                                 <li class="ui-state-default">
                                                                     <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/product-categories/product/<?php echo $img["image_name"]; ?>" alt=""/>
+                                                                    <img class="img-responsive" src="../upload/product-categories/product/photos/<?php echo $img["image_name"]; ?>" alt=""/>
                                                                     <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
                                                                 </li>

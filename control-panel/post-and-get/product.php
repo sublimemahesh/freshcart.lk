@@ -7,12 +7,14 @@ if (isset($_POST['create'])) {
     $PRODUCT = new Product(NULL);
     $VALID = new Validator();
 
-    $PRODUCT->categories = $_POST['id'];
+
+    $PRODUCT->category = $_POST['id'];
+    $PRODUCT->brand = $_POST['brand'];
     $PRODUCT->name = $_POST['name'];
     $PRODUCT->short_description = $_POST['short_description'];
     $PRODUCT->description = $_POST['description'];
 
-    $dir_dest = '../../upload/product-categories/product/';
+    $dir_dest = '../../upload/product-categories/product/photos/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -23,8 +25,8 @@ if (isset($_POST['create'])) {
         $handle->file_new_name_ext = 'jpg';
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = Helper::randamId();
-        $handle->image_x = 372;
-        $handle->image_y = 277;
+        $handle->image_x = 500;
+        $handle->image_y = 600;
 
         $handle->Process($dir_dest);
 
@@ -67,7 +69,7 @@ if (isset($_POST['create'])) {
 
 if (isset($_POST['update'])) {
 
-    $dir_dest = '../../upload/product-categories/product/';
+    $dir_dest = '../../upload/product-categories/product/photos/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -81,8 +83,8 @@ if (isset($_POST['update'])) {
         $handle->file_new_name_ext = FALSE;
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $_POST ["oldImageName"];
-        $handle->image_x = 372;
-        $handle->image_y = 277;
+        $handle->image_x = 500;
+        $handle->image_y = 600;
 
         $handle->Process($dir_dest);
 
@@ -94,6 +96,7 @@ if (isset($_POST['update'])) {
 
     $PRODUCT = new Product($_POST['id']);
 
+    $PRODUCT->brand = $_POST['brand'];
     $PRODUCT->image_name = $_POST['oldImageName'];
     $PRODUCT->name = $_POST['name'];
     $PRODUCT->short_description = $_POST['short_description'];

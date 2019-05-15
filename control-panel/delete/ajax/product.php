@@ -7,7 +7,7 @@ if ($_POST['option'] == 'delete') {
 
     $PRODUCT = new Product($_POST['id']);
 
-    unlink(Helper::getSitePath() . "upload/product-type/product/" . $PRODUCT->image_name);
+    unlink(Helper::getSitePath() . "upload/product-categories/product/photos/" . $PRODUCT->image_name);
   
 
     $result = $PRODUCT->delete();

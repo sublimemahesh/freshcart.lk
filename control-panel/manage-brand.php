@@ -32,7 +32,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Manage Manage Brand
+                                     Manage Brands
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
