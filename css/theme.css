@@ -7270,14 +7270,14 @@ ol.list-post-comment {
     position: relative;
     width: 100%;
 }
-.account-register .form-my-account {
+/*.account-register .form-my-account {
     float: right;
-}
+}*/
 .account-register::before {
     border-right: 1px solid #e5e5e5;
     content: "";
     height: 100%;
-    left: -15px;
+    left:-15px;
     position: absolute;
     top: 0;
     width: 1px;

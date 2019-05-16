@@ -89,7 +89,7 @@ class City {
     public function GetCitiesByDistrict($district) {
 
         $query = "SELECT * FROM `city` WHERE `district` = '" . $district . "'";
-
+       
         $db = new Database();
 
         $result = $db->readQuery($query);
