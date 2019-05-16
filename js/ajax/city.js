@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('#district').change(function () {
         var disID = $(this).val();
         $.ajax({
-            url: "control-panel/post-and-get/ajax/city.php",
+            url: "post-and-get/ajax/city.php",
             type: "POST",
             data: {
                 district: disID,

@@ -17,6 +17,7 @@ class Customer {
     public $district;
     public $city;
     public $address;
+    public $resetcode;
 
     public function __construct($id) {
         if ($id) {
@@ -35,6 +36,7 @@ class Customer {
             $this->district = $result['district'];
             $this->city = $result['city'];
             $this->address = $result['address'];
+            $this->resetcode = $result['resetcode'];
 
             return $this;
         }
@@ -95,6 +97,94 @@ class Customer {
             $customer = $this->__construct($this->id);
 
             return $customer;
+        }
+    }
+
+    public function checkEmail($email) {
+
+        $query = "SELECT `email`,`name` FROM `customer` WHERE `email`= '" . $email . "'";
+
+        $db = new Database();
+
+        $result = mysql_fetch_array($db->readQuery($query));
+
+        if (!$result) {
+
+            return FALSE;
+        } else {
+
+            return $result;
+        }
+    }
+
+    public function GenarateCode($email) {
+
+        $rand = rand(10000, 99999);
+
+        $query = "UPDATE  `customer` SET "
+                . "`resetcode` ='" . $rand . "' "
+                . "WHERE `email` = '" . $email . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function SelectForgetCustomer($email) {
+
+        if ($email) {
+
+            $query = "SELECT `email`,`name`,`resetcode` FROM `customer` WHERE `email`= '" . $email . "'";
+
+            $db = new Database();
+
+            $result = mysql_fetch_array($db->readQuery($query));
+
+            $this->name = $result['name'];
+            $this->email = $result['email'];
+            $this->restCode = $result['resetcode'];
+
+            return $result;
+        }
+    }
+
+    public function SelectResetCode($code) {
+
+        $query = "SELECT `id` FROM `customer` WHERE `resetcode`= '" . $code . "'";
+
+        $db = new Database();
+
+        $result = mysql_fetch_array($db->readQuery($query));
+        if (!$result) {
+
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
+    public function updatePassword($password, $code) {
+        $enPass = md5($password);
+
+        $query = "UPDATE  `customer` SET "
+                . "`password` ='" . $enPass . "' "
+                . "WHERE `resetcode` = '" . $code . "'";
+
+        $db = new Database();
+        $result = $db->readQuery($query);
+
+        if ($result) {
+
+            return TRUE;
+        } else {
+
+            return FALSE;
         }
     }
 
