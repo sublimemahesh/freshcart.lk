@@ -1207,19 +1207,13 @@ a:focus {
     transition:all 0.3s ease-out 0s;
     -webkit-transition:all 0.3s ease-out 0s;
 }
-.hot-deal-product-thumb .product-thumb-link:hover img,.item-product-bestseller .product-thumb:hover img {
-    transform:scale(1.15);
-    -webkit-transform:scale(1.15);
-}
+ 
 .second-thumb {
     left: 0;
     position: absolute;
     top: 100%;
 }
-.product-thumb:hover .product-thumb-link img{
-    transform:translateY(-100%);
-    -webkit-transform:translateY(-100%);
-}
+ 
 .percent-saleoff {
     background: #ed321e none repeat scroll 0 0;
     color: #fff;
