@@ -57,8 +57,8 @@
                     <div class="wrap-register-cart">
                         <div class="register-box">
                             <ul>
-                                <li><a href="#"><i class="fa fa-lock"></i> Login </a></li>
-                                <li><a href="#"><i class="fa fa-list-alt"></i> Register </a></li>
+                                <li><a href="loging-or-registration.php"><i class="fa fa-lock"></i> Login </a></li>
+                                <li><a href="loging-or-registration.php"><i class="fa fa-list-alt"></i> Register </a></li>
                             </ul>
                             <p>My Account & Oder</p>
                         </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-include_once(dirname(__FILE__) . './class/include.php');
+include './class/include.php'; 
 ?>
 <html lang="en-US"> 
     <head>
@@ -10,7 +10,7 @@ include_once(dirname(__FILE__) . './class/include.php');
         <meta name="keywords" content="Super Shop,7uptheme" />
         <meta name="robots" content="noodp,index,follow" />
         <meta name='revisit-after' content='1 days' />
-        <title>Super Shop | My Account</title>
+        <title>Supiri market || Login or Registration</title>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet'>
         <link rel="stylesheet" type="text/css" href="css/libs/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="css/libs/font-linearicons.css"/>
@@ -77,7 +77,7 @@ include_once(dirname(__FILE__) . './class/include.php');
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <div class="text-center">
-                                                                        <a href=" " tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                                        <a href="forget-password.php" tabindex="5" class="forgot-password">Forgot Password?</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -158,6 +158,7 @@ include_once(dirname(__FILE__) . './class/include.php');
     <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="js/theme.js"></script>
     <script src="js/ajax/city.js" type="text/javascript"></script>
+
     <script src="js/ajax/registration.js" type="text/javascript"></script>
 
     <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
