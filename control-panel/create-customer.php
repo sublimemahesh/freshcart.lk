@@ -114,7 +114,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <div class="form-group">
                                                 <div class="form-line"> 
                                                     <select class="form-control" type="text" id="district" autocomplete="off" name="district">
-                                                        <option value="<?php $MEMBER->city ?>" class="active light-c"> -- Please  Select Your District -- </option>
+                                                        <option class="active light-c"> -- Please  Select Your District -- </option>
                                                         <?php
                                                         $DISTRICT = new District(NULL);
                                                         foreach ($DISTRICT->all() as $key => $district) {

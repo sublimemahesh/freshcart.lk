@@ -78,6 +78,26 @@ class Customer {
         return $array_res;
     }
 
+    public function login($username, $password) {
+
+        $enPass = md5($password);
+        $query = "SELECT  `id`,`name`,`email`,`phone_number` FROM `customer` WHERE `email`= '" . $username . "' AND `password`= '" . $enPass . "'";
+        $db = new Database();
+
+        $result = mysql_fetch_array($db->readQuery($query));
+
+        if (!$result) {
+
+            return FALSE;
+        } else {
+
+            $this->id = $result['id'];
+            $customer = $this->__construct($this->id);
+
+            return $customer;
+        }
+    }
+
     public function update() {
 
         $query = "UPDATE  `customer` SET "
