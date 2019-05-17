@@ -4,20 +4,13 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 
 if (isset($_POST['create'])) {
 
-    $PRODUCT = new Product(NULL);
+    $SUB_PRODUCT = new SubProduct(NULL);
     $VALID = new Validator();
 
-    $PRODUCT->category = $_POST['category'];
-    $PRODUCT->sub_product = $_POST['id'];
-    $PRODUCT->brand = $_POST['brand'];
-    $PRODUCT->name = $_POST['name'];
-    $PRODUCT->discount = $_POST['discount'];
-    $PRODUCT->unite = $_POST['unite'];
-    $PRODUCT->price = $_POST['price'];
-    $PRODUCT->short_description = $_POST['short_description'];
-    $PRODUCT->description = $_POST['description'];
+    $SUB_PRODUCT->category = $_POST['id'];
+    $SUB_PRODUCT->name = $_POST['name'];
 
-    $dir_dest = '../../upload/product-categories/sub-product/product/photos/';
+    $dir_dest = '../../upload/product-categories/sub-product/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -39,17 +32,15 @@ if (isset($_POST['create'])) {
         }
     }
 
-    $PRODUCT->image_name = $imgName;
+    $SUB_PRODUCT->image_name = $imgName;
 
-    $VALID->check($PRODUCT, [
-        'name' => ['required' => TRUE],
-        'short_description' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
+    $VALID->check($SUB_PRODUCT, [
+        'name' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {
-        $PRODUCT->create();
+        $SUB_PRODUCT->create();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -72,7 +63,7 @@ if (isset($_POST['create'])) {
 
 if (isset($_POST['update'])) {
 
-    $dir_dest = '../../upload/product-categories/sub-product/product/photos/';
+    $dir_dest = '../../upload/product-categories/sub-product/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -97,24 +88,20 @@ if (isset($_POST['update'])) {
         }
     }
 
-    $PRODUCT = new Product($_POST['id']);
+    $SUB_PRODUCT = new SubProduct($_POST['id']);
 
-    $PRODUCT->brand = $_POST['brand'];
-    $PRODUCT->image_name = $_POST['oldImageName'];
-    $PRODUCT->name = $_POST['name'];
-    $PRODUCT->short_description = $_POST['short_description'];
-    $PRODUCT->description = $_POST['description'];
+    $SUB_PRODUCT->name = $_POST['name'];
+    $SUB_PRODUCT->image_name = $_POST['oldImageName'];
+    
 
     $VALID = new Validator();
-    $VALID->check($PRODUCT, [
-        'name' => ['required' => TRUE],
-        'short_description' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
+    $VALID->check($SUB_PRODUCT, [
+        'name' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {
-        $PRODUCT->update();
+        $SUB_PRODUCT->update();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -140,7 +127,7 @@ if (isset($_POST['save-data'])) {
     foreach ($_POST['sort'] as $key => $img) {
         $key = $key + 1;
 
-        $PRODUCT = Product::arrange($key, $img);
+        $SUB_PRODUCT = SubProduct::arrange($key, $img);
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }

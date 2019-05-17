@@ -70,7 +70,7 @@ if (isset($_POST['create'])) {
         }
         $VALID->addError("Your data was saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
-        header("location: ../view-products.php?id=" . $PRODUCT_CATEGORIES->id);
+        header("location: ../create-sub-product.php?id=" . $PRODUCT_CATEGORIES->id);
     } else {
 
         if (!isset($_SESSION)) {
