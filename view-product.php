@@ -175,7 +175,7 @@ $PRODUCT = new Product($id);
                                             <div class="col-md-5 col-sm-12 col-xs-12">
                                                 <div class="detail-gallery">
                                                     <div class="mid">
-                                                        <img src="upload/product-categories/product/photos/<?php echo $PRODUCT->image_name ?>" alt=""/>
+                                                        <img src="upload/product-categories/sub-product/product/photos/<?php echo $PRODUCT->image_name ?>" alt=""/>
                                                         <p><i class="fa fa-search"></i> Mouse over to zoom in</p>
                                                     </div>
                                                     <div class="carousel">
@@ -185,11 +185,11 @@ $PRODUCT = new Product($id);
                                                             foreach ($PRODUCT_PHOTO->getProductPhotosById($id) as $key => $product_photo) {
                                                                 if ($key === 1) {
                                                                     ?>
-                                                                    <li><a href="#" class="active"><img src="upload/product-categories/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
+                                                                    <li><a href="#" class="active"><img src="upload/product-categories/sub-product/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
                                                                     <?php
                                                                 } else {
                                                                     ?> 
-                                                                    <li><a href="#"><img src="upload/product-categories/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
+                                                                    <li><a href="#"><img src="upload/product-categories/sub-product/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
                                                                     <?php
                                                                 }
                                                             }

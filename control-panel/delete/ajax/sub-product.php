@@ -5,12 +5,9 @@ include_once(dirname(__FILE__) . '/../../auth.php');
 
 if ($_POST['option'] == 'delete') {
 
-    $ALBUM_PHOTO = new AlbumPhoto($_POST['id']);
+    $SUB_PRODUCT = new SubProduct($_POST['id']); 
 
-    unlink('../../../upload/photo-album/gallery/' . $ALBUM_PHOTO->image_name);
-    unlink('../../../upload/photo-album/gallery/thumb/' . $ALBUM_PHOTO->image_name);
-
-    $result = $ALBUM_PHOTO->delete();
+    $result = $SUB_PRODUCT->delete();
 
 
     if ($result) {

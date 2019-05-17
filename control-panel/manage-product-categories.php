@@ -57,7 +57,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                         <?php
                                                         if ($product_categories['icon'] == NULL) {
                                                             ?>
-                                                        <img src="../upload/product-categories/product-no-image.jpg" class="img-responsive img-thumbnail">
+                                                            <img src="../upload/product-categories/product-no-image.jpg" class="img-responsive img-thumbnail">
 
                                                         <?php } else { ?>
                                                             <img src="../upload/product-categories/icon/<?php echo $product_categories['icon']; ?>" class="img-responsive img-thumbnail">
@@ -70,7 +70,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                             <a href="#"  class="delete-product-categories" data-id="<?php echo $product_categories['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
                                                             <a href="edit-product-categories.php?id=<?php echo $product_categories['id']; ?>" title="Edit Product categories"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                             <a href="arrange-product-categories.php?id=<?php echo $product_categories['id']; ?>" title="Arrange Product categories">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
-                                                            <a href="view-products.php?id=<?php echo $product_categories['id']; ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
+                                                            <a href="create-sub-product.php?id=<?php echo $product_categories['id']; ?>" title="Add Sub Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
                                                         </div>
                                                     </div>
                                                 </div>

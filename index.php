@@ -48,29 +48,32 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                         foreach ($PRODUCT_CATEGORIES->all() as $product_categories) {
                                             ?>
                                             <li class="has-cat-mega">
-                                                <a href="#"> Mobiles &amp; Tablets</a>
-                                                <div class="cat-mega-menu cat-mega-style1">
-                                                    <div class="row"> 
-                                                        <div class="col-md-4 col-sm-3">
-                                                            <div class="list-cat-mega-menu"> 
-                                                                <h2 class="title-cat-mega-menu">Women’s</h2>
-                                                                <ul>
-                                                                    <li><a href="#">Dresses</a></li>
-                                                                    <li><a href="#">Coats & Jackets</a></li>
-                                                                    <li><a href="#">Blouses & Shirts</a></li>
-                                                                    <li><a href="#">Tops & Tees</a></li>
-                                                                    <li><a href="#">Hoodies & Sweatshirts</a></li>
-                                                                    <li><a href="#">Intimates</a></li>
-                                                                    <li><a href="#">Swimwear</a></li>
-                                                                    <li><a href="#">Pants & Capris</a></li>
-                                                                    <li><a href="#">Sweaters</a></li>
-                                                                    <li><a href="#">Accessories</a></li>
-                                                                </ul> >
+                                                <a href="#"> <?php echo $product_categories['name'] ?></a>
+
+                                                <div class="cat-mega-menu cat-mega-style1"> 
+                                                    <div class="row">
+                                                        <?php
+                                                        $SUB_PRODUCT = new SubProduct(NULL);
+                                                        foreach ($SUB_PRODUCT->getProductsByCategory($product_categories['id']) as $sub_product) {
+                                                            ?>
+                                                            <div class="col-md-4 col-sm-3">
+                                                                <div class="list-cat-mega-menu"> 
+
+                                                                    <h2 class="title-cat-mega-menu"><?php echo $sub_product['name'] ?></h2>
+                                                                    <?php
+                                                                    $PRODUCT = new Product(NULL);
+                                                                    foreach ($PRODUCT->getProductsBySubProduct($sub_product['id']) as $product) {
+                                                                        ?>
+                                                                        <ul>
+                                                                            <li><a href="#"><?php echo $product['name'] ?></a></li>
+
+                                                                        </ul> 
+                                                                    <?php } ?>
+                                                                </div> 
                                                             </div>
-
-                                                        </div>
-                                                    </div> 
-
+                                                        <?php } ?>
+                                                    </div>  
+                                                </div>                                               
                                             </li> 
                                         <?php }
                                         ?>
@@ -276,7 +279,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                 <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1],[480,2],[768,3],[980,4],[1200,4]]">
                                                     <?php
                                                     $PRODUCT = new Product(NULL);
-                                                    foreach ($PRODUCT->getProductsById($product_categories['id']) as $product) {
+                                                    foreach ($PRODUCT->getProductsByCategory($product_categories['id']) as $product) {
                                                         ?>                                                   
                                                         <div class="item">
                                                             <div class="item-hot-deal-product">
@@ -291,7 +294,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                                     </div>
                                                                     <div class="product-thumb">
                                                                         <a href="view-product.php?id=<?php echo $product['id'] ?>">
-                                                                            <img alt="" src="upload/product-categories/product/photos/<?php echo $product['image_name'] ?>"  > 
+                                                                            <img alt="" src="upload/product-categories/sub-product/product/photos/<?php echo $product['image_name'] ?>"  > 
                                                                         </a>
                                                                         <div class="product-info-cart">
                                                                             <div class="product-extra-link">

@@ -2,14 +2,16 @@
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$SERVICE = new Service(NULL);
+$id = '';
+$id = $_GET['id'];
+$SUB_PRODUCT = new SubProduct(NULL);
 ?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Service</title>
+        <title>Arrange Sub Product</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -35,29 +37,22 @@ $SERVICE = new Service(NULL);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Arrange Service</h2>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="manage-service.php">
-                                            <i class="material-icons">list</i> 
-                                        </a>
-                                    </li>
-                                </ul>
+                                <h2>Arrange Sub Product</h2> 
                             </div>
                             <div class="body">
-                                <form method="post" action="post-and-get/service.php" class="form-horizontal" >
+                                <form method="post" action="post-and-get/sub-product.php" class="form-horizontal" >
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 arrange-container">
                                                 <ul id="sortable">
                                                     <?php
-                                                    if (count($SERVICE->all()) > 0) {
-                                                        foreach ($SERVICE->all() as $key => $img) {
+                                                    if (count($SUB_PRODUCT->getProductsByCategory($id)) > 0) {
+                                                        foreach ($SUB_PRODUCT->getProductsByCategory($id) as $key => $img) {
                                                             ?>
                                                             <div class="col-md-3" style="list-style: none;">
                                                                 <li class="ui-state-default">
                                                                     <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/service/<?php echo $img["image_name"]; ?>" alt=""/>
+                                                                    <img class="img-responsive" src="../upload/product-categories/sub-product/<?php echo $img["image_name"]; ?>" alt=""/>
                                                                     <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
                                                                 </li>
