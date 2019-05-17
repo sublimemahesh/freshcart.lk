@@ -80,6 +80,32 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="price" class="form-control"  autocomplete="off" name="price" required="true" min="0">
+                                                <label class="form-label">Price</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="discount" class="form-control"  autocomplete="off" name="discount" required="true" min="0">
+                                                <label class="form-label">Discount</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="unite" class="form-control"  autocomplete="off" name="unite" required="true" min="0">
+                                                <label class="form-label">Unite</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">

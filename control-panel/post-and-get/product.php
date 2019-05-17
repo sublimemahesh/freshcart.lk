@@ -7,10 +7,12 @@ if (isset($_POST['create'])) {
     $PRODUCT = new Product(NULL);
     $VALID = new Validator();
 
-
     $PRODUCT->category = $_POST['id'];
     $PRODUCT->brand = $_POST['brand'];
     $PRODUCT->name = $_POST['name'];
+    $PRODUCT->discount = $_POST['discount'];
+    $PRODUCT->unite = $_POST['unite'];
+    $PRODUCT->price = $_POST['price'];
     $PRODUCT->short_description = $_POST['short_description'];
     $PRODUCT->description = $_POST['description'];
 

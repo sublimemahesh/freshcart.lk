@@ -17,6 +17,9 @@ class Product {
     public $category;
     public $brand;
     public $name;
+    public $discount;
+    public $unite;
+    public $price;
     public $image_name;
     public $short_description;
     public $description;
@@ -35,9 +38,12 @@ class Product {
             $this->category = $result['category'];
             $this->brand = $result['brand'];
             $this->name = $result['name'];
+            $this->discount = $result['discount'];
+            $this->unite = $result['unite'];
+            $this->price = $result['price'];
             $this->image_name = $result['image_name'];
             $this->short_description = $result['short_description'];
-            $this->description = $result['description']; 
+            $this->description = $result['description'];
             $this->queue = $result['queue'];
 
             return $this;
@@ -46,13 +52,16 @@ class Product {
 
     public function create() {
 
-        $query = "INSERT INTO `product` (`category`,`brand`,`name`,`image_name`,`short_description`,`description`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `product` (`category`,`brand`,`name`,`discount`,`unite`,`price`,`image_name`,`short_description`,`description`,`queue`) VALUES  ('"
                 . $this->category . "','"
                 . $this->brand . "','"
                 . $this->name . "', '"
+                . $this->discount . "', '"
+                . $this->unite . "', '"
+                . $this->price . "', '"
                 . $this->image_name . "', '"
                 . $this->short_description . "', '"
-                . $this->description . "', '" 
+                . $this->description . "', '"
                 . $this->queue . "')";
 
 
@@ -89,12 +98,15 @@ class Product {
                 . "`category` ='" . $this->category . "', "
                 . "`brand` ='" . $this->brand . "', "
                 . "`name` ='" . $this->name . "', "
+                . "`discount` ='" . $this->discount . "', "
+                . "`unite` ='" . $this->unite . "', "
+                . "`price` ='" . $this->price . "', "
                 . "`image_name` ='" . $this->image_name . "', "
                 . "`short_description` ='" . $this->short_description . "', "
-                . "`description` ='" . $this->description . "', " 
+                . "`description` ='" . $this->description . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
-       
+
         $db = new Database();
 
         $result = $db->readQuery($query);
@@ -130,7 +142,7 @@ class Product {
         }
         return $array_res;
     }
-    
+
     public function getProductsByBrand($brand) {
 
         $query = 'SELECT * FROM `product` WHERE brand="' . $brand . '"   ORDER BY queue ASC';

@@ -219,7 +219,23 @@ $PRODUCT = new Product($id);
                                                         <label>Availability: </label> <span>In stock</span>
                                                     </div>
                                                     <div class="info-price info-price-detail">
-                                                        <label>Price:</label> <span>$59.52</span><del>$17.96</del>
+                                                        <?php
+                                                        $price_amount = 0;
+                                                        $discount = 0;
+
+                                                        $discount = $PRODUCT->discount;
+                                                        $price_amount = $PRODUCT->price;
+
+                                                        $discount = ($price_amount * $discount) / 100;
+                                                        $discount_price = $PRODUCT->price - $discount;
+                                                        if ($PRODUCT->discount > 0) {
+                                                            ?>
+                                                            <label>Price:</label> <span>Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                            <?php ?>
+                                                            <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
+                                                        <?php } else if ($PRODUCT->discount == 0) { ?>
+                                                            <label>Price:</label> <span>Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
+                                                        <?php } ?>
                                                     </div>
                                                     <div class="attr-info">
                                                         <div class="attr-product">
