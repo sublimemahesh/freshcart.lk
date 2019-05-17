@@ -1,4 +1,8 @@
 /*General*/
+
+.white-color{
+    color: white;
+}
 body {
     color: #333;
     font-family: "Open Sans",sans-serif;
@@ -1207,13 +1211,13 @@ a:focus {
     transition:all 0.3s ease-out 0s;
     -webkit-transition:all 0.3s ease-out 0s;
 }
- 
+
 .second-thumb {
     left: 0;
     position: absolute;
     top: 100%;
 }
- 
+
 .percent-saleoff {
     background: #ed321e none repeat scroll 0 0;
     color: #fff;

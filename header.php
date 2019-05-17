@@ -29,7 +29,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="logo4">
                         <h1 class="hidden">Super Shop</h1>
-                        <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                        <a href="index.php"><img src="images/logo.png" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">

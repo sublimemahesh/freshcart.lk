@@ -8115,6 +8115,22 @@ html.ie11 .bs-searchbox .form-control {
     border: 0;
 }
 
+.warring-btn{
+    padding: 5px 8px;
+    color: #fff;
+    background-color: #f9911c;
+    border-radius: 3px;
+    border: 0;
+}
+
+.defult{
+    padding: 5px 8px;
+    color: #fff;
+    background-color: #f9911c;
+    border-radius: 3px;
+    border: 0;
+}
+
 .arrange-container{
     margin-left: -18px;
 }

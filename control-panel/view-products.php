@@ -167,7 +167,7 @@ $SUB_PRODUCT = new SubProduct($id);
                                                         <a href="edit-product.php?id=<?php echo $product['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                         <a href="arrange-products.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
                                                         <a href="view-product-photos.php?id=<?php echo $product['id']; ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
-
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

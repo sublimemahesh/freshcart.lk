@@ -47,9 +47,9 @@ include_once(dirname(__FILE__) . '/auth.php');
                                 <div>
                                     <div class="row clearfix">
                                         <?php
-                                        $OFFER = Offer::all();
-                                        if (count($OFFER) > 0) {
-                                            foreach ($OFFER as $key => $offer) {
+                                        $OFFER = new Offer(NULL);
+                                        if (count($OFFER->all()) > 0) {
+                                            foreach ($OFFER->all() as $key => $offer) {
                                                 ?>
                                                 <div class="col-md-3"  id="div<?php echo $offer['id']; ?>">
                                                     <div class="photo-img-container">
@@ -58,10 +58,9 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                     <div class="img-caption">
                                                         <p class="maxlinetitle"><?php echo $offer['title']; ?></p>
                                                         <div class="d">
-                                                            <a href="#"  class="delete-offer" data-id="<?php echo $offer['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
+                                                            <a href="#"  class="delete-offer" data-id="<?php echo $offer['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
                                                             <a href="edit-offer.php?id=<?php echo $offer['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
-                                                            <a href="arrange-offer.php?id=<?php echo $offer['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
-                                                            <a href="view-offer-photos.php?id=<?php echo $offer['id']; ?>">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
+                                                             
                                                         </div>
                                                     </div>
                                                 </div>

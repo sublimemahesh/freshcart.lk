@@ -86,24 +86,22 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                         <div class="col-md-6 col-sm-8 col-xs-12">
                             <div class="banner-home4 simple-owl-slider">
                                 <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1]]">
-                                    <div class="item-banner4">
-                                        <div class="banner-thumb">
-                                            <a href="#"><img src="images/home4/slide1.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="banner-info rotate-text">
-                                            <h2>Glasse for Men’s</h2>
-                                            <h3>Model 2016</h3>
-                                        </div>
-                                    </div>
-                                    <div class="item-banner4">
-                                        <div class="banner-thumb">
-                                            <a href="#"><img src="images/home4/slide2.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="banner-info">
-                                            <h2>Pizza Hut - Royal City</h2>
-                                            <h3>Disscount 30% off</h3>
-                                        </div>
-                                    </div>
+                                    <?php
+                                    $OFFER = new Offer(NULL);
+                                    foreach ($OFFER->all() as $offer) {
+                                        ?>
+                                        <a href="view-product.php?id=<?php echo $offer['product_id'] ?>">
+                                            <div class="item-banner4">
+                                                <div class="banner-thumb">
+                                                    <img src="upload/offer/<?php echo $offer['image_name'] ?>" alt="" />
+                                                </div>
+                                                <div class="banner-info rotate-text">
+                                                    <h2 class="white-color"><?php echo $offer['title'] ?></h2>
+                                                    <!--                                                <h3>Model 2016</h3>-->
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <?php } ?>
                                 </div>
                             </div>
                         </div>
