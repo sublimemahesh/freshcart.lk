@@ -99,7 +99,7 @@ $PRODUCT = new Product($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="discount" class="form-control"  value="<?php echo $PRODUCT->discount; ?>"  name="discount"  required="TRUE" min="0">
+                                                <input type="number" id="discount" class="form-control"  value="<?php echo $PRODUCT->discount; ?>"  name="discount"  min="0">
                                                 <label class="form-label">Discount</label>
                                             </div>
                                         </div>
