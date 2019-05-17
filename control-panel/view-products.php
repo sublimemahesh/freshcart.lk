@@ -95,7 +95,7 @@ $SUB_PRODUCT = new SubProduct($id);
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="discount" class="form-control"  autocomplete="off" name="discount" required="true" min="0">
+                                                <input type="number" id="discount" class="form-control"  autocomplete="off" name="discount"  min="0">
                                                 <label class="form-label">Discount</label>
                                             </div>
                                         </div>

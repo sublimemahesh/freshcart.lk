@@ -9,7 +9,7 @@ if (isset($_POST['create'])) {
 
     $COMMENT->name = $_POST['name'];
     $COMMENT->title = $_POST['title'];
-    $COMMENT->country = $_POST['country'];
+    $COMMENT->city = $_POST['city'];
     $COMMENT->comment = $_POST['comment'];
     $COMMENT->is_active = $_POST['active'];
 
@@ -24,8 +24,8 @@ if (isset($_POST['create'])) {
         $handle->file_new_name_ext = 'jpg';
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = Helper::randamId();
-        $handle->image_x = 300;
-        $handle->image_y = 300;
+        $handle->image_x = 70;
+        $handle->image_y = 60;
 
         $handle->Process($dir_dest);
 
@@ -38,8 +38,8 @@ if (isset($_POST['create'])) {
     $COMMENT->image_name = $imgName;
 
     $VALID->check($COMMENT, [
-        'name' => ['required' => TRUE],
-        
+        'name' => ['required' => TRUE],        
+        'image_name' => ['required' => TRUE],        
         'comment' => ['required' => TRUE]
     ]);
 
@@ -81,8 +81,8 @@ if (isset($_POST['update'])) {
         $handle->file_new_name_ext = FALSE;
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $_POST ["oldImageName"];
-        $handle->image_x = 300;
-        $handle->image_y = 300;
+        $handle->image_x = 70;
+        $handle->image_y = 60;
 
         $handle->Process($dir_dest);
 
@@ -97,15 +97,14 @@ if (isset($_POST['update'])) {
     $COMMENT->image_name = $_POST['oldImageName'];
     $COMMENT->name = $_POST['name'];
     $COMMENT->title = $_POST['title'];
-    $COMMENT->country = $_POST['country'];
+    $COMMENT->city = $_POST['city'];
     $COMMENT->comment = $_POST['comment'];
     $COMMENT->is_active = $_POST['active'];
 
     $VALID = new Validator();
     $VALID->check($COMMENT, [
         'image_name' => ['required' => TRUE],
-        'name' => ['required' => TRUE],
-     
+        'name' => ['required' => TRUE],     
         'comment' => ['required' => TRUE],
     ]);
 

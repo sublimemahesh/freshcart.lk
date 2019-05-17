@@ -53,7 +53,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                 ?>
                                                 <div class="col-md-3"  id="div<?php echo $comments['id']; ?>">
                                                     <div class="photo-img-container">
-                                                        <img src="../upload/comments/<?php echo $comments['image_name']; ?>" class="img-responsive img-circle" style="width: 70%;">
+                                                        <img src="../upload/comments/<?php echo $comments['image_name']; ?>" class="img-responsive  " style="border-radius: 6px;" >
                                                     </div>
                                                     <div class="img-caption">
                                                         <p class="maxlinetitle"><?php echo $comments['name']; ?></p>

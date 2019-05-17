@@ -96,12 +96,12 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                     <img src="upload/offer/<?php echo $offer['image_name'] ?>" alt="" />
                                                 </div>
                                                 <div class="banner-info rotate-text">
-                                                    <h2 class="white-color"><?php echo $offer['title'] ?></h2>
+                                                    <h2 ><?php echo $offer['title'] ?></h2>
                                                     <!--                                                <h3>Model 2016</h3>-->
                                                 </div>
                                             </div>
                                         </a>
-                                        <?php } ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -564,42 +564,23 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                     <h2>testimonials</h2>
                                     <div class="testimo-slider slider-home2">
                                         <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1]]">
-                                            <div class="item-testimo">
-                                                <div class="author-testimo">
-                                                    <div class="author-test-link">
-                                                        <a href="#"><img src="images/home2/test1.jpg" alt="" /></a>
+                                            <?php
+                                            $COMMENT = new Comments(NULL);
+                                            foreach ($COMMENT->activeComments() as $comment) {
+                                                ?>
+                                                <div class="item-testimo">
+                                                    <div class="author-testimo">
+                                                        <div class="author-test-link">
+                                                            <a href="#"><img src="upload/comments/<?php echo $comment['image_name'] ?>" alt="" /></a>
+                                                        </div>
+                                                        <div class="author-test-info">
+                                                            <h3><a href="#"><?php echo $comment['name'] ?></a></h3>
+                                                            <span><?php echo $comment['city'] ?></span>
+                                                        </div>
                                                     </div>
-                                                    <div class="author-test-info">
-                                                        <h3><a href="#">Janet Cummings</a></h3>
-                                                        <span>Beamsoft</span>
-                                                    </div>
+                                                    <p class="desc text-justify"> <?php echo substr($comment['comment'],0,120) ?>..</p>
                                                 </div>
-                                                <p class="desc">Proin urna enim, semper at egestas sed, elem entum in justo. Mauris sed mauris biben dum est imperdiet porttitor tincidunt. </p>
-                                            </div>
-                                            <div class="item-testimo">
-                                                <div class="author-testimo">
-                                                    <div class="author-test-link">
-                                                        <a href="#"><img src="images/home2/test2.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="author-test-info">
-                                                        <h3><a href="#">Janet Cummings</a></h3>
-                                                        <span>Beamsoft</span>
-                                                    </div>
-                                                </div>
-                                                <p class="desc">Proin urna enim, semper at egestas sed, elem entum in justo. Mauris sed mauris biben dum est imperdiet porttitor tincidunt. </p>
-                                            </div>
-                                            <div class="item-testimo">
-                                                <div class="author-testimo">
-                                                    <div class="author-test-link">
-                                                        <a href="#"><img src="images/home2/test1.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="author-test-info">
-                                                        <h3><a href="#">Janet Cummings</a></h3>
-                                                        <span>Beamsoft</span>
-                                                    </div>
-                                                </div>
-                                                <p class="desc">Proin urna enim, semper at egestas sed, elem entum in justo. Mauris sed mauris biben dum est imperdiet porttitor tincidunt. </p>
-                                            </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <a href="#" class="viewall">View All</a>

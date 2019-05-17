@@ -73,6 +73,14 @@ $COMMENT = new Comments($id);
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" id="city" class="form-control" placeholder="Enter city" autocomplete="off" name="city" value="<?php echo $COMMENT->city; ?>">
+                                                <label class="form-label">City</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
