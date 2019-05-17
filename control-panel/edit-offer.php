@@ -58,7 +58,55 @@ $OFFER = new Offer($id);
                             <div class="body">
                                 <form class="form-horizontal" method="post" action="post-and-get/offer.php" enctype="multipart/form-data"> 
 
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <select class="form-control" type="text" id="product_category" autocomplete="off" >
+                                                    <option class="active light-c"> -- Please  Select Product Category -- </option>
+                                                    <?php
+                                                    $PRODUCT = new Product($OFFER->product_id);
+                                                    $PRODUCT_CATEGORIES = new ProductCategories(NULL);
+                                                    foreach ($PRODUCT_CATEGORIES->all() as $key => $product_categories) {
+                                                        if ($product_categories['id'] == $PRODUCT->category) {
+                                                            ?>
+                                                            <option value="<?php echo $product_categories['id']; ?>" selected=""><?php echo $product_categories['name']; ?></option>
 
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $product_categories['id']; ?>" ><?php echo $product_categories['name']; ?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <select class="form-control" type="text" id="product" autocomplete="off" name="product">
+                                                    <option class="active light-c"> -- Please  Select Product Category First -- </option> 
+
+                                                    <?php
+                                                    $PRODUCT = new Product(NULL);
+                                                    $PRODUCT = new Product($OFFER->product_id);
+                                                    foreach ($PRODUCT->getProductsByCategory($PRODUCT->category) as $product) {
+                                                        if ($product['id'] == $OFFER->product_id) {
+                                                            ?>
+                                                            <option value="<?php echo $product['id']; ?>" selected=""><?php echo $product['name']; ?></option>
+                                                        <?php } else { ?>
+                                                            <option value="<?php echo $product['id']; ?>"><?php echo $product['name']; ?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>           
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -67,22 +115,7 @@ $OFFER = new Offer($id);
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="price" class="form-control"  value="<?php echo $OFFER->price; ?>"  name="price"  required="TRUE">
-                                                <label class="form-label">Price</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="discount" class="form-control"  value="<?php echo $OFFER->discount; ?>"  name="discount"  required="TRUE">
-                                                <label class="form-label">Discount</label>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -90,23 +123,7 @@ $OFFER = new Offer($id);
                                                 <img src="../upload/offer/<?php echo $OFFER->image_name; ?>" id="image" class="view-edit-img img img-responsive img-thumbnail" name="image" alt="old image">
                                             </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="short_description" class="form-control" value="<?php echo $OFFER->short_description; ?>"  name="short_description">
-                                                <label class="form-label">Short Description</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <label for="description">Description</label>
-                                        <div class="form-line">
-                                            <textarea id="description" name="description" class="form-control" rows="5"><?php echo $OFFER->description; ?></textarea> 
-                                        </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-md-12">
                                         <input type="hidden" id="oldImageName" value="<?php echo $OFFER->image_name; ?>" name="oldImageName"/>
                                         <input type="hidden" id="id" value="<?php echo $OFFER->id; ?>" name="id"/>
@@ -133,7 +150,7 @@ $OFFER = new Offer($id);
         <script src="js/demo.js"></script>
         <script src="js/add-new-ad.js" type="text/javascript"></script>
 
-
+        <script src="js/admin-js/product.js" type="text/javascript"></script>
         <script src="tinymce/js/tinymce/tinymce.min.js"></script>
         <script>
             tinymce.init({

@@ -51,51 +51,47 @@ include_once(dirname(__FILE__) . '/auth.php');
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
+                                                <select class="form-control" type="text" id="product_category" autocomplete="off" >
+                                                    <option class="active light-c"> -- Please  Select Product Category -- </option>
+                                                    <?php
+                                                    $PRODUCT_CATEGORIES = new ProductCategories(NULL);
+                                                    foreach ($PRODUCT_CATEGORIES->all() as $key => $product_categories) {
+                                                        ?>
+                                                        <option value="<?php echo $product_categories['id']; ?>"><?php echo $product_categories['name']; ?></option>
+
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <select class="form-control" type="text" id="product" autocomplete="off" name="product">
+                                                    <option class="active light-c"> -- Please  Select Product Category First -- </option> 
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
                                                 <input type="text" id="title" class="form-control"  autocomplete="off" name="title" required="true">
                                                 <label class="form-label">Title</label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="price" class="form-control" autocomplete="off" name="price" required="true">
-                                                <label class="form-label">Price</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="discount" class="form-control" autocomplete="off" name="discount" required="true">
-                                                <label class="form-label">Discount</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="file" id="image" class="form-control" name="image"  required="true">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
 
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="text" id="short_description" class="form-control" autocomplete="off" name="short_description" required="true">
-                                                <label class="form-label">Short Description</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <label for="description">Description</label>
-                                        <div class="form-line">
-                                            <textarea id="description" name="description" class="form-control" rows="5"></textarea> 
-                                        </div>
-
-                                    </div>
                                     <div class="col-md-12"> 
                                         <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>
                                     </div>
@@ -121,7 +117,7 @@ include_once(dirname(__FILE__) . '/auth.php');
         <script src="js/admin.js"></script>
         <script src="js/demo.js"></script>
         <script src="js/add-new-ad.js" type="text/javascript"></script>
-
+        <script src="js/admin-js/product.js" type="text/javascript"></script>
 
         <script src="tinymce/js/tinymce/tinymce.min.js"></script>
         <script>

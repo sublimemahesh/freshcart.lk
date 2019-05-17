@@ -7,11 +7,8 @@ if (isset($_POST['create'])) {
     $OFFER = new Offer(NULL);
     $VALID = new Validator();
 
-    $OFFER->title =  $_POST['title'];
-    $OFFER->short_description = $_POST['short_description'];
-    $OFFER->description = $_POST['description'];
-    $OFFER->price = $_POST['price'];
-    $OFFER->discount =$_POST['discount'];
+    $OFFER->title = $_POST['title'];
+    $OFFER->product_id = $_POST['product'];
 
     $dir_dest = '../../upload/offer/';
 
@@ -24,7 +21,7 @@ if (isset($_POST['create'])) {
         $handle->file_new_name_ext = 'jpg';
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = Helper::randamId();
-        $handle->image_x = 900;
+        $handle->image_x = 570;
         $handle->image_y = 500;
 
         $handle->Process($dir_dest);
@@ -39,10 +36,6 @@ if (isset($_POST['create'])) {
 
     $VALID->check($OFFER, [
         'title' => ['required' => TRUE],
-        'short_description' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
-        'price' => ['required' => TRUE],
-        'discount' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
 
@@ -83,7 +76,7 @@ if (isset($_POST['update'])) {
         $handle->file_new_name_ext = FALSE;
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $_POST ["oldImageName"];
-        $handle->image_x = 900;
+        $handle->image_x = 570;
         $handle->image_y = 500;
 
         $handle->Process($dir_dest);
@@ -98,19 +91,13 @@ if (isset($_POST['update'])) {
 
     $OFFER->image_name = $_POST['oldImageName'];
     $OFFER->title = $_POST['title'];
-    $OFFER->short_description = $_POST['short_description'];
-    $OFFER->description = $_POST['description'];
-    $OFFER->price = $_POST['price'];
-    $OFFER->discount = $_POST['discount'];
+    $OFFER->product_id = $_POST['product'];
+
 
     $VALID = new Validator();
 
     $VALID->check($OFFER, [
-        'title' => ['required' => TRUE],
-        'short_description' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
-        'price' => ['required' => TRUE],
-        'discount' => ['required' => TRUE],
+        'title' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
