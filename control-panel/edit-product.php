@@ -92,10 +92,35 @@ $PRODUCT = new Product($id);
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="name" class="form-control"  value="<?php echo $PRODUCT->name; ?>"  name="name"  required="TRUE">
-                                                <label class="form-label">Title</label>
+                                                <label class="form-label">Name</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="discount" class="form-control"  value="<?php echo $PRODUCT->discount; ?>"  name="discount"  required="TRUE" min="0">
+                                                <label class="form-label">Discount</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="unite" class="form-control"  value="<?php echo $PRODUCT->unite; ?>"  name="unite"  required="TRUE" min="0">
+                                                <label class="form-label">Unite</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="price" class="form-control"  value="<?php echo $PRODUCT->price; ?>"  name="price"  required="TRUE" min="0">
+                                                <label class="form-label">Price</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">

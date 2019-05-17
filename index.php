@@ -48,38 +48,29 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                         foreach ($PRODUCT_CATEGORIES->all() as $product_categories) {
                                             ?>
                                             <li class="has-cat-mega">
-                                                <a href="#"> <?php echo $product_categories['name'] ?></a>
-                                                <?php
-                                                $PRODUCT = new Product(NULL);
-                                                $BRAND = new Brand(NULL);
-                                                foreach ($PRODUCT->getProductsById($product_categories['id'])as $product) {
-                                                    foreach ($BRAND->all() as $brand) {
-                                                        if ($product['brand'] == $brand['id']) {
-                                                            ?>
-                                                            <div class="cat-mega-menu cat-mega-style1">
-                                                                <div class="row">
-                                                                    <?php
-                                                                    foreach ($BRAND->all() as $brands) {
-                                                                        ?>
-                                                                        <div class="col-md-4 col-sm-3">
-                                                                            <div class="list-cat-mega-menu"> 
-                                                                                <h2 class="title-cat-mega-menu"><?php echo $brands['name'] ?></h2>
-                                                                                <?php foreach ($PRODUCT->getProductsById($product_categories['id'])as $products) { ?>
-                                                                                    <ul>
-                                                                                        <li><a href="view-product.php?id=<?php echo $products['id'] ?>"><?php echo $products['name'] ?></a></li> 
-                                                                                    </ul>
-                                                                                <?php } ?>
+                                                <a href="#"> Mobiles &amp; Tablets</a>
+                                                <div class="cat-mega-menu cat-mega-style1">
+                                                    <div class="row"> 
+                                                        <div class="col-md-4 col-sm-3">
+                                                            <div class="list-cat-mega-menu"> 
+                                                                <h2 class="title-cat-mega-menu">Women’s</h2>
+                                                                <ul>
+                                                                    <li><a href="#">Dresses</a></li>
+                                                                    <li><a href="#">Coats & Jackets</a></li>
+                                                                    <li><a href="#">Blouses & Shirts</a></li>
+                                                                    <li><a href="#">Tops & Tees</a></li>
+                                                                    <li><a href="#">Hoodies & Sweatshirts</a></li>
+                                                                    <li><a href="#">Intimates</a></li>
+                                                                    <li><a href="#">Swimwear</a></li>
+                                                                    <li><a href="#">Pants & Capris</a></li>
+                                                                    <li><a href="#">Sweaters</a></li>
+                                                                    <li><a href="#">Accessories</a></li>
+                                                                </ul> >
+                                                            </div>
 
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php } ?>
-                                                                </div>
-                                                            </div> 
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
-                                                ?>
+                                                        </div>
+                                                    </div> 
+
                                             </li> 
                                         <?php }
                                         ?>
@@ -292,7 +283,11 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
 
                                                                 <div class="hot-deal-product-thumb">
                                                                     <div class="cat-hover-percent">
-                                                                        <strong>10%</strong> 
+                                                                        <?php
+                                                                        if ($product['discount'] > 0) {
+                                                                            ?>
+                                                                            <strong><?php echo $product['discount'] ?>%</strong> 
+                                                                        <?php } ?>
                                                                     </div>
                                                                     <div class="product-thumb">
                                                                         <a href="view-product.php?id=<?php echo $product['id'] ?>">
@@ -312,8 +307,24 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                                 <div class="hot-deal-product-info">
                                                                     <h3 class="title-product"><a  href="view-product.php?id=<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a></h3>
                                                                     <div class="info-price">
-                                                                        <span>$455.99 </span>
-                                                                        <del>$567.99</del>
+                                                                        <?php
+                                                                        $price_amount = 0;
+                                                                        $discount = 0;
+
+                                                                        $discount = $product['discount'];
+                                                                        $price_amount = $product['price'];
+
+                                                                        $discount = ($price_amount * $discount) / 100;
+                                                                        $discount_price = $product['price'] - $discount;
+                                                                        if ($product['discount'] > 0) {
+                                                                            ?>
+                                                                            <span>Rs:<?php echo number_format($discount_price, 2) ?></span>
+                                                                            <del>Rs:<?php echo number_format($product['price'], 2) ?></del>
+                                                                            <?php
+                                                                        } else {
+                                                                            ?>
+                                                                            <span>Rs:<?php echo number_format($product['price'], 2) ?></span>
+                                                                        <?php } ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
