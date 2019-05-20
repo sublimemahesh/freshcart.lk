@@ -412,7 +412,13 @@
                         </li> 
                     </ul>
                 </li> 
-
+                <li>
+                    <a href="manage-product-review.php" class="menu-toggle">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Product Review</span>
+                    </a>
+                     
+                </li> 
             </ul>
         </div>
         <!-- #Menu -->
