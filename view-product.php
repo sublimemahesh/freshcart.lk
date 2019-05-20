@@ -6,6 +6,13 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $PRODUCT = new Product($id);
+
+
+//if (!isset($_SESSION)) {
+//    session_start();
+//}
+
+echo $_SESSION["id"];
 ?>
 <html lang="en-US">
 
@@ -31,6 +38,9 @@ $PRODUCT = new Product($id);
         <link rel="stylesheet" type="text/css" href="css/libs/settings.css"/>
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
+        <link href="css/login-css.css" rel="stylesheet" type="text/css"/>
+        <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+
     </head>
     <body>
         <div class="wrap">
@@ -293,7 +303,7 @@ $PRODUCT = new Product($id);
                                         <div class="title-tab-detail">
                                             <ul role="tablist">
                                                 <li class="active"><a href="#details" data-toggle="tab">Product Details </a></li>
-                                                <li><a href="#feedback" data-toggle="tab">Feedback</a></li>
+                                                <li><a href="#feedback" data-toggle="tab">Reviews</a></li>
                                                 <li><a href="#shipping" data-toggle="tab">Shipping & Payment</a></li>
                                                 <li><a href="#seller" data-toggle="tab">Seller Guarantees</a></li>
                                             </ul>
@@ -319,9 +329,162 @@ $PRODUCT = new Product($id);
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane" id="feedback">
                                                     <div class="inner-content-tab-detail">
-                                                        <h2>Review</h2>
-                                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulpu tate eget. Sed quia consequuntur magni dolores. Id eges tas massa sem et elit. Donec pede justo, fringilla vel, aliquet nec, vulpu tate eget. Sed quia consequuntur magni dolores. Id eges tas massa sem et elit.</p>
-                                                        <p>Qenean commodo ligula eget dolor. Aenean massa. Cumt sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla onsequat mas quis enim. Donec pede justo, fringilla vel, aliquet nec, vulpu tate eget. Sed quia consequuntur magni dolores. Id eges tas massa sem et elit. Viva mus semper cursus libero</p>
+                                                        <h2>Reviews</h2>
+
+                                                        <?php
+                                                        $PRODUCT_REVIEWS = new ProductReview(NULL);
+                                                        foreach ($PRODUCT_REVIEWS->getReviwsByProduct($id) as $key => $review) {
+                                                            if ($key % 2 == 0) {
+                                                                ?>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="panel panel-login p-des row"  >
+                                                                            <div class="col-md-2">
+                                                                                <img src="images/man.png" alt=""/>
+                                                                            </div>
+
+                                                                            <div class="col-md-10  text-justify">
+                                                                                <h5><i class="fa fa-user" aria-hidden="true"></i>  Chalana dulaj                                                                
+                                                                                    <div class="pull-right">
+                                                                                        <i class="fa fa-calendar" aria-hidden="true"></i>   <?php echo $review['date_time'] ?>
+
+                                                                                        <div style="margin-top: 5px;">
+
+                                                                                            <?php
+                                                                                            for ($review_1 = 0; $review_1 <= 4; $review_1++) {
+
+                                                                                                if ($review['stars'] > $review_1) {
+                                                                                                    ?>
+                                                                                                    <span class="fav-job" style="color:#FE9C00; ">
+                                                                                                        <i class="fa fa-star"></i>
+                                                                                                    </span> 
+                                                                                                    <?php
+                                                                                                } else {
+                                                                                                    ?>
+                                                                                                    <span class="fav-job">
+                                                                                                        <i class="fa fa-star-o"></i>
+                                                                                                    </span>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            }
+                                                                                            ?>  
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </h5>
+                                                                                <h5><b><?php echo $review['title'] ?></b></h5>
+                                                                                <?php echo $review['description'] ?>...
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            <?php } else { ?>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="panel panel-login p-des row"  >                                                         
+
+                                                                            <div class="col-md-10 text-justify">
+                                                                                <h5><i class="fa fa-user" aria-hidden="true"></i>  Chalana dulaj                                                                
+                                                                                    <div class="pull-right">
+                                                                                        <i class="fa fa-calendar" aria-hidden="true"></i>   <?php echo $review['date_time'] ?>
+
+                                                                                        <div style="margin-top: 5px;">
+
+                                                                                            <?php
+                                                                                            for ($review_1 = 0; $review_1 <= 4; $review_1++) {
+
+                                                                                                if ($review['stars'] > $review_1) {
+                                                                                                    ?>
+                                                                                                    <span class="fav-job" style="color:#FE9C00; ">
+                                                                                                        <i class="fa fa-star"></i>
+                                                                                                    </span> 
+                                                                                                    <?php
+                                                                                                } else {
+                                                                                                    ?>
+                                                                                                    <span class="fav-job">
+                                                                                                        <i class="fa fa-star-o"></i>
+                                                                                                    </span>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            }
+                                                                                            ?>  
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </h5>
+                                                                                <h5><b><?php echo $review['title'] ?></b></h5>
+                                                                                <?php echo $review['description'] ?>...
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <img src="images/man.png" alt=""/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-12" style="padding: 0">
+                                                                <div class="panel panel-login">
+                                                                    <div class="panel-heading">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12">
+                                                                                <a href="#" class="active text-center" >Add Your Review</a>
+                                                                            </div> 
+                                                                        </div>
+                                                                        <hr>
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <form id="form-data" action=" " method="post" role="form"   autocomplete="off">
+
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" name="title" id="title" tabindex="1" class="form-control" placeholder="Enter Title " value="">
+                                                                                    </div>
+
+                                                                                    <div class="form-group">
+                                                                                        <select class="form-control" name="stars" id="stars">
+                                                                                            <option value=""> -- Add the stars -- </option>
+                                                                                            <option value="1">  1</option>
+                                                                                            <option value="2">  2</option>
+                                                                                            <option value="3">  3</option>
+                                                                                            <option value="4">  4</option>
+                                                                                            <option value="5">  5</option>
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                    <div class="form-group">
+                                                                                        <textarea rows="5" class="form-control" cols="8" name="comment" id="comment"></textarea>
+                                                                                    </div> 
+                                                                                    <div class="form-group">
+                                                                                        <div class="col-lg-5" style="padding-left: 0px;">
+                                                                                            <label for="comment">Security Code:</label>
+                                                                                            <input  type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the code " style="color: black">
+                                                                                            <span id="capspan" ></span>
+                                                                                        </div>
+                                                                                        <div class="col-lg-3" style="margin-top: 20px;" >
+                                                                                            <?php include("./comment/captchacode-widget.php"); ?>
+                                                                                        </div>
+                                                                                        <div class="col-md-4" style="margin-top: 20px;" >
+                                                                                            <input type="hidden" id="product"   name="product" value="<?php echo $id ?>">
+                                                                                            <input type="submit" name="submit" id="create" tabindex="4" class="form-control btn btn-login" value="Add review">
+
+                                                                                        </div> 
+                                                                                    </div> 
+                                                                                </form>  
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane" id="shipping">
@@ -562,5 +725,8 @@ $PRODUCT = new Product($id);
         <script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
+        <script src="comment/validation.js" type="text/javascript"></script>
+
+        <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
     </body>
 </html>

@@ -92,12 +92,26 @@ class Customer {
 
             return FALSE;
         } else {
-
             $this->id = $result['id'];
             $customer = $this->__construct($this->id);
-
+            $this->setUserSession($customer);
             return $customer;
         }
+    }
+
+    private function setUserSession($user) {
+
+        if (!isset($_SESSION)) {
+
+            session_start();
+        }
+
+        $_SESSION["id"] = $user['id'];
+        $_SESSION["name"] = $user['name'];
+        $_SESSION["email"] = $user['email'];
+        $_SESSION["phone_number"] = $user['phone_number'];
+        $_SESSION["district"] = $user['district'];
+        $_SESSION["city"] = $user['city'];
     }
 
     public function checkEmail($email) {
