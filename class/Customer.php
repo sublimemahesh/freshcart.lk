@@ -18,11 +18,13 @@ class Customer {
     public $city;
     public $address;
     public $resetcode;
+    public $authToken;
+    public $image_name;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT * FROM `customer` WHERE `id`=" . $id;
+            $query = "SELECT  * FROM `customer` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -37,6 +39,8 @@ class Customer {
             $this->city = $result['city'];
             $this->address = $result['address'];
             $this->resetcode = $result['resetcode'];
+            $this->authToken = $result['authToken'];
+            $this->image_name = $result['image_name'];
 
             return $this;
         }
@@ -44,14 +48,15 @@ class Customer {
 
     public function create() {
 
-        $query = "INSERT INTO `customer` (`name`, `email`, `password`,`phone_number`,`district`,`city`,`address`) VALUES  ('"
+        $query = "INSERT INTO `customer` (`name`, `email`, `password`,`phone_number`,`district`,`city`,`address`,`image_name`) VALUES  ('"
                 . $this->name . "','"
                 . $this->email . "', '"
                 . $this->password . "', '"
                 . $this->phone_number . "', '"
                 . $this->district . "', '"
                 . $this->city . "', '"
-                . $this->address . "')";
+                . $this->address . "', '"
+                . $this->image_name . "')";
 
         $db = new Database();
 
@@ -80,10 +85,10 @@ class Customer {
         return $array_res;
     }
 
-    public function login($username, $password) {
+    public function login($email, $password) {
 
         $enPass = md5($password);
-        $query = "SELECT  `id`,`name`,`email`,`phone_number` FROM `customer` WHERE `email`= '" . $username . "' AND `password`= '" . $enPass . "'";
+        $query = "SELECT  * FROM `customer` WHERE `email`= '" . $email . "' AND `password`= '" . $enPass . "'";
         $db = new Database();
 
         $result = mysql_fetch_array($db->readQuery($query));
@@ -92,26 +97,89 @@ class Customer {
 
             return FALSE;
         } else {
+
             $this->id = $result['id'];
+            $this->setAuthToken($result['id']);
+            $this->setUserSession($this->id);
             $customer = $this->__construct($this->id);
-            $this->setUserSession($customer);
             return $customer;
         }
     }
 
-    private function setUserSession($user) {
+    public function logOut() {
+
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        unset($_SESSION["id"]);
+        unset($_SESSION["name"]);
+        unset($_SESSION["email"]);
+
+        return TRUE;
+    }
+
+    private function setUserSession($customer) {
+
+        if (!isset($_SESSION)) {
+
+            session_start();
+        }
+        $customer = $this->__construct($customer);
+
+        $_SESSION["id"] = $customer->id;
+        $_SESSION["name"] = $customer->name;
+        $_SESSION["email"] = $customer->email;
+        $_SESSION["phone_number"] = $customer->phone_number;
+        $_SESSION["authToken"] = $customer->authToken;
+        $_SESSION["image_name"] = $customer->image_name;
+    }
+
+    private function setAuthToken($id) {
+
+        $authToken = md5(uniqid(rand(), true));
+
+        $query = "UPDATE `customer` SET `authToken` ='" . $authToken . "' WHERE `id`='" . $id . "'";
+
+        $db = new Database();
+
+        if ($db->readQuery($query)) {
+            return $authToken;
+        } else {
+
+            return FALSE;
+        }
+    }
+
+    public function authenticate() {
 
         if (!isset($_SESSION)) {
 
             session_start();
         }
 
-        $_SESSION["id"] = $user['id'];
-        $_SESSION["name"] = $user['name'];
-        $_SESSION["email"] = $user['email'];
-        $_SESSION["phone_number"] = $user['phone_number'];
-        $_SESSION["district"] = $user['district'];
-        $_SESSION["city"] = $user['city'];
+        $id = NULL;
+        $authToken = NULL;
+
+        if (isset($_SESSION["id"])) {
+            $id = $_SESSION["id"];
+        }
+
+        if (isset($_SESSION["authToken"])) {
+            $authToken = $_SESSION["authToken"];
+        }
+
+        $query = "SELECT `id` FROM `customer` WHERE `id`= '" . $id . "' AND `authToken`= '" . $authToken . "'";
+
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+
+        if (!$result) {
+
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
     public function checkEmail($email) {

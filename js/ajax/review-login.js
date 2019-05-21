@@ -2,6 +2,7 @@
 //loging validation
 $(document).ready(function () {
     $('#login-submit').click(function (event) {
+      var  product = $('#product').val();
 
         event.preventDefault();
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -9,7 +10,7 @@ $(document).ready(function () {
         if (!$('#user_email').val() || $('#user_email').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Please enter email..!",
+                text: "Please enter the email..!",
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
@@ -25,7 +26,7 @@ $(document).ready(function () {
         } else if (!$('#user_password').val() || $('#user_password').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Please enter password..!",
+                text: "Please enter the password..!",
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
@@ -62,7 +63,7 @@ $(document).ready(function () {
                             showConfirmButton: false
                         }, function () {
                             setTimeout(function () {
-                                window.location.replace("index.php");
+                               window.location.replace("view-product.php?id=" + product);
                             }, 2000);
                         });
                     }

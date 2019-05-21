@@ -1,3 +1,5 @@
+
+
 <div id="header">
     <div class="container">
         <div class="sub-header4">
@@ -14,8 +16,40 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="top-info">
-                        <ul class="top-info-right">
-                            <li><a href="#"><i class="fa fa-user"></i> My account</a></li>
+                        <ul class="top-info-right top-info  ">
+                            <?php
+                            if (empty($_SESSION['name'])) {
+                                ?>
+<!--                                <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>-->
+                                
+                                <?php
+                            } else {
+                                ?>
+                                <li class="top-account has-child">
+                                    <a href="">
+                                        <?php
+                                        if (empty($_SESSION['image_name'])) {
+                                            ?>
+                                            <img src="images/user.png" alt="" class="img-circle"/> 
+                                        <?php } else {
+                                            ?>
+                                            <img src="upload/customer/profile/<?php echo $_SESSION['image_name'] ?>" alt="" class="img-circle"/> 
+                                      
+                                            <?php
+                                        }
+                                        
+                                        echo $_SESSION['name'];
+                                        ?> 
+                                    </a>
+                                    <ul class="sub-menu-top">
+    <!--                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account Info</a></li>
+                                        <li><a href="#"><i class="fa fa-heart-o"></i> Wish List</a></li>
+                                        <li><a href="#"><i class="fa fa-toggle-on"></i> Compare</a></li>
+                                        <li><a href="#"><i class="fa fa-unlock-alt"></i> Sign in</a></li>-->
+                                        <li><a href="customer/logout.php"><i class="fa fa-sign-in"></i> Log Out</a></li>
+                                    </ul>
+                                </li>
+                            <?php } ?>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="#"><i class="fa fa-arrow-circle-o-right"></i>Checkout</a></li>
                         </ul>
@@ -57,8 +91,8 @@
                     <div class="wrap-register-cart">
                         <div class="register-box">
                             <ul>
-                                <li><a href="loging-or-registration.php"><i class="fa fa-lock"></i> Login </a></li>
-                                <li><a href="loging-or-registration.php"><i class="fa fa-list-alt"></i> Register </a></li>
+                                <li><a  href="#myModal" class="trigger-btn" data-toggle="modal"><i class="fa fa-lock"></i> Login </a></li>
+                                <li><a href="registration.php"><i class="fa fa-list-alt"></i> Register </a></li>
                             </ul>
                             <p>My Account & Oder</p>
                         </div>
@@ -643,3 +677,45 @@
     </div>
     <!-- End Main Nav2 -->
 </div>
+
+
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="avatar">
+                    <img src="images/default-man.png" alt="Member" class="img-circle">
+                </div>				
+                <h4 class="modal-title">Member Login</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form   method="post" id="login-form">
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email" >		
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" >	
+                    </div>        
+                    <div class="form-group">
+                        <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <div class="pull-left">
+                    <a href="forget-password.php">Forgot Password?</a>
+                </div>
+                <div class="pull-right">
+                    <a href="registration.php">Not a member?  <span style="color: blue;">Sign Up</span></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>     
+
+
+

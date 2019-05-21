@@ -1,5 +1,6 @@
 <?php
 include './class/include.php';
+include './auth.php';
 $PRODUCT_CATEGORIES = new ProductCategories(NULL);
 ?>
 <!DOCTYPE HTML>
@@ -32,6 +33,9 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
         <!-- <link rel="stylesheet" type="text/css" href="css/rtl.css" media="all"/> -->
+        <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+        <link href="css/modle-login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="wrap">
@@ -578,7 +582,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                             <span><?php echo $comment['city'] ?></span>
                                                         </div>
                                                     </div>
-                                                    <p class="desc text-justify"> <?php echo substr($comment['comment'],0,120) ?>..</p>
+                                                    <p class="desc text-justify"> <?php echo substr($comment['comment'], 0, 120) ?>..</p>
                                                 </div>
                                             <?php } ?>
                                         </div>
@@ -605,5 +609,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
         <script type="text/javascript" src="js/libs/jquery.themepunch.revolution.js"></script>
         <script type="text/javascript" src="js/libs/jquery.themepunch.plugins.min.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
+        <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="js/ajax/login.js" type="text/javascript"></script>
     </body> 
 </html>

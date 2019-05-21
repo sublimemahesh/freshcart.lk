@@ -100,7 +100,7 @@ $(document).ready(function () {
                             showConfirmButton: false
                         }, function () {
                             setTimeout(function () {
-                                window.location.replace("loging-or-registration.php");
+                                window.location.replace("index.php");
                             }, 2000);
                         });
                     }

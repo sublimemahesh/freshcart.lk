@@ -1,18 +1,13 @@
 <!DOCTYPE HTML>
 <?php
 include './class/include.php';
+include './auth.php';
+
 $id = '';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $PRODUCT = new Product($id);
-
-
-//if (!isset($_SESSION)) {
-//    session_start();
-//}
-
-echo $_SESSION["id"];
 ?>
 <html lang="en-US">
 
@@ -40,6 +35,8 @@ echo $_SESSION["id"];
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
         <link href="css/login-css.css" rel="stylesheet" type="text/css"/>
         <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+        <link href="css/modle-login.css" rel="stylesheet" type="text/css"/>
 
     </head>
     <body>
@@ -472,8 +469,18 @@ echo $_SESSION["id"];
                                                                                         </div>
                                                                                         <div class="col-md-4" style="margin-top: 20px;" >
                                                                                             <input type="hidden" id="product"   name="product" value="<?php echo $id ?>">
-                                                                                            <input type="submit" name="submit" id="create" tabindex="4" class="form-control btn btn-login" value="Add review">
+                                                                                            <?php
+                                                                                            if (empty($_SESSION['id'])) {
+                                                                                                ?>
+                                                                                            <a  href="#myModal" class="trigger-btn" data-toggle="modal"><input type="submit" name="submit" id="Btn-z"   class="Btn-z form-control btn btn-login" value="Add review"></a>
 
+                                                                                            <?php } else {
+                                                                                                ?>
+                                                                                                <input type="submit" name="submit" id="create" tabindex="4" class="form-control btn btn-login" value="Add review">
+
+                                                                                                <?php
+                                                                                            }
+                                                                                            ?>
                                                                                         </div> 
                                                                                     </div> 
                                                                                 </form>  
@@ -711,6 +718,46 @@ echo $_SESSION["id"];
                 </div>
                 <!-- End Content Shop -->
             </div>
+
+
+            <!--loging -form-->
+            <!-- Modal HTML -->
+            <div id="myModal" class="modal fade">
+                <div class="modal-dialog modal-login">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="avatar">
+                                <img src="images/default-man.png" alt="Member" class="img-circle">
+                            </div>				
+                            <h4 class="modal-title">Member Login</h4>	
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form   method="post" id="login-form">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email" required="required">		
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required="required">	
+                                </div>        
+                                <div class="form-group">
+                                    <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary btn-lg btn-block login-btn" style="width: 100%;">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer ">
+                            <div class="pull-left">
+                                <a href="forget-password.php">Forgot Password?</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="registration.php">Not a member?  <span style="color: blue;">Sign Up</span></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>    
             <!-- End Content -->
             <?php include './footer.php'; ?>
             <!-- End Footer -->
@@ -728,5 +775,6 @@ echo $_SESSION["id"];
         <script src="comment/validation.js" type="text/javascript"></script>
 
         <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="js/ajax/review-login.js" type="text/javascript"></script>
     </body>
 </html>
