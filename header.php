@@ -1,4 +1,12 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 
+if (isset($_SESSION["id"])) {
+    $CUSTOMER = new Customer($_SESSION["id"]);
+}
+?>
 
 <div id="header">
     <div class="container">
@@ -16,40 +24,36 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="top-info">
-                        <ul class="top-info-right top-info  ">
-                            <?php
-                            if (empty($_SESSION['name'])) {
-                                ?>
-<!--                                <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>-->
+                        <ul class="top-info-right top-info  "> 
+                            <li class="top-account has-child">
                                 
-                                <?php
-                            } else {
-                                ?>
-                                <li class="top-account has-child">
-                                    <a href="">
+                                    <div id="img_url" ></div>
+                                    <?php
+                                    if (isset($CUSTOMER->image_name)) {
+                                        ?>
+                                  
+                                        <img src="upload/customer/profile/thumb/<?php echo $CUSTOMER->image_name ?>" alt="" class="img-circle"/> <?php echo   $_SESSION['name']; ?>
+                                        <ul class="sub-menu-top">
+                                           <!--                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account Info</a></li>
+                                                                               <li><a href="#"><i class="fa fa-heart-o"></i> Wish List</a></li>
+                                                                               <li><a href="#"><i class="fa fa-toggle-on"></i> Compare</a></li>
+                                                                               <li><a href="#"><i class="fa fa-unlock-alt"></i> Sign in</a></li>-->
+                                            <li><a href="customer/logout.php"><i class="fa fa-sign-in"></i> Log Out</a></li>
+                                        </ul>
                                         <?php
-                                        if (empty($_SESSION['image_name'])) {
-                                            ?>
-                                            <img src="images/user.png" alt="" class="img-circle"/> 
-                                        <?php } else {
-                                            ?>
-                                            <img src="upload/customer/profile/<?php echo $_SESSION['image_name'] ?>" alt="" class="img-circle"/> 
-                                      
-                                            <?php
-                                        }
                                         
-                                        echo $_SESSION['name'];
+                                    } else {
                                         ?> 
-                                    </a>
-                                    <ul class="sub-menu-top">
-    <!--                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account Info</a></li>
-                                        <li><a href="#"><i class="fa fa-heart-o"></i> Wish List</a></li>
-                                        <li><a href="#"><i class="fa fa-toggle-on"></i> Compare</a></li>
-                                        <li><a href="#"><i class="fa fa-unlock-alt"></i> Sign in</a></li>-->
-                                        <li><a href="customer/logout.php"><i class="fa fa-sign-in"></i> Log Out</a></li>
-                                    </ul>
-                                </li>
-                            <?php } ?>
+                                        <div id="img-t">
+                                            <img src="images/user.png" alt="" class="img-circle" /> My Account 
+                                        </div>
+                                        
+                                    <?php } ?>
+                                        
+                                         
+                                 
+                            </li>
+
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="#"><i class="fa fa-arrow-circle-o-right"></i>Checkout</a></li>
                         </ul>
@@ -92,7 +96,7 @@
                         <div class="register-box">
                             <ul>
                                 <li><a  href="#myModal" class="trigger-btn" data-toggle="modal"><i class="fa fa-lock"></i> Login </a></li>
-                                <li><a href="registration.php"><i class="fa fa-list-alt"></i> Register </a></li>
+                                <li><a href="registration.php"><i class="fa fa-list-alt"></i> Sign up </a></li>
                             </ul>
                             <p>My Account & Oder</p>
                         </div>
