@@ -122,7 +122,6 @@ class Customer {
     private function setUserSession($customer) {
 
         if (!isset($_SESSION)) {
-
             session_start();
         }
         $customer = $this->__construct($customer);

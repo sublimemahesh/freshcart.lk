@@ -1,6 +1,5 @@
 <?php
-include './class/include.php';
-include './auth.php';
+include './class/include.php'; 
 $PRODUCT_CATEGORIES = new ProductCategories(NULL);
 ?>
 <!DOCTYPE HTML>

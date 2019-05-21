@@ -45,7 +45,7 @@ include './auth.php';
                                         <div class="panel-heading">
                                             <div class="row"> 
                                                 <div class="col-xs-12 text-center">
-                                                    <a href="#" class="active"id="register-form-link">REGISTER</a>
+                                                    <a href="#" class="active"id="register-form-link">Sign up</a>
                                                 </div>
                                             </div>
                                             <hr>

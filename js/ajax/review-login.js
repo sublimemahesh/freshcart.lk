@@ -2,7 +2,7 @@
 //loging validation
 $(document).ready(function () {
     $('#login-submit').click(function (event) {
-      var  product = $('#product').val();
+        var product = $('#product').val();
 
         event.preventDefault();
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -46,6 +46,7 @@ $(document).ready(function () {
                 processData: false,
                 dataType: "JSON",
                 success: function (result) {
+
                     if (result.status === 'error') {
                         swal({
                             title: "Error!",
@@ -61,11 +62,11 @@ $(document).ready(function () {
                             type: 'success',
                             timer: 1500,
                             showConfirmButton: false
-                        }, function () {
-                            setTimeout(function () {
-                               window.location.replace("view-product.php?id=" + product);
-                            }, 2000);
                         });
+                        var html = '<img  class="img-circle" src=upload/customer/profile/thumb/' + result.image_name + '>  ' + result.name;
+                        $("#img_url").append(html);
+                        $("#img-t").hide();
+                       $('#myModal').modal('hide'); 
                     }
                 }
             });
