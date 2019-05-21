@@ -56,16 +56,16 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                 <div class="cat-mega-menu cat-mega-style1"> 
                                                     <div class="row">
                                                         <?php
-                                                        $SUB_PRODUCT = new SubProduct(NULL);
-                                                        foreach ($SUB_PRODUCT->getProductsByCategory($product_categories['id']) as $sub_product) {
+                                                        $SUB_CATEGORY = new SubCategory(NULL);
+                                                        foreach ($SUB_CATEGORY->getProductsByCategory($product_categories['id']) as $sub_category) {
                                                             ?>
                                                             <div class="col-md-4 col-sm-3">
                                                                 <div class="list-cat-mega-menu"> 
 
-                                                                    <h2 class="title-cat-mega-menu"><?php echo $sub_product['name'] ?></h2>
+                                                                    <h2 class="title-cat-mega-menu"><?php echo $sub_category['name'] ?></h2>
                                                                     <?php
                                                                     $PRODUCT = new Product(NULL);
-                                                                    foreach ($PRODUCT->getProductsBySubProduct($sub_product['id']) as $product) {
+                                                                    foreach ($PRODUCT->getProductsBySubProduct($sub_category['id']) as $product) {
                                                                         ?>
                                                                         <ul>
                                                                             <li><a href="#"><?php echo $product['name'] ?></a></li>
@@ -80,7 +80,6 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                             </li> 
                                         <?php }
                                         ?>
-
                                     </ul>
                                     <a class="expand-list-link" href="#"></a>
                                 </div>

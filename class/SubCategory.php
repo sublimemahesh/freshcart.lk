@@ -11,7 +11,7 @@
  *
  * @author Nipuni
  */
-class SubProduct {
+class SubCategory {
 
     public $id;
     public $category;
@@ -22,7 +22,7 @@ class SubProduct {
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT * FROM `sub_product` WHERE `id`=" . $id;
+            $query = "SELECT * FROM `sub_category` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -40,7 +40,7 @@ class SubProduct {
 
     public function create() {
 
-        $query = "INSERT INTO `sub_product` (`category`,`name`,`image_name`,`sort`) VALUES  ('"
+        $query = "INSERT INTO `sub_category` (`category`,`name`,`image_name`,`sort`) VALUES  ('"
                 . $this->category . "','"
                 . $this->name . "', '"
                 . $this->image_name . "', '"
@@ -62,7 +62,7 @@ class SubProduct {
 
     public function all() {
 
-        $query = "SELECT * FROM `sub_product` ORDER BY sort ASC";
+        $query = "SELECT * FROM `sub_category` ORDER BY sort ASC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -76,7 +76,7 @@ class SubProduct {
 
     public function update() {
 
-        $query = "UPDATE  `sub_product` SET "
+        $query = "UPDATE  `sub_category` SET "
                 . "`name` ='" . $this->name . "', "
                 . "`image_name` ='" . $this->image_name . "', "
                 . "`sort` ='" . $this->sort . "' "
@@ -98,7 +98,7 @@ class SubProduct {
 
         unlink(Helper::getSitePath() . "upload/product-categories/sub-product/" . $this->image_name);
 
-        $query = 'DELETE FROM `sub_product` WHERE id="' . $this->id . '"';
+        $query = 'DELETE FROM `sub_category` WHERE id="' . $this->id . '"';
 
         $db = new Database();
 
@@ -109,7 +109,7 @@ class SubProduct {
 
         $PRODUCT = new Product(NULL);
 
-        $allPhotos = $PRODUCT->getProductsBySubProduct($this->id);
+        $allPhotos = $PRODUCT->getProductsBySubCategory($this->id);
 
         foreach ($allPhotos as $photo) {
 
@@ -134,7 +134,7 @@ class SubProduct {
 
     public function getProductsByCategory($category) {
 
-        $query = 'SELECT * FROM `sub_product` WHERE category="' . $category . '"   ORDER BY sort ASC';
+        $query = 'SELECT * FROM `sub_category` WHERE category="' . $category . '"   ORDER BY sort ASC';
 
         $db = new Database();
 
@@ -149,7 +149,7 @@ class SubProduct {
 
     public function getProductsByBrand($brand) {
 
-        $query = 'SELECT * FROM `sub_product` WHERE brand="' . $brand . '"   ORDER BY sort ASC';
+        $query = 'SELECT * FROM `sub_category` WHERE brand="' . $brand . '"   ORDER BY sort ASC';
 
         $db = new Database();
 
@@ -164,7 +164,7 @@ class SubProduct {
 
     public function arrange($key, $img) {
 
-        $query = "UPDATE `sub_product` SET `sort` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $query = "UPDATE `sub_category` SET `sort` = '" . $key . "'  WHERE id = '" . $img . "'";
         $db = new Database();
         $result = $db->readQuery($query);
         return $result;

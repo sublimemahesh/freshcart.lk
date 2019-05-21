@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.delete-room').click(function () {
+    $('.delete-package').click(function () {
 
         var id = $(this).attr("data-id");
 
@@ -14,7 +14,7 @@ $(document).ready(function () {
         }, function () {
 
             $.ajax({
-                url: "delete/ajax/room.php",
+                url: "delete/ajax/package.php",
                 type: "POST",
                 data: {id: id, option: 'delete'},
                 dataType: "JSON",
