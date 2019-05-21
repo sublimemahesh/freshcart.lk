@@ -216,7 +216,7 @@ a:focus {
 .top-info > li {
     border-left: 1px solid #e8e8e8;
     float: left;
-    padding: 10px 13px;
+    padding: 2px 13px;
     position: relative;
 }
 .top-info> li> a {
@@ -3168,7 +3168,7 @@ a:focus {
 }
 .top-info-right > li {
     display: inline-block;
-    margin-left: 45px;
+    margin-left: 10px;
 }
 .top-info-right > li:first-child {
     margin: 0;
