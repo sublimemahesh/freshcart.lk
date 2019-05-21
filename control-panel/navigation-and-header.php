@@ -392,6 +392,7 @@
                         </li> 
                     </ul>
                 </li> 
+                
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
@@ -412,6 +413,28 @@
                         </li> 
                     </ul>
                 </li> 
+                
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Packages</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="create-package.php">
+                                <i class="material-icons">add</i>
+                                <span>Add New</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage-package.php">
+                                <i class="material-icons">list</i>
+                                <span>Manage</span>
+                            </a>
+                        </li> 
+                    </ul>
+                </li> 
+                
                 <li>
                     <a href="manage-product-review.php" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>

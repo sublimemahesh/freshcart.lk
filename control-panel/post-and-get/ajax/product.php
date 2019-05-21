@@ -14,4 +14,13 @@ if ($_POST['action'] == 'GETPRODUCTBYCATEGORY') {
     exit();
 }
 
+if ($_POST['action'] == 'GETSUBPRODUCTBYCATEGORY') {
 
+    $SUB_CATEGORY = new SubCategory(NULL);
+
+    $result = $SUB_CATEGORY->getProductsByCategory($_POST["proCategoryID"]);
+
+    echo json_encode($result);
+    header('Content-type: application/json');
+    exit();
+}

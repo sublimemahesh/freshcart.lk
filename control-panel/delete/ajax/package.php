@@ -5,9 +5,9 @@ include_once(dirname(__FILE__) . '/../../auth.php');
 
 if ($_POST['option'] == 'delete') {
 
-    $ROOM = new Room($_POST['id']);
+    $PACKAGE = new Package($_POST['id']);
   
-    $result =  $ROOM->delete();
+    $result =  $PACKAGE->delete();
 
     if ($result) {
         $data = array("status" => TRUE);
