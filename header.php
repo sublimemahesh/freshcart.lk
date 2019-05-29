@@ -7,7 +7,6 @@ if (isset($_SESSION["id"])) {
     $CUSTOMER = new Customer($_SESSION["id"]);
 }
 ?>
-
 <div id="header">
     <div class="container">
         <div class="sub-header4">
@@ -26,32 +25,35 @@ if (isset($_SESSION["id"])) {
                     <div class="top-info">
                         <ul class="top-info-right top-info  "> 
                             <li class="top-account has-child">
-                                
-                                    <div id="img_url" ></div>
-                                    <?php
-                                    if (isset($CUSTOMER->image_name)) {
+                                <div id="img_url" ></div>
+                                <?php
+                                if (isset($CUSTOMER->id)) {
+                                    if (empty($CUSTOMER->image_name)) {
                                         ?>
-                                  
-                                        <img src="upload/customer/profile/thumb/<?php echo $CUSTOMER->image_name ?>" alt="" class="img-circle"/> <?php echo   $_SESSION['name']; ?>
-                                        <ul class="sub-menu-top">
-                                           <!--                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account Info</a></li>
-                                                                               <li><a href="#"><i class="fa fa-heart-o"></i> Wish List</a></li>
-                                                                               <li><a href="#"><i class="fa fa-toggle-on"></i> Compare</a></li>
-                                                                               <li><a href="#"><i class="fa fa-unlock-alt"></i> Sign in</a></li>-->
-                                            <li><a href="customer/logout.php"><i class="fa fa-sign-in"></i> Log Out</a></li>
-                                        </ul>
-                                        <?php
-                                        
-                                    } else {
-                                        ?> 
-                                        <div id="img-t">
-                                            <img src="images/user.png" alt="" class="img-circle" /> My Account 
-                                        </div>
-                                        
+
+                                        <img src="images/user.png" alt="" class="img-circle" /> <?php echo $_SESSION['name']; ?>
+                                    <?php } else { ?>
+                                        <img src="upload/customer/profile/thumb/<?php echo $CUSTOMER->image_name ?>" alt="" class="img-circle"/> <?php echo $_SESSION['name']; ?>
+
                                     <?php } ?>
-                                        
-                                         
-                                 
+                                    <ul class="sub-menu-top">
+                                       <!--                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account Info</a></li>
+                                                                           <li><a href="#"><i class="fa fa-heart-o"></i> Wish List</a></li>
+                                                                           <li><a href="#"><i class="fa fa-toggle-on"></i> Compare</a></li>
+                                                                           <li><a href="#"><i class="fa fa-unlock-alt"></i> Sign in</a></li>-->
+                                        <li><a href="post-and-get/logout.php"><span> <i class="fa fa-sign-in " ></i>Log Out</span></a></li>
+                                    </ul>
+                                    <?php
+                                } else {
+                                    ?> 
+                                    <div id="img-t">
+                                        <img src="images/user.png" alt="" class="img-circle" /> My Account 
+                                    </div>
+
+                                <?php } ?>
+
+
+
                             </li>
 
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
