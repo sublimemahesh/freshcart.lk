@@ -1,6 +1,18 @@
 <!DOCTYPE HTML>
 <?php
 include './class/include.php';
+
+if (isset($_GET["page"])) {
+    $page = (int) $_GET["page"];
+} else {
+    $page = 1;
+}
+ 
+    
+$setLimit = 3;
+
+$pageLimit = ($page * $setLimit) - $setLimit;
+
 $id = '';
 $id = $_GET['id'];
 $PRODUCT = new Product(NULL);
@@ -170,7 +182,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                     <div class="shop-tab-product"> 
                                         <ul class="row product-grid">
                                             <?php
-                                            foreach ($PRODUCT->getProductsByCategory($id) as $product) {
+                                            foreach ($PRODUCT->getProductsByCategoryBYPagination($id,$pageLimit,$setLimit) as $product) {
                                                 ?>
                                                 <li class="col-md-4 col-sm-6 col-xs-12">
                                                     <div class="item-product">
@@ -218,30 +230,12 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                         </ul>
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
+
                                                 <div class="sort-pagi-bar">
-                                                    <div class="product-order">
-                                                        <a href="#" class="product-order-toggle">Position</a>
-                                                        <ul class="product-order-list">
-                                                            <li><a href="#">Name</a></li>
-                                                            <li><a href="#">Price</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-per-page">
-                                                        <a href="#" class="per-page-toggle">show <span>6</span></a>
-                                                        <ul class="per-page-list">
-                                                            <li><a href="#">6</a></li>
-                                                            <li><a href="#">9</a></li>
-                                                            <li><a href="#">12</a></li>
-                                                            <li><a href="#">18</a></li>
-                                                            <li><a href="#">24</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-pagi-nav">
-                                                        <a href="#" class="active">1</a>
-                                                        <a href="#">2</a>
-                                                        <a href="#">3</a>
-                                                        <a href="#" class="next">next <i class="fa fa-angle-double-right"></i></a>
-                                                    </div>
+                                                    <?php
+                                                    $PRODUCT->showPagination($setLimit, $page,$id);
+                                                    ?>    
+
                                                 </div>
                                             </div>
                                         </div>
