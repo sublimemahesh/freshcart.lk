@@ -57,7 +57,7 @@ class Customer {
                 . $this->city . "', '"
                 . $this->address . "', '"
                 . $this->image_name . "')";
-
+         
         $db = new Database();
 
         $result = $db->readQuery($query);

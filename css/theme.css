@@ -3176,6 +3176,13 @@ a:focus {
 .top-info-right > li a:hover {
     color:#ED321E;
 }
+.top-info-right > li span:hover {
+    color:black;
+}
+.top-info-right > li span i:hover {
+    color:black;
+}
+ 
 .top-info-right > li a {
     color: #010101;
     font-size: 12px;

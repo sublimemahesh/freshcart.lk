@@ -9,8 +9,13 @@ $password = filter_var($_POST['user_password'], FILTER_SANITIZE_STRING);
 
 if ($CUSTOMER->login($username, $password)) {
     $data = $CUSTOMER->login($username, $password);
-    
-    $result = ["status" => 'success', 'image_name' =>$data->image_name,'name'=>$data->name];
+
+    if (empty($data->image_name)) {
+        $image_name = 'user.png';
+    } else {
+        $image_name = $data->image_name;
+    }
+    $result = ["status" => 'success', 'image_name' => $image_name, 'name' => $data->name];
     echo json_encode($result);
     exit();
 } else {
