@@ -70,7 +70,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                             <a href="#"  class="delete-product-categories" data-id="<?php echo $product_categories['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
                                                             <a href="edit-product-categories.php?id=<?php echo $product_categories['id']; ?>" title="Edit Product categories"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                             <a href="arrange-product-categories.php?id=<?php echo $product_categories['id']; ?>" title="Arrange Product categories">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
-                                                            <a href="create-sub-product.php?id=<?php echo $product_categories['id']; ?>" title="Add Sub Product">  <button class="glyphicon   glyphicon-shopping-cart warring-btn"></button></a>
+                                                            <a href="create-sub-category.php?id=<?php echo $product_categories['id']; ?>" title="Add Sub Product">  <button class="glyphicon   glyphicon-shopping-cart warring-btn"></button></a>
                                                         </div>
                                                     </div>
                                                 </div>

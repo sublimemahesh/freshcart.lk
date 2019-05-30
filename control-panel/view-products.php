@@ -10,7 +10,7 @@ if (isset($_GET['category'])) {
 }
 
 $PRODUCT_CATEGORIES = new ProductCategories($category);
-$SUB_PRODUCT = new SubProduct($id);
+$SUB_CATEGORY = new SubCategory($id);
 ?> 
 <!DOCTYPE html>
 
@@ -49,7 +49,7 @@ $SUB_PRODUCT = new SubProduct($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $SUB_PRODUCT->name ?>" - Create Products</h2>
+                                <h2> "<?php echo $SUB_CATEGORY->name ?>" - Create Products</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="manage-product-categories.php">
@@ -135,7 +135,7 @@ $SUB_PRODUCT = new SubProduct($id);
                                     </div>
                                     <div class="col-md-12"> 
                                         <input type="hidden" id="category" value="<?php echo $PRODUCT_CATEGORIES->id; ?>" name="category"/>
-                                        <input type="hidden" id="id" value="<?php echo $SUB_PRODUCT->id; ?>" name="id"/>
+                                        <input type="hidden" id="id" value="<?php echo $SUB_CATEGORY->id; ?>" name="id"/>
                                         <input type="submit" name="create" class="btn btn-primary TYPEm-t-15 waves-effect" value="create"/>
                                     </div>
                                 </form>

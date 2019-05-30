@@ -15,7 +15,7 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Create sub products</title>
+        <title>Create Sub Category</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -92,21 +92,22 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
 
                                 <div class="row clearfix">
                                     <?php
-                                    $SUB_PRODUCT = SubProduct::getProductsByCategory($id);
-                                    if (count($SUB_PRODUCT) > 0) {
-                                        foreach ($SUB_PRODUCT as $key => $sub_product) {
+                                    $SUB_CATEGORY = new SubCategory(NULL);
+                                    $SUB_CATEGORY = $SUB_CATEGORY->getProductsByCategory($id);
+                                    if (count($SUB_CATEGORY) > 0) {
+                                        foreach ($SUB_CATEGORY as $key => $sub_category) {
                                             ?>
-                                            <div class="col-md-3"  id="div<?php echo $sub_product['id']; ?>">
+                                            <div class="col-md-3"  id="div<?php echo $sub_category['id']; ?>">
                                                 <div class="photo-img-container">
-                                                    <img src="../upload/product-categories/sub-product/<?php echo $sub_product['image_name']; ?>" class="img-responsive img-thumbnail">
+                                                    <img src="../upload/product-categories/sub-product/<?php echo $sub_category['image_name']; ?>" class="img-responsive img-thumbnail">
                                                 </div>
                                                 <div class="img-caption">
-                                                    <p class="maxlinetitle"><?php echo $sub_product['name']; ?></p>
+                                                    <p class="maxlinetitle"><?php echo $sub_category['name']; ?></p>
                                                     <div class="d">
-                                                        <a href="#" class="delete-sub-product" data-id="<?php echo $sub_product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
-                                                        <a href="edit-sub-product.php?id=<?php echo $sub_product['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
+                                                        <a href="#" class="delete-sub-product" data-id="<?php echo $sub_category['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
+                                                        <a href="edit-sub-product.php?id=<?php echo $sub_category['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                         <a href="arrange-sub-product.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
-                                                        <a href="view-products.php?id=<?php echo $sub_product['id']; ?>&category=<?php echo $id ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
+                                                        <a href="view-products.php?id=<?php echo $sub_category['id']; ?>&category=<?php echo $id ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
 
                                                     </div>
                                                 </div>
