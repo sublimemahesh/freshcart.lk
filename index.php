@@ -1,5 +1,5 @@
 <?php
-include './class/include.php'; 
+include './class/include.php';
 $PRODUCT_CATEGORIES = new ProductCategories(NULL);
 ?>
 <!DOCTYPE HTML>
@@ -51,7 +51,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                         foreach ($PRODUCT_CATEGORIES->all() as $product_categories) {
                                             ?>
                                             <li class="has-cat-mega">
-                                                <a href="#"> <?php echo $product_categories['name'] ?></a>
+                                                <a href="all-category.php?id=<?php echo $product_categories['id'] ?>"> <?php echo $product_categories['name'] ?></a>
 
                                                 <div class="cat-mega-menu cat-mega-style1"> 
                                                     <div class="row">

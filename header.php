@@ -175,39 +175,13 @@ if (isset($_SESSION["id"])) {
                 <div class="col-md-9 col-sm-12 col-xs-12 col-md-offset-3">
                     <nav class="main-nav main-nav4">
                         <ul>
-                            <li class="menu-item-has-children">
-                                <a href="#">home</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item-has-children">
-                                        <a href="#">home 1-5</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="home-01.html">Home style 01</a></li>
-                                            <li><a href="home-02.html">Home style 02</a></li>
-                                            <li><a href="home-03.html">Home style 03</a></li>
-                                            <li><a href="home-04.html">Home style 04</a></li>
-                                            <li><a href="home-05.html">Home style 05</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">home 6-10</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="home-06.html">Home style 06</a></li>
-                                            <li><a href="home-07.html">Home style 07</a></li>
-                                            <li><a href="home-08.html">Home style 08</a></li>
-                                            <li><a href="home-09.html">Home style 09</a></li>
-                                            <li><a href="home-10.html">Home style 10</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">home 11-15</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="home-11.html">Home style 11</a></li>
-                                            <li><a href="home-12.html">Home style 12</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                            <li>
+                                <a href="#">home</a>                             
                             </li>
-                            <li class="has-mega-menu">
+<!--                            <li>
+                                <a href="all-category.php">Category</a>                             
+                            </li>-->
+<!--                            <li class="has-mega-menu">
                                 <a href="grid.html">Fashion</a>
                                 <div class="mega-menu mega-menu-style1">
                                     <div class="row">
@@ -248,7 +222,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item-deal-product">
                                                             <div class="product-thumb">
                                                                 <a href="#" class="product-thumb-link">
@@ -281,7 +255,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item-deal-product">
                                                             <div class="product-thumb">
                                                                 <a href="#" class="product-thumb-link">
@@ -314,7 +288,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item-deal-product">
                                                             <div class="product-thumb">
                                                                 <a href="#" class="product-thumb-link">
@@ -347,7 +321,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                     </div>
                                                 </div>
                                             </div>
@@ -385,7 +359,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item">
                                                             <div class="item-product">
                                                                 <div class="product-thumb">
@@ -414,7 +388,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item">
                                                             <div class="item-product">
                                                                 <div class="product-thumb">
@@ -443,7 +417,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item">
                                                             <div class="item-product">
                                                                 <div class="product-thumb">
@@ -472,14 +446,14 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li>-->
                             <li class="has-mega-menu">
                                 <a href="list.html">Furniture</a>
                                 <div class="mega-menu">
