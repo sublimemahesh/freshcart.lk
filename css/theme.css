@@ -1,5 +1,9 @@
 /*General*/
-
+#price-details{
+    font-size: 18px;
+    font-weight: 700;
+    color: #FE9C00;
+}
 .white-color{
     color: white;
 }
@@ -2276,12 +2280,7 @@ a:focus {
 .box-filter li {
     margin-bottom: 5px;
 }
-.box-filter li a{
-    color: #666;
-    padding-left:20px;
-    background:url("../images/grid/un-check.jpg") no-repeat left center;
-    display: block;
-}
+
 .box-filter li a.active{
     background:url("../images/grid/check.jpg") no-repeat left center;
 }
@@ -3182,7 +3181,7 @@ a:focus {
 .top-info-right > li span i:hover {
     color:black;
 }
- 
+
 .top-info-right > li a {
     color: #010101;
     font-size: 12px;

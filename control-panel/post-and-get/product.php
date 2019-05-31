@@ -8,7 +8,7 @@ if (isset($_POST['create'])) {
     $VALID = new Validator();
 
     $PRODUCT->category = $_POST['category'];
-    $PRODUCT->sub_product = $_POST['id'];
+    $PRODUCT->sub_category = $_POST['id'];
     $PRODUCT->brand = $_POST['brand'];
     $PRODUCT->name = $_POST['name'];
     $PRODUCT->discount = $_POST['discount'];

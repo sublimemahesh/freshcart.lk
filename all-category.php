@@ -7,8 +7,8 @@ if (isset($_GET["page"])) {
 } else {
     $page = 1;
 }
- 
-    
+
+
 $setLimit = 3;
 
 $pageLimit = ($page * $setLimit) - $setLimit;
@@ -41,18 +41,21 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
     </head>
+
     <body>
-        <div class="wrap">
+        <div class="wrap" >
+
             <?php include './header.php'; ?> 
             <!-- End Header -->
-            <div id="content">
-                <div class="content-shop">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-4 col-xs-12">
+            <div id="content" >
+                <div class="content-shop" >
+
+                    <div class="row"  >
+                        <div class="container" >
+                            <div class="col-md-3 col-sm-4 col-xs-12" >
                                 <div class="sidebar-shop sidebar-left">
                                     <div class="widget widget-filter">
-                                        <div class="box-filter category-filter">
+                                        <div class="box-filter  ">
                                             <h2 class="widget-title"><?php echo $PRODUCT_CATEGORIES->name ?></h2>
                                             <ul>
                                                 <?php
@@ -61,7 +64,10 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
 
                                                     $COUNT_PRODUCT = count($PRODUCT->getProductsBySubProduct($sub_category['id']));
                                                     ?>
-                                                    <li><a href="#"><?php echo $sub_category['name'] ?> (<?php echo $COUNT_PRODUCT ?>)</a></li>
+                                                    <li> 
+                                                        <input type="checkbox" id="sub_categorys" class="click_button" value="<?php echo $sub_category['id'] ?>">
+                                                        <?php echo $sub_category['name'] ?> (<?php echo $COUNT_PRODUCT ?>) 
+                                                    </li>
                                                     <?php
                                                 }
                                                 ?>
@@ -69,21 +75,20 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                         </div>
                                         <!-- End Category -->
                                         <div class="box-filter price-filter">
-                                            <h2 class="widget-title">price</h2>
+                                            <h2 class="widget-title">Brand</h2>
                                             <div class="inner-price-filter">
                                                 <ul>
-                                                    <li><a href="#">$ Under-10 (29)</a></li>
-                                                    <li><a href="#">$ 10-20 (29)</a></li>
-                                                    <li><a href="#">$ 20-40 (29)</a></li>
-                                                    <li><a href="#">$ 40-50 (29)</a></li>
-                                                    <li><a href="#">$ 50-80 (29)</a></li>
-                                                </ul>
-                                                <div class="range-filter">
-                                                    <label>$</label>
-                                                    <div id="amount"></div>
-                                                    <button class="btn-filter">Filter</button>
-                                                    <div id="slider-range"></div>
-                                                </div>
+                                                    <?php
+                                                    $BRAND = new Brand(NULL);
+                                                    foreach ($BRAND->all() as $brand) {
+                                                        ?>
+                                                        <li> 
+                                                            <input type="checkbox" id="brand" class="click_button" value="<?php echo $brand['id'] ?>">
+                                                            <?php echo $brand['name'] ?>   
+                                                        </li>
+                                                    <?php }
+                                                    ?>
+                                                </ul> 
                                             </div>
                                         </div>
                                         <!-- End Price -->
@@ -177,12 +182,12 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                 </div>
                                 <!-- End Sidebar Shop -->
                             </div>
-                            <div class="col-md-9 col-sm-8 col-xs-12">
+                            <div class="col-md-9 col-sm-8 col-xs-12  " >
                                 <div class="main-content-shop"> 
-                                    <div class="shop-tab-product"> 
-                                        <ul class="row product-grid">
+                                    <div class="shop-tab-product filter_data"> 
+                                        <ul class="row product-grid " id="filter_data_hide">
                                             <?php
-                                            foreach ($PRODUCT->getProductsByCategoryBYPagination($id,$pageLimit,$setLimit) as $product) {
+                                            foreach ($PRODUCT->getProductsByCategoryByAll($id, $pageLimit, $setLimit) as $product) {
                                                 ?>
                                                 <li class="col-md-4 col-sm-6 col-xs-12">
                                                     <div class="item-product">
@@ -213,27 +218,31 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                                                 $discount_price = $product['price'] - $discount;
                                                                 if ($product['discount'] > 0) {
                                                                     ?>
-                                                                    <span>RS: <?php echo number_format($discount_price, 2) ?></span><del>Rs:<?php echo number_format($price_amount, 2) ?></del>
+                                                                    <span id="price-details">RS: <?php echo number_format($discount_price, 2) ?></span></br><del>Rs:<?php echo number_format($price_amount, 2) ?></del>
                                                                 <?php } else {
                                                                     ?>
-                                                                    <span>Rs: <?php echo number_format($price_amount, 2) ?></span> 
+                                                                    <span id="price-details">Rs: <?php echo number_format($price_amount, 2) ?></span> 
                                                                     <?php
                                                                 }
                                                                 ?>
                                                             </div>
-
+                                                            <?php if (!empty($product['discount'])) { ?>
+                                                                <div class="percent-saleoff">
+                                                                    <span><label><?php echo $product['discount'] ?>%</label> OFF</span>
+                                                                </div>
+                                                            <?php } ?>
                                                         </div>
-                                                    </div>
                                                 </li>
                                             <?php }
                                             ?>
                                         </ul>
+
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
 
                                                 <div class="sort-pagi-bar">
                                                     <?php
-                                                    $PRODUCT->showPagination($setLimit, $page,$id);
+                                                    $PRODUCT->showPagination($setLimit, $page, $id);
                                                     ?>    
 
                                                 </div>
@@ -492,5 +501,6 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
+        <script src="js/ajax/product.js" type="text/javascript"></script>
     </body>
 </html>
