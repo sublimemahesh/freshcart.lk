@@ -15,7 +15,7 @@ class Product {
 
     public $id;
     public $category;
-    public $sub_product;
+    public $sub_category;
     public $brand;
     public $name;
     public $discount;
@@ -37,7 +37,7 @@ class Product {
 
             $this->id = $result['id'];
             $this->category = $result['category'];
-            $this->sub_product = $result['sub_product'];
+            $this->sub_category = $result['sub_category'];
             $this->brand = $result['brand'];
             $this->name = $result['name'];
             $this->discount = $result['discount'];
@@ -54,9 +54,9 @@ class Product {
 
     public function create() {
 
-        $query = "INSERT INTO `product` (`category`,`sub_product`,`brand`,`name`,`discount`,`unite`,`price`,`image_name`,`short_description`,`description`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `product` (`category`,`sub_category`,`brand`,`name`,`discount`,`unite`,`price`,`image_name`,`short_description`,`description`,`queue`) VALUES  ('"
                 . $this->category . "','"
-                . $this->sub_product . "','"
+                . $this->sub_category . "','"
                 . $this->brand . "','"
                 . $this->name . "', '"
                 . $this->discount . "', '"
@@ -130,9 +130,10 @@ class Product {
         return $db->readQuery($query);
     }
 
-    public function getProductsBySubProduct($sub_product) {
+    public function getProductsBySubProduct($sub_category) {
 
-        $query = 'SELECT * FROM `product` WHERE sub_product="' . $sub_product . '"   ORDER BY queue ASC';
+
+        $query = 'SELECT * FROM `product` WHERE sub_category="' . $sub_category . '"   ORDER BY queue ASC';
 
         $db = new Database();
 
@@ -160,8 +161,25 @@ class Product {
         return $array_res;
     }
 
-    public function getProductsByCategoryBYPagination($category, $pageLimit, $setLimit) {
-        
+    public function getProductsBySubCategories($categorys) { 
+
+        $in = implode(",", explode(",", $categorys)); 
+
+        $query = 'SELECT * FROM `product` WHERE `sub_category` in(' . $in . ')  ORDER BY queue ASC';
+         
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+        return $array_res;
+    }
+
+    public function getProductsByCategoryByAll($category, $pageLimit, $setLimit) {
+
         $query = "SELECT * FROM `product` where `category` = " . $category . "   ORDER BY queue DESC LIMIT " . $pageLimit . " , " . $setLimit . "  ";
 
         $db = new Database();
@@ -190,8 +208,8 @@ class Product {
 
         $rec = mysql_fetch_array(mysql_query($query));
         $total = $rec['totalCount'];
-        $adjacents = "2"; 
-       
+        $adjacents = "2";
+
         $page = ($page == 0 ? 1 : $page);
         $start = ($page - 1) * $per_page;
 
