@@ -68,8 +68,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                                     foreach ($PRODUCT->getProductsBySubProduct($sub_category['id']) as $product) {
                                                                         ?>
                                                                         <ul>
-                                                                            <li><a href="#"><?php echo $product['name'] ?></a></li>
-
+                                                                            <li><a href="view-product.php?id=<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a></li>
                                                                         </ul> 
                                                                     <?php } ?>
                                                                 </div> 
@@ -98,8 +97,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                     <img src="upload/offer/<?php echo $offer['image_name'] ?>" alt="" />
                                                 </div>
                                                 <div class="banner-info rotate-text">
-                                                    <h2 ><?php echo $offer['title'] ?></h2>
-                                                    <!--                                                <h3>Model 2016</h3>-->
+                                                    <h2 ><?php echo $offer['title'] ?></h2> 
                                                 </div>
                                             </div>
                                         </a>
@@ -107,6 +105,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="hot-deals">
                                 <h2><i class="fa fa-clock-o"></i> hot deals</h2>

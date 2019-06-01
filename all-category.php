@@ -41,7 +41,15 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
     </head>
-
+    <style>
+        #loading{
+            text-align: center;
+            background:url('images/loading.gif');
+            height: 150px;
+                
+            
+        }
+    </style>
     <body>
         <div class="wrap" >
 
@@ -65,7 +73,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                                     $COUNT_PRODUCT = count($PRODUCT->getProductsBySubProduct($sub_category['id']));
                                                     ?>
                                                     <li> 
-                                                        <input type="checkbox" id="sub_categorys" class="click_button" value="<?php echo $sub_category['id'] ?>">
+                                                        <input type="checkbox"class="common_selector sub_category" value="<?php echo $sub_category['id'] ?>">
                                                         <?php echo $sub_category['name'] ?> (<?php echo $COUNT_PRODUCT ?>) 
                                                     </li>
                                                     <?php
@@ -83,7 +91,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                                     foreach ($BRAND->all() as $brand) {
                                                         ?>
                                                         <li> 
-                                                            <input type="checkbox" id="brand" class="click_button" value="<?php echo $brand['id'] ?>">
+                                                            <input type="checkbox"   class="common_selector brand" value="<?php echo $brand['id'] ?>">
                                                             <?php echo $brand['name'] ?>   
                                                         </li>
                                                     <?php }
@@ -93,23 +101,13 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                         </div>
                                         <!-- End Price -->
                                         <div class="box-filter color-filter">
-                                            <h2 class="widget-title">Color</h2>
-                                            <div class="list-color-filter">
-                                                <a href="#" style="background-color:#ffffff"></a>
-                                                <a href="#" style="background-color:#e66054"></a>
-                                                <a href="#" style="background-color:#d0b7cc"></a>
-                                                <a href="#" style="background-color:#107a8e"></a>
-                                                <a href="#" style="background-color:#b9cad2"></a>
-                                                <a href="#" style="background-color:#a7bc93"></a>
-                                                <a href="#" style="background-color:#d3b627"></a>
-                                                <a href="#" style="background-color:#b4b3ae"></a>
-                                                <a href="#" style="background-color:#502006"></a>
-                                                <a href="#" style="background-color:#311e21"></a>
-                                                <a href="#" style="background-color:#e6b3af"></a>
-                                                <a href="#" style="background-color:#f3d213"></a>
-                                                <a href="#" style="background-color:#bd0316"></a>
-                                                <a href="#" style="background-color:#cd0c20"></a>
-                                            </div>
+                                            <h2 class="widget-title">Price</h2>
+                                            <input type="hidden" id="hidden_minimum_price" value="0">
+                                            <input type="hidden" id="hidden_maximum_price"id="max-price">
+                                            <input type="hidden" id="category" value="<?php echo $PRODUCT_CATEGORIES->id?>">
+                                            <p id="price_show"><span id="min-price" > </span>- <span id="max-price"></span></p>
+                                            <div id="price_range"></div>
+                                             
                                         </div>
                                         <!-- End Color -->
                                         <div class="box-filter manufacturer-filter">
@@ -185,57 +183,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                             <div class="col-md-9 col-sm-8 col-xs-12  " >
                                 <div class="main-content-shop"> 
                                     <div class="shop-tab-product filter_data"> 
-                                        <ul class="row product-grid " id="filter_data_hide">
-                                            <?php
-                                            foreach ($PRODUCT->getProductsByCategoryByAll($id, $pageLimit, $setLimit) as $product) {
-                                                ?>
-                                                <li class="col-md-4 col-sm-6 col-xs-12">
-                                                    <div class="item-product">
-                                                        <div class="product-thumb">
-                                                            <a class="product-thumb-link" href="view-product.php?id=<?php echo $product['id'] ?>">
-                                                                <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/<?php echo $product['image_name'] ?>"> 
-                                                            </a>
-                                                            <div class="product-info-cart">
-                                                                <div class="product-extra-link">
-                                                                    <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
-                                                                    <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
-                                                                    <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h3 class="title-product"><a href="#"><?php echo $product['name'] ?></a></h3>
-                                                            <div class="info-price">
-                                                                <?php
-                                                                $price_amount = 0;
-                                                                $discount = 0;
-
-                                                                $discount = $product['discount'];
-                                                                $price_amount = $product['price'];
-
-                                                                $discount = ($price_amount * $discount) / 100;
-                                                                $discount_price = $product['price'] - $discount;
-                                                                if ($product['discount'] > 0) {
-                                                                    ?>
-                                                                    <span id="price-details">RS: <?php echo number_format($discount_price, 2) ?></span></br><del>Rs:<?php echo number_format($price_amount, 2) ?></del>
-                                                                <?php } else {
-                                                                    ?>
-                                                                    <span id="price-details">Rs: <?php echo number_format($price_amount, 2) ?></span> 
-                                                                    <?php
-                                                                }
-                                                                ?>
-                                                            </div>
-                                                            <?php if (!empty($product['discount'])) { ?>
-                                                                <div class="percent-saleoff">
-                                                                    <span><label><?php echo $product['discount'] ?>%</label> OFF</span>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                </li>
-                                            <?php }
-                                            ?>
-                                        </ul>
+                                         
 
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">

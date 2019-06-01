@@ -176,7 +176,7 @@ if (isset($_SESSION["id"])) {
                     <nav class="main-nav main-nav4">
                         <ul>
                             <li>
-                                <a href="#">home</a>                             
+                                <a href="index.php">home</a>                             
                             </li>
 <!--                            <li>
                                 <a href="all-category.php">Category</a>                             
