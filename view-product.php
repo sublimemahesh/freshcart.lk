@@ -246,13 +246,14 @@ $PRODUCT = new Product($id);
                                                         $discount_price = $PRODUCT->price - $discount;
                                                         if ($PRODUCT->discount > 0) {
                                                             ?>
-                                                            <label>Price:</label> <span>Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                        <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($discount_price, 2) ?> </span>
                                                             <?php ?>
                                                             <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
                                                         <?php } else if ($PRODUCT->discount == 0) { ?>
-                                                            <label>Price:</label> <span>Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
+                                                            <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
                                                         <?php } ?>
                                                     </div>
+                                                    
                                                     <div class="attr-info">
                                                         <div class="attr-product">
                                                             <label>Color</label>

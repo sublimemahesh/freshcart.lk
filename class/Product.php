@@ -161,21 +161,129 @@ class Product {
         return $array_res;
     }
 
-    public function getProductsBySubCategories($categorys) { 
+    public function getProductsBySubCategories($category, $minimum_price, $maximum_price, $sub_category, $brand) {
 
-        $in = implode(",", explode(",", $categorys)); 
+        if (isset($category)) {
 
-        $query = 'SELECT * FROM `product` WHERE `sub_category` in(' . $in . ')  ORDER BY queue ASC';
-         
+            $query = 'SELECT * FROM `product` WHERE category="' . $category . '"';
+
+            if (isset($minimum_price) && isset($maximum_price) && !empty($minimum_price) && !empty($minimum_price)) {
+                $query .= 'AND `price` BETWEEN "' . $minimum_price . '" AND "' . $maximum_price . '"';
+            }
+
+            if (!empty($sub_category)) {
+                $sub_category_filter = implode(",", $sub_category);
+                $query .= 'AND `sub_category` in(' . $sub_category_filter . ')';
+            }
+
+            if (!empty($brand)) {
+                $brand_filter = implode(",", $brand);
+                $query .= 'AND `brand` in(' . $brand_filter . ')';
+            }
+        }
+
+
+        $db = new Database();
+        $result = $db->readQuery($query);
+
+        $array_res = array();
+        $out_put = '';
+        while ($row = mysql_fetch_array($result)) {
+            $price_amount = 0;
+            $discount = 0;
+
+            $discount = $row['discount'];
+            $price_amount = $row['price'];
+
+            $discount = ($price_amount * $discount) / 100;
+            $discount_price = $row['price'] - $discount;
+
+            $out_put .= '<ul class=" product-grid"  >                                             
+                                                <li class="col-md-4 col-sm-6 col-xs-12">
+                                                    <div class="item-product">
+                                                        <div class="product-thumb">
+                                                            <a class="product-thumb-link" href="view-product.php?id=' . $row['id'] . '">
+                                                                <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/' . $row['image_name'] . '"> 
+                                                            </a>
+                                                            <div class="product-info-cart">
+                                                                <div class="product-extra-link">
+                                                                    <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
+                                                                    <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
+                                                                    <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
+                                                                </div>
+                                                                <a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <h3 class="title-product"><a href="view-product.php?id=' . $row['id'] . '">' . $row['name'] . '</a></h3>
+                                                            <div class="info-price">
+                                                                 
+                                                                    <span id="price-details">Rs: ' . $discount_price . '</span></br><del>Rs: ' . $row['price'] . '</del>
+                                                                  
+                                                            </div>
+                                                             
+                                                                <div class="percent-saleoff">
+                                                               
+                                                                    <span><label>' . $row['discount'] . '%</label> OFF</span>
+                                                                </div>
+                                                             
+                                                        </div>
+                                                </li>
+                                           
+                                        </ul>  ';
+        }
+
+        echo $out_put;
+    }
+
+    public function getMaxPriceInProduct($category, $sub_category, $brand) {
+
+        if (isset($category)) {
+
+            $query = 'SELECT max(price) FROM `product` WHERE category="' . $category . '"';
+
+            if (!empty($sub_category)) {
+                $sub_category_filter = implode(",", $sub_category);
+                $query .= 'AND `sub_category` in(' . $sub_category_filter . ')';
+            }
+
+            if (!empty($brand)) {
+                $brand_filter = implode(",", $brand);
+                $query .= 'AND `brand` in(' . $brand_filter . ')';
+            }
+        }
+        ;
         $db = new Database();
 
         $result = $db->readQuery($query);
-        $array_res = array();
+        $row = mysql_fetch_array($result);
+      
+        return $row;
+    }
+    
+     public function getMinPriceInProduct($category, $sub_category, $brand) {
 
-        while ($row = mysql_fetch_array($result)) {
-            array_push($array_res, $row);
+        if (isset($category)) {
+
+            $query = 'SELECT min(price) FROM `product` WHERE category="' . $category . '"';
+
+            if (!empty($sub_category)) {
+                $sub_category_filter = implode(",", $sub_category);
+                $query .= 'AND `sub_category` in(' . $sub_category_filter . ')';
+            }
+
+            if (!empty($brand)) {
+                $brand_filter = implode(",", $brand);
+                $query .= 'AND `brand` in(' . $brand_filter . ')';
+            }
         }
-        return $array_res;
+        ;
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+        $row = mysql_fetch_array($result);
+      
+        return $row;
     }
 
     public function getProductsByCategoryByAll($category, $pageLimit, $setLimit) {

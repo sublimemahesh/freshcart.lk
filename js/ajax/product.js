@@ -1,84 +1,98 @@
 $(document).ready(function () {
 
-    $('input[type="checkbox"]').change(function () {
+    //all product
+    filter_data();
 
-        var sub_category = [];
-        $.each($("input[id='sub_categorys']:checked"), function () {
-            sub_category.push($(this).val());
-        });
-        var sub_categorys = sub_category.toString();
+    //filter product
+    function filter_data() {
+        //loader
+        $('.filter_data').html('');
 
-//        var $brand = [];
-//        $.each($("input[id='brand']:checked"), function () {
-//            $brand.push($(this).val());
-//        });
-//        var $brands = $brand.toString();
-//        alert($brands);
+        var minimum_price = $('#hidden_minimum_price').val();
+        var maximum_price = $('#hidden_maximum_price').val();
+        var category = $('#category').val();
+        var sub_category = get_filter('sub_category');
+        var brand = get_filter('brand');
 
         $.ajax({
             url: "post-and-get/ajax/product.php",
             type: "POST",
             data: {
-                sub_categorys: sub_categorys,
-                action: 'GETPRODUCTFILTER'
+                minimum_price: minimum_price,
+                maximum_price: maximum_price,
+                category: category,
+                sub_category: sub_category,
+                brand: brand,
+                action: 'GETFILTERPRODUCT'
             },
-            dataType: "JSON",
-            success: function (jsonStr) {
+            success: function (data) {
+                
+                //get max price in product
+                $.ajax({
+                    url: "post-and-get/ajax/product.php",
+                    type: "POST",
+                    data: {
 
-                var html = '<ul class="row product-grid">';
-                $.each(jsonStr, function (i, data) {
-
-                    html += '<li class="col-md-4 col-sm-6 col-xs-12">';
-                    html += '<div class="item-product">';
-                    html += '<div class="product-thumb">';
-                    html += '<a class="product-thumb-link" href="view-product.php?id=' + data.id + '">';
-                    html += '<img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/' + data.image_name + '" >';
-                    html += '</a>';
-                    html += '<div class="product-info-cart">';
-                    html += '<div class="product-extra-link">';
-                    html += '<a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>';
-                    html += '<a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>';
-                    html += '<a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>';
-                    html += '</div>';
-                    html += '<a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>';
-                    html += '</div>';
-                    html += '</div>';
-
-                    //cal Discount
-                    var price = parseFloat(data.price);
-                    var discount = data.discount;
-                    var discount_amount = (price * discount) / 100;
-                    var discount_price = price - discount_amount;
-
-                    html += '<div class="product-info">';
-                    html += '<h3 class="title-product"> ' + data.name + '</a></h3>';
-                    html += '<div class="info-price">';
-
-                    if (discount > 0) {
-                        html += '<span id="price-details">Rs: ' + discount_price + '</span><del>Rs: ' + data.price + '</del>';
-                    } else {
-                        html += '<span id="price-details">Rs: ' + data.price + '</span>';
+                        category: category,
+                        sub_category: sub_category,
+                        brand: brand,
+                        action: 'GETMAXPRICE'
+                    },
+                    success: function (data_max) {
+                        $('#max-price').empty();
+                        $('#max-price').append(data_max); 
                     }
-
-                    html += ' </div>';
-                    html += ' </div>';
-                    if (discount > 0) {
-                        html += ' <div class="percent-saleoff">';
-                        html += ' <span><label>' + discount + ' %</label> OFF</span>';
-                        html += ' </div>';
-                    }
-
-                    html += ' </div>';
-                    html += ' </li>';
                 });
-                html += ' </ul>';
-                $('#filter_data_hide').hide();
-                $('.filter_data').empty();
-                $('.filter_data').append(html);
+                
+                //get min price 
+                 $.ajax({
+                    url: "post-and-get/ajax/product.php",
+                    type: "POST",
+                    data: {
 
+                        category: category,
+                        sub_category: sub_category,
+                        brand: brand,
+                        action: 'GETMINPRICE'
+                    },
+                    success: function (data_max) {
+                        $('#min-price').empty();
+                        $('#min-price').append(data_max); 
+                    }
+                });
+                
+                $('.filter_data').append(data); 
             }
-        });
+        }); 
+    }
 
+    //get filterdata
+    function get_filter(class_name) {
+        var filter = [];
+        $('.' + class_name + ':checked').each(function () {
+            filter.push($(this).val());
+
+        });
+        return filter;
+    }
+
+    //selector
+    $('.common_selector').click(function () {
+        filter_data();
     });
 
+    //price range 
+    $('#price_range').slider({
+        range: true,
+        min: 1000,
+        max: 500000,
+        value: [1000 - 500000],
+        step: 500,
+        stop: function (event, ui) {
+            $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
+            $('#hidden_minimum_price').val(ui.values[0]);
+            $('#hidden_maximum_price').val(ui.values[1]);
+            filter_data();
+        }
+    });
 }); 
