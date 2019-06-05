@@ -162,6 +162,20 @@ class Product {
         return $array_res;
     }
 
+    public function getBrandByCategory($category) {
+
+        $query = 'SELECT DISTINCT `brand`  FROM `product` WHERE `category`="' . $category . '"';
+
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+        return $array_res;
+    }
+
     public function getProductsByCategory($category) {
 
         $query = 'SELECT * FROM `product` WHERE category="' . $category . '"   ORDER BY queue ASC';
@@ -197,7 +211,7 @@ class Product {
                 $query .= 'AND `brand` in(' . $brand_filter . ')';
             }
 
-            $query .= ' ORDER BY  queue DESC LIMIT ' . $page . ',' . $per_page . '';
+//            $query .= ' ORDER BY  queue DESC LIMIT ' . $page . ',' . $per_page . '';
         }
 
 

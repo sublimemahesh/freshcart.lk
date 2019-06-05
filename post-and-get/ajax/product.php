@@ -2,7 +2,7 @@
 
 include_once(dirname(__FILE__) . '/../../class/include.php');
 
-
+//All Product Filter
 if ($_POST['action'] == 'GETFILTERPRODUCT') {
     $minimum_price = '';
     $maximum_price = '';
@@ -38,6 +38,7 @@ if ($_POST['action'] == 'GETFILTERPRODUCT') {
     echo $result;
 }
 
+//Get Max Price in Product
 if ($_POST['action'] == 'GETMAXPRICE') {
     $sub_category = '';
     $brand = '';
@@ -66,6 +67,7 @@ if ($_POST['action'] == 'GETMAXPRICE') {
     echo $result_data;
 }
 
+//Get Min pRice in Product
 if ($_POST['action'] == 'GETMINPRICE') {
     $sub_category = '';
     $brand = '';
@@ -94,6 +96,7 @@ if ($_POST['action'] == 'GETMINPRICE') {
     echo $result_data;
 }
 
+//Pagination Show
 if ($_POST['action'] == 'SHOWPAGINATION') {
 
     $sub_category = '';
@@ -124,4 +127,20 @@ if ($_POST['action'] == 'SHOWPAGINATION') {
     echo $result;
 }
 
-
+//Get Brands
+//if ($_POST['action'] == 'GETBRAND') {
+//
+//    $category = '';
+//    $sub_category = '';
+//
+//    if (isset($_POST["category"])) {
+//        $category = $_POST["category"];
+//    }
+//   
+//
+//    $PRODUCT = new Product(NULL);
+//    $result = $PRODUCT->getBrandByCategory($category);
+//    
+//    //Print the element out.
+//    echo $result;
+//}
