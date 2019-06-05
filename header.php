@@ -181,7 +181,7 @@ if (isset($_SESSION["id"])) {
 <!--                            <li>
                                 <a href="all-category.php">Category</a>                             
                             </li>-->
-<!--                            <li class="has-mega-menu">
+                            <li class="has-mega-menu">
                                 <a href="grid.html">Fashion</a>
                                 <div class="mega-menu mega-menu-style1">
                                     <div class="row">
@@ -453,7 +453,7 @@ if (isset($_SESSION["id"])) {
                                         </div>
                                     </div>
                                 </div>
-                            </li>-->
+                            </li>
                             <li class="has-mega-menu">
                                 <a href="list.html">Furniture</a>
 <!--                                <div class="mega-menu">

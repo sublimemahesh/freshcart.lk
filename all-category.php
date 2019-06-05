@@ -81,19 +81,22 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                             <div class="inner-price-filter">
                                                 <ul>
                                                     <?php
-                                                    foreach ($PRODUCT->getProductsByCategory($id) as $product) {
-                                                        $BRAND = new Brand($product['brand']);
-                                                        $COUNT_PRODUCT = count($PRODUCT->getProductsByBrand($product['brand']));
+                                                    $FILTER_BRAND = $PRODUCT->getBrandByCategory($id);
+                                                    foreach ($FILTER_BRAND as $filter_brand) {
+                                                        $BRAND = new Brand($filter_brand['brand']);
+                                                         
                                                         ?>
                                                         <li> 
-                                                            <input type="checkbox"   class="common_selector brand" value="<?php echo $product['brand'] ?>">
-                                                            <?php echo $BRAND->name ?> (<?php echo $COUNT_PRODUCT ?> )  
+                                                            <input type="checkbox"   class="common_selector brand" value="<?php echo $BRAND->id ?>">
+                                                            <?php echo $BRAND->name ?> 
                                                         </li>
                                                     <?php }
                                                     ?>
                                                 </ul> 
                                             </div>
-                                        </div> 
+
+                                        </div>
+
                                         <!-- End Price -->
                                         <div class="box-filter color-filter">
                                             <h2 class="widget-title">Price Filter</h2>

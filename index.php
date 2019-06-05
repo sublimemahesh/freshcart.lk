@@ -52,7 +52,6 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                             ?>
                                             <li class="has-cat-mega">
                                                 <a href="all-category.php?id=<?php echo $product_categories['id'] ?>"> <?php echo $product_categories['name'] ?></a>
-
                                                 <div class="cat-mega-menu cat-mega-style1"> 
                                                     <div class="row">
                                                         <?php

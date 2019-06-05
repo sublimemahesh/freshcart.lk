@@ -15,7 +15,7 @@ $SUB_CATEGORY = new SubCategory($id);
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Create sub products</title>
+        <title>Edit Sub Category</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@ $SUB_CATEGORY = new SubCategory($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $SUB_CATEGORY->name ?>" - Edit Sub Products</h2>
+                                <h2> "<?php echo $SUB_CATEGORY->name ?>" - Edit Sub Category</h2>
 
                             </div>
                             <div class="body">

@@ -15,7 +15,7 @@ $(document).ready(function () {
         var setlimit = $('#setlimit').val();
         var sub_category = get_filter('sub_category');
         var brand = get_filter('brand');
-
+       
         $.ajax({
             url: "post-and-get/ajax/product.php",
             type: "POST",
@@ -62,23 +62,25 @@ $(document).ready(function () {
                     }
                 });
 
-                //Show Pagination
-                $.ajax({
-                    url: "post-and-get/ajax/product.php",
-                    type: "POST",
-                    data: {
-                        category: category,
-                        sub_category: sub_category,
-                        brand: brand,
-                        pagelimit: pagelimit,
-                        setlimit: setlimit,
-                        action: 'SHOWPAGINATION'
-                    },
-                    success: function (show_pagination) {
-                        $('#show_pagination').empty();
-                        $('#show_pagination').append(show_pagination);
-                    }
-                }); 
+//                //Show Pagination
+//                $.ajax({
+//                    url: "post-and-get/ajax/product.php",
+//                    type: "POST",
+//                    data: {
+//                        category: category,
+//                        sub_category: sub_category,
+//                        brand: brand,
+//                        pagelimit: pagelimit,
+//                        setlimit: setlimit,
+//                        action: 'SHOWPAGINATION'
+//                    },
+//                    success: function (show_pagination) {
+//                        $('#show_pagination').empty();
+//                        $('#show_pagination').append(show_pagination);
+//                    }
+//                });
+
+         
                 $('.filter_data').append(data);
             }
         });
@@ -89,8 +91,9 @@ $(document).ready(function () {
         var filter = [];
         $('.' + class_name + ':checked').each(function () {
             filter.push($(this).val());
-
+ 
         });
+      
         return filter;
     }
 
@@ -98,8 +101,8 @@ $(document).ready(function () {
     $('.common_selector').click(function () {
         filter_data();
     });
-     
-    
+
+
     //price range  
     $('#price_range').slider({
 
