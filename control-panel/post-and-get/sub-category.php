@@ -4,13 +4,13 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 
 if (isset($_POST['create'])) {
 
-    $SUB_PRODUCT = new SubProduct(NULL);
+    $SUB_CATEGORY = new SubCategory(NULL);
     $VALID = new Validator();
 
-    $SUB_PRODUCT->category = $_POST['id'];
-    $SUB_PRODUCT->name = $_POST['name'];
+    $SUB_CATEGORY->category = $_POST['id'];
+    $SUB_CATEGORY->name = $_POST['name'];
 
-    $dir_dest = '../../upload/product-categories/sub-product/';
+    $dir_dest = '../../upload/product-categories/sub-category/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -32,15 +32,15 @@ if (isset($_POST['create'])) {
         }
     }
 
-    $SUB_PRODUCT->image_name = $imgName;
+    $SUB_CATEGORY->image_name = $imgName;
 
-    $VALID->check($SUB_PRODUCT, [
+    $VALID->check($SUB_CATEGORY, [
         'name' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {
-        $SUB_PRODUCT->create();
+        $SUB_CATEGORY->create();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -63,7 +63,7 @@ if (isset($_POST['create'])) {
 
 if (isset($_POST['update'])) {
 
-    $dir_dest = '../../upload/product-categories/sub-product/';
+    $dir_dest = '../../upload/product-categories/sub-category/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -88,20 +88,20 @@ if (isset($_POST['update'])) {
         }
     }
 
-    $SUB_PRODUCT = new SubProduct($_POST['id']);
+    $SUB_CATEGORY = new SubCategory($_POST['id']);
 
-    $SUB_PRODUCT->name = $_POST['name'];
-    $SUB_PRODUCT->image_name = $_POST['oldImageName'];
+    $SUB_CATEGORY->name = $_POST['name'];
+    $SUB_CATEGORY->image_name = $_POST['oldImageName'];
     
 
     $VALID = new Validator();
-    $VALID->check($SUB_PRODUCT, [
+    $VALID->check($SUB_CATEGORY, [
         'name' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {
-        $SUB_PRODUCT->update();
+        $SUB_CATEGORY->update();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -127,7 +127,7 @@ if (isset($_POST['save-data'])) {
     foreach ($_POST['sort'] as $key => $img) {
         $key = $key + 1;
 
-        $SUB_PRODUCT = SubProduct::arrange($key, $img);
+        $SUB_CATEGORY = SubCategory::arrange($key, $img);
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }

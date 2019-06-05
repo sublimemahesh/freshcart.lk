@@ -61,8 +61,8 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                             <h2 class="widget-title"><?php echo $PRODUCT_CATEGORIES->name ?></h2>
                                             <ul>
                                                 <?php
-                                                $SUB_CATEGORIES = new SubCategory($PRODUCT_CATEGORIES->id);
-                                                foreach ($SUB_CATEGORIES->all() as $sub_category) {
+                                                $SUB_CATEGORIES = new SubCategory(NULL);
+                                                foreach ($SUB_CATEGORIES->getProductsByCategory($PRODUCT_CATEGORIES->id) as $sub_category) {
 
                                                     $COUNT_PRODUCT = count($PRODUCT->getProductsBySubProduct($sub_category['id']));
                                                     ?>
@@ -81,13 +81,13 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                             <div class="inner-price-filter">
                                                 <ul>
                                                     <?php
-                                                    $BRAND = new Brand(NULL);
-                                                    foreach ($BRAND->all() as $brand) {
-                                                        $COUNT_PRODUCT = count($PRODUCT->getProductsByBrand($brand['id']));
+                                                    foreach ($PRODUCT->getProductsByCategory($id) as $product) {
+                                                        $BRAND = new Brand($product['brand']);
+                                                        $COUNT_PRODUCT = count($PRODUCT->getProductsByBrand($product['brand']));
                                                         ?>
                                                         <li> 
-                                                            <input type="checkbox"   class="common_selector brand" value="<?php echo $brand['id'] ?>">
-                                                            <?php echo $brand['name'] ?> (<?php echo $COUNT_PRODUCT ?> )  
+                                                            <input type="checkbox"   class="common_selector brand" value="<?php echo $product['brand'] ?>">
+                                                            <?php echo $BRAND->name ?> (<?php echo $COUNT_PRODUCT ?> )  
                                                         </li>
                                                     <?php }
                                                     ?>
@@ -181,7 +181,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                             <div class="col-md-9 col-sm-8 col-xs-12">
                                 <div class="filter_data ">
                                 </div>
-                                
+
                                 <!--Show Pagination Filter data-->
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">

@@ -45,7 +45,7 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $SUB_PRODUCT_CATEGORIES->name ?>" - Create Sub Products</h2>
+                                <h2> "<?php echo $SUB_PRODUCT_CATEGORIES->name ?>" - Create Sub Categories</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="manage-product-categories.php">
@@ -55,7 +55,7 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                                 </ul>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal"  method="post" action="post-and-get/sub-product.php" enctype="multipart/form-data"> 
+                                <form class="form-horizontal"  method="post" action="post-and-get/sub-category.php" enctype="multipart/form-data"> 
 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
@@ -86,7 +86,7 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                             </div>
                             <div class="body">
                                 <div class="header">
-                                    <h2> Manage Sub Products</h2>
+                                    <h2> Manage Sub Categories</h2>
 
                                 </div>
 
@@ -99,15 +99,15 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                                             ?>
                                             <div class="col-md-3"  id="div<?php echo $sub_category['id']; ?>">
                                                 <div class="photo-img-container">
-                                                    <img src="../upload/product-categories/sub-product/<?php echo $sub_category['image_name']; ?>" class="img-responsive img-thumbnail">
+                                                    <img src="../upload/product-categories/sub-category/<?php echo $sub_category['image_name']; ?>" class="img-responsive img-thumbnail">
                                                 </div>
                                                 <div class="img-caption">
                                                     <p class="maxlinetitle"><?php echo $sub_category['name']; ?></p>
                                                     <div class="d">
                                                         <a href="#" class="delete-sub-product" data-id="<?php echo $sub_category['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
-                                                        <a href="edit-sub-product.php?id=<?php echo $sub_category['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
+                                                        <a href="edit-sub-category.php?id=<?php echo $sub_category['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                         <a href="arrange-sub-product.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
-                                                        <a href="view-products.php?id=<?php echo $sub_category['id']; ?>&category=<?php echo $id ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
+                                                        <a href="view-products.php?id=<?php echo $sub_category['id']; ?>&category=<?php echo $id ?>" title="Add Product">  <button class="glyphicon glyphicon-briefcase defult"></button></a>
 
                                                     </div>
                                                 </div>
