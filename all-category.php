@@ -9,11 +9,14 @@ if (isset($_GET["page"])) {
 }
 
 
-$setLimit = 3;
+$setlimit = 2;
+$pagelimit = ($page * $setlimit);
 
-$pageLimit = ($page * $setLimit) - $setLimit;
+$setlimit = 3;
 
+$pagelimit = ($page * $setlimit) - $setlimit;
 $id = '';
+
 $id = $_GET['id'];
 $PRODUCT = new Product(NULL);
 $PRODUCT_CATEGORIES = new ProductCategories($id);
@@ -41,15 +44,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
     </head>
-    <style>
-        #loading{
-            text-align: center;
-            background:url('images/loading.gif');
-            height: 150px;
-                
-            
-        }
-    </style>
+
     <body>
         <div class="wrap" >
 
@@ -57,7 +52,6 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
             <!-- End Header -->
             <div id="content" >
                 <div class="content-shop" >
-
                     <div class="row"  >
                         <div class="container" >
                             <div class="col-md-3 col-sm-4 col-xs-12" >
@@ -89,25 +83,29 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                                     <?php
                                                     $BRAND = new Brand(NULL);
                                                     foreach ($BRAND->all() as $brand) {
+                                                        $COUNT_PRODUCT = count($PRODUCT->getProductsByBrand($brand['id']));
                                                         ?>
                                                         <li> 
                                                             <input type="checkbox"   class="common_selector brand" value="<?php echo $brand['id'] ?>">
-                                                            <?php echo $brand['name'] ?>   
+                                                            <?php echo $brand['name'] ?> (<?php echo $COUNT_PRODUCT ?> )  
                                                         </li>
                                                     <?php }
                                                     ?>
                                                 </ul> 
                                             </div>
-                                        </div>
+                                        </div> 
                                         <!-- End Price -->
                                         <div class="box-filter color-filter">
-                                            <h2 class="widget-title">Price</h2>
+                                            <h2 class="widget-title">Price Filter</h2>
                                             <input type="hidden" id="hidden_minimum_price" value="0">
                                             <input type="hidden" id="hidden_maximum_price"id="max-price">
-                                            <input type="hidden" id="category" value="<?php echo $PRODUCT_CATEGORIES->id?>">
+
+                                            <input type="hidden" id="category" value="<?php echo $PRODUCT_CATEGORIES->id ?>">
+                                            <input type="hidden" id="pagelimit" value="<?php echo $pagelimit ?>">
+                                            <input type="hidden" id="setlimit" value="<?php echo $setlimit ?>"> 
                                             <p id="price_show"><span id="min-price" > </span>- <span id="max-price"></span></p>
                                             <div id="price_range"></div>
-                                             
+
                                         </div>
                                         <!-- End Color -->
                                         <div class="box-filter manufacturer-filter">
@@ -176,268 +174,31 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- End Adv -->
                                 </div>
-                                <!-- End Sidebar Shop -->
                             </div>
-                            <div class="col-md-9 col-sm-8 col-xs-12  " >
-                                <div class="main-content-shop"> 
-                                    <div class="shop-tab-product filter_data"> 
-                                         
 
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-
-                                                <div class="sort-pagi-bar">
-                                                    <?php
-                                                    $PRODUCT->showPagination($setLimit, $page, $id);
-                                                    ?>    
-
-                                                </div>
-                                            </div>
+                            <!--Append All Filter data in product filter _data class-->
+                            <div class="col-md-9 col-sm-8 col-xs-12">
+                                <div class="filter_data ">
+                                </div>
+                                
+                                <!--Show Pagination Filter data-->
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div id="show_pagination">
                                         </div>
-                                        <!-- End Sort Pagibar -->
-
-
-
                                     </div>
-                                    <!-- End Shop Tab -->
                                 </div>
-                                <!-- End Main Content Shop -->
+
                             </div>
                         </div>
                     </div>
+                    <!-- End Content Shop -->
                 </div>
-                <!-- End Content Shop -->
+                <!-- End Content -->
+                <?php include './footer.php'; ?>
+                <!-- End Footer -->
             </div>
-            <!-- End Content -->
-            <div id="footer">
-                <div class="footer">
-                    <div class="container">
-                        <div class="footer-top">
-                            <div class="logo-footer">
-                                <a href="#"><img src="images/home1/logo-footer.png" alt="" /></a>
-                            </div>
-                            <div class="menu-footer">
-                                <ul>
-                                    <li><a href="#">Online Shopping</a></li>
-                                    <li><a href="#">Buy</a></li>
-                                    <li><a href="#">Sell</a></li>
-                                    <li><a href="#">All Promotions</a></li>
-                                    <li><a href="#">My Orders </a></li>
-                                    <li><a href="#">Help</a></li>
-                                    <li><a href="#">Site Map</a></li>
-                                    <li><a href="#">Customer Service</a></li>
-                                    <li><a href="#">About </a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="list-footer-box">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="footer-box">
-                                        <h2>My Account</h2>
-                                        <ul class="footer-menu-box">
-                                            <li><a href="#">My orders</a></li>
-                                            <li><a href="#">My credit slips</a></li>
-                                            <li><a href="#">My addresses</a></li>
-                                            <li><a href="#">My personal info</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="footer-box">
-                                        <h2>Help</h2>
-                                        <ul class="footer-menu-box">
-                                            <li><a href="#">Where's my order?</a></li>
-                                            <li><a href="#">Payments</a></li>
-                                            <li><a href="#">Redeem a gift voucher</a></li>
-                                            <li><a href="#">Delivery & returns</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="footer-box">
-                                        <h2>Further information</h2>
-                                        <ul class="footer-menu-box">
-                                            <li><a href="#">Drop Everything</a></li>
-                                            <li><a href="#">Affiliate programme</a></li>
-                                            <li><a href="#">Privacy</a></li>
-                                            <li><a href="#">Terms & conditions</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="footer-box">
-                                        <h2>Contact Us</h2>
-                                        <ul class="footer-box-contact">
-                                            <li><i class="fa fa-home"></i> Our business address is 1063 Free</li>
-                                            <li><i class="fa fa-mobile"></i> + 020.566.8866</li>
-                                            <li><i class="fa fa-envelope"></i> <a href="mailto:support@7-Up.com">support@7-Up.com</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End List Footer Box -->
-                        <div class="social-footer-box">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="newsletter-footer">
-                                        <label>newsletter</label>
-                                        <form>
-                                            <input type="text"  value="Enter Your Email..." onfocus="if (this.value == this.defaultValue)
-                                                        this.value = ''" onblur="if (this.value == '')
-                                                                    this.value = this.defaultValue" />
-                                            <input type="submit" value="" />
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="social-footer social-network">
-                                        <label>newsletter</label>
-                                        <ul>
-                                            <li><a href="#"><img src="images/home1/s1.png" alt="" /></a></li>
-                                            <li><a href="#"><img src="images/home1/s2.png" alt="" /></a></li>
-                                            <li><a href="#"><img src="images/home1/s3.png" alt="" /></a></li>
-                                            <li><a href="#"><img src="images/home1/s4.png" alt="" /></a></li>
-                                            <li><a href="#"><img src="images/home1/s5.png" alt="" /></a></li>
-                                            <li><a href="#"><img src="images/home1/s6.png" alt="" /></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Social Footer Box -->
-                        <div class="list-tags-category">
-                            <div class="item-tags-category">
-                                <h2><span style="background:#fa6165">Fashion</span></h2>
-                                <ul>
-                                    <li><a href="#">Shirts</a></li>
-                                    <li><a href="#">Jeans</a></li>
-                                    <li><a href="#">T shirts</a></li>
-                                    <li><a href="#">Kurtis</a></li>
-                                    <li><a href="#">Sarees</a></li>
-                                    <li><a href="#">Levis Jeans</a></li>
-                                    <li><a href="#">Killer Jeans</a></li>
-                                    <li><a href="#">Pepe Jeans</a></li>
-                                    <li><a href="#">Arrow Shirts</a></li>
-                                    <li><a href="#">Ethnic Wear</a></li>
-                                    <li><a href="#">Formal Shirts</a></li>
-                                    <li><a href="#">Peter England Shirts</a></li>
-                                    <li><a href="#">View all</a></li>
-                                </ul>
-                            </div>
-                            <div class="item-tags-category">
-                                <h2><span style="background:#fdc33e">furniture</span></h2>
-                                <ul>
-                                    <li><a href="#">Living rooms</a></li>
-                                    <li><a href="#">Sofa &amp; Couches</a></li>
-                                    <li><a href="#">Beds</a></li>
-                                    <li><a href="#">Chair</a></li>
-                                    <li><a href="#">Coffee Tables</a></li>
-                                    <li><a href="#">Kitchen &amp; Dining Room</a></li>
-                                    <li><a href="#">Small Bench</a></li>
-                                    <li><a href="#">library</a></li>
-                                    <li><a href="#">Wayfarer</a></li>
-                                    <li><a href="#">Shield-Oval</a></li>
-                                    <li><a href="#">Round</a></li>
-                                    <li><a href="#">View all</a></li>
-                                </ul>
-                            </div>
-                            <div class="item-tags-category">
-                                <h2><span style="background:#7da7d5">electronics</span></h2>
-                                <ul>
-                                    <li><a href="#">Mobile</a></li>
-                                    <li><a href="#" class="active">Iphone</a></li>
-                                    <li><a href="#">Glassxy</a></li>
-                                    <li><a href="#">Lumia</a></li>
-                                    <li><a href="#" class="active">Laptop</a></li>
-                                    <li><a href="#">XPS Dell</a></li>
-                                    <li><a href="#">Maxbook</a></li>
-                                    <li><a href="#">Samsung</a></li>
-                                    <li><a href="#">Sony</a></li>
-                                    <li><a href="#">Acer</a></li>
-                                    <li><a href="#" class="active">Tablets</a></li>
-                                    <li><a href="#">Apple</a></li>
-                                    <li><a href="#">Samsung</a></li>
-                                    <li><a href="#">Sony</a></li>
-                                    <li><a href="#">View all</a></li>
-                                </ul>
-                            </div>
-                            <div class="item-tags-category">
-                                <h2><span style="background:#c75347">food</span></h2>
-                                <ul>
-                                    <li><a href="#">Food Blogs</a></li>
-                                    <li><a href="#">Foodies</a></li>
-                                    <li><a href="#">Food Culture</a></li>
-                                    <li><a href="#">Hashtags</a></li>
-                                    <li><a href="#">Food Porn</a></li>
-                                    <li><a href="#">Piza</a></li>
-                                    <li><a href="#">BBQ</a></li>
-                                    <li><a href="#">Salat</a></li>
-                                    <li><a href="#">Socola</a></li>
-                                    <li><a href="#">Pate</a></li>
-                                    <li><a href="#">Doner</a></li>
-                                    <li><a href="#">View all</a></li>
-                                </ul>
-                            </div>
-                            <div class="item-tags-category">
-                                <h2><span style="background:#59c6bb">sport</span></h2>
-                                <ul>
-                                    <li><a href="#">Football</a></li>
-                                    <li><a href="#">Bikes</a></li>
-                                    <li><a href="#">Golf</a></li>
-                                    <li><a href="#">Tennis</a></li>
-                                    <li><a href="#">Karatedor</a></li>
-                                    <li><a href="#">Yoga</a></li>
-                                    <li><a href="#">Pencatsilat</a></li>
-                                    <li><a href="#">Wushu</a></li>
-                                    <li><a href="#">Runmeters</a></li>
-                                    <li><a href="#">Boxing</a></li>
-                                    <li><a href="#">Bowling</a></li>
-                                    <li><a href="#">Gymnastics</a></li>
-                                    <li><a href="#">Olympics</a></li>
-                                    <li><a href="#">View all</a></li>
-                                </ul>
-                            </div>
-                            <div class="item-tags-category">
-                                <h2><span style="background:#f59fba">jewelry</span></h2>
-                                <ul>
-                                    <li><a href="#">Australian Opal</a></li>
-                                    <li><a href="#">Ammolite</a></li>
-                                    <li><a href="#">Meteorite Campo Del Cielo</a></li>
-                                    <li><a href="#">Sun Pyrite</a></li>
-                                    <li><a href="#">Faceted Carnelian</a></li>
-                                    <li><a href="#">Round</a></li>
-                                    <li><a href="#">View all</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End List Tags Category -->
-                        <div class="footer-bottom">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="copyright">
-                                        <p>© 2016 7uptheme Demo Store. All Rights Reserved. Designed by <a href="7uptheme.html">7uptheme.com</a></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="payment-method">
-                                        <a href="#"><img src="images/home1/p1.png" alt="" /></a>
-                                        <a href="#"><img src="images/home1/p2.png" alt="" /></a>
-                                        <a href="#"><img src="images/home1/p3.png" alt="" /></a>
-                                        <a href="#"><img src="images/home1/p4.png" alt="" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Footer Bottom -->
-                    </div>
-                </div>
-            </div>
-            <!-- End Footer -->
         </div>
         <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>

@@ -456,7 +456,7 @@ if (isset($_SESSION["id"])) {
                             </li>-->
                             <li class="has-mega-menu">
                                 <a href="list.html">Furniture</a>
-                                <div class="mega-menu">
+<!--                                <div class="mega-menu">
                                     <div class="row">
                                         <div class="col-md-5 col-sm-5 col-xs-12">
                                             <div class="mega-adv">
@@ -503,7 +503,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item">
                                                             <div class="item-product">
                                                                 <div class="product-thumb">
@@ -532,7 +532,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item">
                                                             <div class="item-product">
                                                                 <div class="product-thumb">
@@ -561,7 +561,7 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                         <div class="item">
                                                             <div class="item-product">
                                                                 <div class="product-thumb">
@@ -590,17 +590,17 @@ if (isset($_SESSION["id"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- End Item -->
+                                                         End Item 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="grid.html">Food</a>
-                                <ul class="sub-menu">
+<!--                                <ul class="sub-menu">
                                     <li><a href="#">Pizza</a></li>
                                     <li><a href="#">Noodle</a></li>
                                     <li class="menu-item-has-children">
@@ -613,21 +613,21 @@ if (isset($_SESSION["id"])) {
                                         </ul>
                                     </li>
                                     <li><a href="#">Drink</a></li>
-                                </ul>
+                                </ul>-->
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="grid.html">Electronis</a>
-                                <ul class="sub-menu">
+<!--                                <ul class="sub-menu">
                                     <li><a href="#">Mobile</a></li>
                                     <li><a href="#">Laptop</a></li>
                                     <li><a href="#">Camera</a></li>
                                     <li><a href="#">Accessories</a></li>
-                                </ul>
+                                </ul>-->
                             </li>
                             <li><a href="list.html">Sports</a></li>
                             <li class="menu-item-has-children">
                                 <a href="#">Pages</a>
-                                <ul class="sub-menu">
+<!--                                <ul class="sub-menu">
                                     <li><a href="accordions.html">Accordions</a></li>
                                     <li><a href="buttons.html">Buttons</a></li>
                                     <li><a href="chart-processbar.html">Charts & Progress Bars</a></li>
@@ -635,7 +635,7 @@ if (isset($_SESSION["id"])) {
                                     <li><a href="message-boxes.html">Message Boxes</a></li>
                                     <li><a href="teams.html">Teams</a></li>
                                     <li><a href="testimonial.html">Testimonials</a></li>
-                                </ul>
+                                </ul>-->
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="blog-v1.html">Blog</a>
