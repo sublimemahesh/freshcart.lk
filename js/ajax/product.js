@@ -5,12 +5,14 @@ $(document).ready(function () {
 
     //filter product
     function filter_data() {
-        //loader
+        //load
         $('.filter_data').html('');
 
         var minimum_price = $('#hidden_minimum_price').val();
         var maximum_price = $('#hidden_maximum_price').val();
         var category = $('#category').val();
+        var pagelimit = $('#pagelimit').val();
+        var setlimit = $('#setlimit').val();
         var sub_category = get_filter('sub_category');
         var brand = get_filter('brand');
 
@@ -23,16 +25,16 @@ $(document).ready(function () {
                 category: category,
                 sub_category: sub_category,
                 brand: brand,
+                pagelimit: pagelimit,
+                setlimit: setlimit,
                 action: 'GETFILTERPRODUCT'
             },
             success: function (data) {
-                
                 //get max price in product
                 $.ajax({
                     url: "post-and-get/ajax/product.php",
                     type: "POST",
                     data: {
-
                         category: category,
                         sub_category: sub_category,
                         brand: brand,
@@ -40,16 +42,15 @@ $(document).ready(function () {
                     },
                     success: function (data_max) {
                         $('#max-price').empty();
-                        $('#max-price').append(data_max); 
+                        $('#max-price').append(data_max);
                     }
                 });
-                
+
                 //get min price 
-                 $.ajax({
+                $.ajax({
                     url: "post-and-get/ajax/product.php",
                     type: "POST",
                     data: {
-
                         category: category,
                         sub_category: sub_category,
                         brand: brand,
@@ -57,13 +58,30 @@ $(document).ready(function () {
                     },
                     success: function (data_max) {
                         $('#min-price').empty();
-                        $('#min-price').append(data_max); 
+                        $('#min-price').append(data_max);
                     }
                 });
-                
-                $('.filter_data').append(data); 
+
+                //Show Pagination
+                $.ajax({
+                    url: "post-and-get/ajax/product.php",
+                    type: "POST",
+                    data: {
+                        category: category,
+                        sub_category: sub_category,
+                        brand: brand,
+                        pagelimit: pagelimit,
+                        setlimit: setlimit,
+                        action: 'SHOWPAGINATION'
+                    },
+                    success: function (show_pagination) {
+                        $('#show_pagination').empty();
+                        $('#show_pagination').append(show_pagination);
+                    }
+                }); 
+                $('.filter_data').append(data);
             }
-        }); 
+        });
     }
 
     //get filterdata
@@ -80,9 +98,11 @@ $(document).ready(function () {
     $('.common_selector').click(function () {
         filter_data();
     });
-
-    //price range 
+     
+    
+    //price range  
     $('#price_range').slider({
+
         range: true,
         min: 1000,
         max: 500000,

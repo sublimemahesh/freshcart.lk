@@ -25,11 +25,17 @@ if ($_POST['action'] == 'GETFILTERPRODUCT') {
     if (isset($_POST["category"])) {
         $category = $_POST["category"];
     }
+    if (isset($_POST["setlimit"])) {
+        $setlimit = $_POST["setlimit"];
+    }
+    if (isset($_POST["pagelimit"])) {
+        $page = $_POST["pagelimit"];
+    }
 
 
     $PRODUCT = new Product(NULL);
-    $result = $PRODUCT->getProductsBySubCategories($category, $minimum_price, $maximum_price, $sub_category, $brand);
-    $PRODUCT->getMaxPriceInProduct($category, $sub_category, $brand);
+    $result = $PRODUCT->getProductsBySubCategories($category, $minimum_price, $maximum_price, $sub_category, $brand, $page, $setlimit);
+    echo $result;
 }
 
 if ($_POST['action'] == 'GETMAXPRICE') {
@@ -86,6 +92,36 @@ if ($_POST['action'] == 'GETMINPRICE') {
     $results = $PRODUCT->getMinPriceInProduct($category, $sub_category, $brand);
     $result_data = $results[0];
     echo $result_data;
+}
+
+if ($_POST['action'] == 'SHOWPAGINATION') {
+
+    $sub_category = '';
+    $brand = '';
+
+    if (isset($_POST["sub_category"])) {
+        $sub_category = $_POST["sub_category"];
+    }
+    if (isset($_POST["brand"])) {
+        $brand = $_POST["brand"];
+    }
+
+    if (isset($_POST["category"])) {
+        $category = $_POST["category"];
+    }
+    if (isset($_POST["setlimit"])) {
+        $setlimit = $_POST["setlimit"];
+    }
+    if (isset($_POST["pagelimit"])) {
+        $page = $_POST["pagelimit"];
+    }
+
+
+    $PRODUCT = new Product(NULL);
+
+    $result = $PRODUCT->showPagination($category, $sub_category, $brand, $setlimit, $page);
+
+    echo $result;
 }
 
 

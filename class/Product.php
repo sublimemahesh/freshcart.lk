@@ -146,6 +146,22 @@ class Product {
         return $array_res;
     }
 
+    public function getProductsByBrand($brand) {
+
+
+        $query = 'SELECT * FROM `product` WHERE `brand`="' . $brand . '"   ORDER BY queue ASC';
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+        return $array_res;
+    }
+
     public function getProductsByCategory($category) {
 
         $query = 'SELECT * FROM `product` WHERE category="' . $category . '"   ORDER BY queue ASC';
@@ -161,7 +177,7 @@ class Product {
         return $array_res;
     }
 
-    public function getProductsBySubCategories($category, $minimum_price, $maximum_price, $sub_category, $brand) {
+    public function getProductsBySubCategories($category, $minimum_price, $maximum_price, $sub_category, $brand, $page, $per_page) {
 
         if (isset($category)) {
 
@@ -180,15 +196,19 @@ class Product {
                 $brand_filter = implode(",", $brand);
                 $query .= 'AND `brand` in(' . $brand_filter . ')';
             }
+
+            $query .= ' ORDER BY  queue DESC LIMIT ' . $page . ',' . $per_page . '';
         }
 
 
         $db = new Database();
         $result = $db->readQuery($query);
+ 
 
-        $array_res = array();
         $out_put = '';
         while ($row = mysql_fetch_array($result)) {
+           
+            
             $price_amount = 0;
             $discount = 0;
 
@@ -198,49 +218,57 @@ class Product {
             $discount = ($price_amount * $discount) / 100;
             $discount_price = $row['price'] - $discount;
 
-            $out_put .= '<ul class=" product-grid"  >                                             
-                                                <li class="col-md-4 col-sm-6 col-xs-12">
-                                                    <div class="item-product">
-                                                        <div class="product-thumb">
-                                                            <a class="product-thumb-link" href="view-product.php?id=' . $row['id'] . '">
-                                                                <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/' . $row['image_name'] . '"> 
-                                                            </a>
-                                                            <div class="product-info-cart">
-                                                                <div class="product-extra-link">
-                                                                    <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
-                                                                    <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
-                                                                    <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
-                                                                </div>
-                                                                <a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-info">
-                                                            <h3 class="title-product"><a href="view-product.php?id=' . $row['id'] . '">' . $row['name'] . '</a></h3>
-                                                            <div class="info-price">
-                                                                 
-                                                                    <span id="price-details">Rs: ' . $discount_price . '</span></br><del>Rs: ' . $row['price'] . '</del>
-                                                                  
-                                                            </div>
-                                                             
-                                                                <div class="percent-saleoff">
-                                                               
-                                                                    <span><label>' . $row['discount'] . '%</label> OFF</span>
-                                                                </div>
-                                                             
-                                                        </div>
-                                                </li>
-                                           
-                                        </ul>  ';
-        }
+            $out_put .= '<ul class=" product-grid"  >';
+            $out_put .= ' <li class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="item-product">
+                                <div class="product-thumb">
+                                        <a class="product-thumb-link" href="view-product.php?id=' . $row['id'] . '">
+                                            <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/' . $row['image_name'] . '"> 
+                                         </a>
+                                            <div class="product-info-cart">
+                                                <div class="product-extra-link">
+                                                    <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
+                                                    <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
+                                                    <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
+                                                </div>
+                                                <a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                            </div>
+                                </div>
+                             <div class="product-info">
+                                <h3 class="title-product"><a href="view-product.php?id=' . $row['id'] . '">' . $row['name'] . '</a></h3>
+                        <div class="info-price">';
 
-        echo $out_put;
+            if (!empty($discount)) {
+                $out_put .= ' <span id="price-details">Rs: ' . number_format($discount_price, 2) . '</span><del>Rs: ' . number_format($price_amount, 2) . '</del>';
+            } else {
+                $out_put .= '<span id="price-details">Rs: ' . number_format($price_amount, 2) . '</span> ';
+            }
+
+            $out_put .= '</div>';
+
+            if (!empty($discount)) {
+                $out_put .= '<div class="percent-saleoff">
+                            <span><label>' . $row['discount'] . '%</label> OFF</span>
+                            </div>';
+            }
+            $out_put .= '</div> ';
+            $out_put .= '</li> ';
+             
+        }
+        $out_put .= '</ul> ';
+       
+        if (!empty($out_put)) {
+            echo $out_put;
+        } else {
+            echo $out_put = 'No Data Found..!';
+        }
     }
 
     public function getMaxPriceInProduct($category, $sub_category, $brand) {
 
         if (isset($category)) {
 
-            $query = 'SELECT max(price) FROM `product` WHERE category="' . $category . '"';
+            $query = 'SELECT max(price) FROM `product` WHERE category = "' . $category . '"';
 
             if (!empty($sub_category)) {
                 $sub_category_filter = implode(",", $sub_category);
@@ -251,21 +279,20 @@ class Product {
                 $brand_filter = implode(",", $brand);
                 $query .= 'AND `brand` in(' . $brand_filter . ')';
             }
-        }
-        ;
+        };
         $db = new Database();
 
         $result = $db->readQuery($query);
         $row = mysql_fetch_array($result);
-      
+
         return $row;
     }
-    
-     public function getMinPriceInProduct($category, $sub_category, $brand) {
+
+    public function getMinPriceInProduct($category, $sub_category, $brand) {
 
         if (isset($category)) {
 
-            $query = 'SELECT min(price) FROM `product` WHERE category="' . $category . '"';
+            $query = 'SELECT min(price) FROM `product` WHERE category = "' . $category . '"';
 
             if (!empty($sub_category)) {
                 $sub_category_filter = implode(",", $sub_category);
@@ -276,13 +303,12 @@ class Product {
                 $brand_filter = implode(",", $brand);
                 $query .= 'AND `brand` in(' . $brand_filter . ')';
             }
-        }
-        ;
+        };
         $db = new Database();
 
         $result = $db->readQuery($query);
         $row = mysql_fetch_array($result);
-      
+
         return $row;
     }
 
@@ -309,13 +335,30 @@ class Product {
         return $result;
     }
 
-    public function showPagination($per_page, $page, $id) {
+    public function showPagination($id, $sub_category, $brand, $per_page, $page) {
 
         $page_url = "?";
-        $query = 'SELECT COUNT(*) as totalCount FROM `product` WHERE category="' . $id . '" ';
+        if (isset($id)) {
+            $query = 'SELECT COUNT(*) as totalCount FROM `product` WHERE category = "' . $id . '" ';
 
-        $rec = mysql_fetch_array(mysql_query($query));
-        $total = $rec['totalCount'];
+            if (!empty($sub_category)) {
+                $sub_category_filter = implode(",", $sub_category);
+                $query .= 'AND `sub_category` in(' . $sub_category_filter . ')';
+            }
+
+            if (!empty($brand)) {
+                $brand_filter = implode(",", $brand);
+                $query .= 'AND `brand` in(' . $brand_filter . ')';
+            }
+        }
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+        $row = mysql_fetch_array($result);
+
+        $total = $row['totalCount'];
+
         $adjacents = "2";
 
         $page = ($page == 0 ? 1 : $page);
@@ -330,11 +373,12 @@ class Product {
         $setPaginate = "";
         if ($setLastpage > 1) {
 
-            $setPaginate .= "<div class='product-pagi-nav'>";
+            $setPaginate .= "<div class='product-pagi-nav pull-right'>";
             $setPaginate .= "<a>Page $page of $setLastpage</a> ";
 
             if ($setLastpage < 7 + ($adjacents * 2)) {
                 for ($counter = 1; $counter <= $setLastpage; $counter++) {
+
                     if ($counter == $page) {
                         $setPaginate .= " <a class='current_page'>$counter</a> ";
                     } else {
@@ -352,7 +396,7 @@ class Product {
                             $setPaginate .= " <a href='{$page_url}page=$counter&id=$id'>$counter</a> ";
                     }
 
-                    $setPaginate .= "<a href='{$page_url}page=$lpm1'>$lpm1</a>";
+                    $setPaginate .= "<a href='{$page_url}page= $lpm1'>$lpm1</a>";
                     $setPaginate .= "<a href='{$page_url}page=$setLastpage&id=$id'>$setLastpage</a>";
                 }
                 elseif ($setLastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
@@ -367,18 +411,18 @@ class Product {
                             $setPaginate .= "<a href='{$page_url}page=$counter&id=$id'>$counter</a>";
                     }
                     $setPaginate .= "< class='dot'>..";
-                    $setPaginate .= "<a href='{$page_url}page=$lpm1'>$lpm1</a>";
+                    $setPaginate .= "<a href='{$page_url}page = $lpm1'>$lpm1</a>";
                     $setPaginate .= "<a href='{$page_url}page=$setLastpage&id=$id'>$setLastpage</a>";
                 }
                 else {
-                    $setPaginate .= "<a href='{$page_url}page=1'>1</a>";
-                    $setPaginate .= "<a href='{$page_url}page=2'>2</a>";
+                    $setPaginate .= "<a href='{$page_url}page = 1'>1</a>";
+                    $setPaginate .= "<a href='{$page_url}page = 2'>2</a>";
                     $setPaginate .= "<li class='dot'>..</li>";
                     for ($counter = $setLastpage - (2 + ($adjacents * 2)); $counter <= $setLastpage; $counter++) {
                         if ($counter == $page)
                             $setPaginate .= "<a class='current_page'>$counter</a>";
                         else
-                            $setPaginate .= "<a href='{$page_url}page=$counter&id=$id'>$counter</a>";
+                            $setPaginate .= "<a href='{$page_url}page=$counter&i =$id'>$counter</a>";
                     }
                 }
             }
@@ -393,8 +437,6 @@ class Product {
 
             $setPaginate .= "</div>\n";
         }
-
-
         echo $setPaginate;
     }
 
