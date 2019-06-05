@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 
-$SUB_PRODUCT = new SubProduct($id);
+$SUB_CATEGORY = new SubCategory($id);
 ?> 
 <!DOCTYPE html>
 
@@ -45,16 +45,16 @@ $SUB_PRODUCT = new SubProduct($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $SUB_PRODUCT->name ?>" - Edit Sub Products</h2>
+                                <h2> "<?php echo $SUB_CATEGORY->name ?>" - Edit Sub Products</h2>
 
                             </div>
                             <div class="body">
-                                <form class="form-horizontal"  method="post" action="post-and-get/sub-product.php" enctype="multipart/form-data"> 
+                                <form class="form-horizontal"  method="post" action="post-and-get/sub-category.php" enctype="multipart/form-data"> 
 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" value="<?php echo $SUB_PRODUCT->name ?>">
+                                                <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" value="<?php echo $SUB_CATEGORY->name ?>">
                                                 <label class="form-label">Name</label>
                                             </div>
                                         </div>
@@ -62,15 +62,15 @@ $SUB_PRODUCT = new SubProduct($id);
 
                                     <div class="col-md-12">
                                         <div class="form-group form-float"> 
-                                            <input type="file" id="image" class="form-control" value="<?php echo $SUB_PRODUCT->image_name; ?>"  name="image">
-                                            <img src="../upload/product-categories/sub-product/<?php echo $SUB_PRODUCT->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
+                                            <input type="file" id="image" class="form-control" value="<?php echo $SUB_CATEGORY->image_name; ?>"  name="image">
+                                            <img src="../upload/product-categories/sub-category/<?php echo $SUB_CATEGORY->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
 
                                         </div>
                                     </div>
 
                                     <div class="col-md-12"> 
-                                        <input type="hidden" id="oldImageName" value="<?php echo $SUB_PRODUCT->image_name; ?>" name="oldImageName"/>
-                                        <input type="hidden" id="id" value="<?php echo $SUB_PRODUCT->id; ?>" name="id"/>
+                                        <input type="hidden" id="oldImageName" value="<?php echo $SUB_CATEGORY->image_name; ?>" name="oldImageName"/>
+                                        <input type="hidden" id="id" value="<?php echo $SUB_CATEGORY->id; ?>" name="id"/>
                                         <input type="submit" name="update" class="btn btn-primary TYPEm-t-15 waves-effect" value="update"/>
                                     </div>
                                 </form>

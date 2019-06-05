@@ -203,12 +203,12 @@ class Product {
 
         $db = new Database();
         $result = $db->readQuery($query);
- 
+
 
         $out_put = '';
         while ($row = mysql_fetch_array($result)) {
-           
-            
+
+
             $price_amount = 0;
             $discount = 0;
 
@@ -253,10 +253,9 @@ class Product {
             }
             $out_put .= '</div> ';
             $out_put .= '</li> ';
-             
         }
         $out_put .= '</ul> ';
-       
+
         if (!empty($out_put)) {
             echo $out_put;
         } else {

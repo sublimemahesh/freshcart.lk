@@ -4,14 +4,14 @@ include_once(dirname(__FILE__) . '/auth.php');
 
 $id = '';
 $id = $_GET['id'];
-$SUB_PRODUCT = new SubProduct(NULL);
+$SUB_CATEGORY = new SubCategory(NULL);
 ?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Arrange Sub Product</title>
+        <title>Arrange Sub Categories</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -40,19 +40,19 @@ $SUB_PRODUCT = new SubProduct(NULL);
                                 <h2>Arrange Sub Product</h2> 
                             </div>
                             <div class="body">
-                                <form method="post" action="post-and-get/sub-product.php" class="form-horizontal" >
+                                <form method="post" action="post-and-get/sub-category.php" class="form-horizontal" >
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 arrange-container">
                                                 <ul id="sortable">
                                                     <?php
-                                                    if (count($SUB_PRODUCT->getProductsByCategory($id)) > 0) {
-                                                        foreach ($SUB_PRODUCT->getProductsByCategory($id) as $key => $img) {
+                                                    if (count($SUB_CATEGORY->getProductsByCategory($id)) > 0) {
+                                                        foreach ($SUB_CATEGORY->getProductsByCategory($id) as $key => $img) {
                                                             ?>
                                                             <div class="col-md-3" style="list-style: none;">
                                                                 <li class="ui-state-default">
                                                                     <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/product-categories/sub-product/<?php echo $img["image_name"]; ?>" alt=""/>
+                                                                    <img class="img-responsive" src="../upload/product-categories/sub-category/<?php echo $img["image_name"]; ?>" alt=""/>
                                                                     <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
                                                                 </li>
