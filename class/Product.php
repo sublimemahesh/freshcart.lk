@@ -277,6 +277,87 @@ class Product {
         }
     }
 
+    public function getProductsByBrands($brand_id, $brand, $minimum_price, $maximum_price) {
+
+        if (isset($brand_id)) {
+
+            $query = 'SELECT * FROM `product` WHERE `brand`="' . $brand_id . '"';
+
+            if (isset($minimum_price) && isset($maximum_price) && !empty($minimum_price) && !empty($minimum_price)) {
+                $query .= 'AND `price` BETWEEN "' . $minimum_price . '" AND "' . $maximum_price . '"';
+            }
+
+
+            if (!empty($brand)) {
+                $brand_filter = implode(",", $brand);
+                $query .= 'OR `brand` in(' . $brand_filter . ')';
+            }
+
+//            $query .= ' ORDER BY  queue DESC LIMIT ' . $page . ',' . $per_page . '';
+        }
+
+
+        $db = new Database();
+        $result = $db->readQuery($query); 
+        
+        $out_put = '';
+        while ($row = mysql_fetch_array($result)) {
+
+
+            $price_amount = 0;
+            $discount = 0;
+
+            $discount = $row['discount'];
+            $price_amount = $row['price'];
+
+            $discount = ($price_amount * $discount) / 100;
+            $discount_price = $row['price'] - $discount;
+
+            $out_put .= '<ul class=" product-grid"  >';
+            $out_put .= ' <li class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="item-product">
+                                <div class="product-thumb">
+                                        <a class="product-thumb-link" href="view-product.php?id=' . $row['id'] . '">
+                                            <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/' . $row['image_name'] . '"> 
+                                         </a>
+                                            <div class="product-info-cart">
+                                                <div class="product-extra-link">
+                                                    <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
+                                                    <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
+                                                    <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
+                                                </div>
+                                                <a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                            </div>
+                                </div>
+                             <div class="product-info">
+                                <h3 class="title-product"><a href="view-product.php?id=' . $row['id'] . '">' . $row['name'] . '</a></h3>
+                        <div class="info-price">';
+
+            if (!empty($discount)) {
+                $out_put .= ' <span id="price-details">Rs: ' . number_format($discount_price, 2) . '</span><del>Rs: ' . number_format($price_amount, 2) . '</del>';
+            } else {
+                $out_put .= '<span id="price-details">Rs: ' . number_format($price_amount, 2) . '</span> ';
+            }
+
+            $out_put .= '</div>';
+
+            if (!empty($discount)) {
+                $out_put .= '<div class="percent-saleoff">
+                            <span><label>' . $row['discount'] . '%</label> OFF</span>
+                            </div>';
+            }
+            $out_put .= '</div> ';
+            $out_put .= '</li> ';
+        }
+        $out_put .= '</ul> ';
+
+        if (!empty($out_put)) {
+            echo $out_put;
+        } else {
+            echo $out_put = 'No Data Found..!';
+        }
+    }
+
     public function getMaxPriceInProduct($category, $sub_category, $brand) {
 
         if (isset($category)) {
@@ -325,20 +406,20 @@ class Product {
         return $row;
     }
 
-    public function getProductsByCategoryByAll($category, $pageLimit, $setLimit) {
-
-        $query = "SELECT * FROM `product` where `category` = " . $category . "   ORDER BY queue DESC LIMIT " . $pageLimit . " , " . $setLimit . "  ";
-
-        $db = new Database();
-
-        $result = $db->readQuery($query);
-        $array_res = array();
-
-        while ($row = mysql_fetch_array($result)) {
-            array_push($array_res, $row);
-        }
-        return $array_res;
-    }
+//    public function getProductsByCategoryByAll($category, $pageLimit, $setLimit) {
+//
+//        $query = "SELECT * FROM `product` where `category` = " . $category . "   ORDER BY queue DESC LIMIT " . $pageLimit . " , " . $setLimit . "  ";
+//
+//        $db = new Database();
+//
+//        $result = $db->readQuery($query);
+//        $array_res = array();
+//
+//        while ($row = mysql_fetch_array($result)) {
+//            array_push($array_res, $row);
+//        }
+//        return $array_res;
+//    }
 
     public function arrange($key, $img) {
 
