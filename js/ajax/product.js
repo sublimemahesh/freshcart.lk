@@ -105,7 +105,7 @@ $(document).ready(function () {
 
     //price range  
     $('#price_range').slider({
-
+   
         range: true,
         min: 1000,
         max: 500000,

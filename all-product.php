@@ -136,7 +136,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                         <button>Vote</button>
                                     </div>
                                     <!-- End Vote -->
-                                    <div class="widget widget-adv">
+<!--                                    <div class="widget widget-adv">
                                         <h2 class="title-widget-adv">
                                             <span>Week</span>
                                             <strong>big sale</strong>
@@ -176,7 +176,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
 
