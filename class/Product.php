@@ -245,7 +245,7 @@ class Product {
                                                     <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
                                                     <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
                                                 </div>
-                                                <a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                                <a class="addcart-link" href="#"  class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm' . $row['id'] . '"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
                                             </div>
                                 </div>
                              <div class="product-info">
@@ -267,8 +267,43 @@ class Product {
             }
             $out_put .= '</div> ';
             $out_put .= '</li> ';
+            $out_put .= '<div class="modal fade" id="modalLoginForm' . $row['id'] . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">' . $row['name'] . '</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="thumbnail">
+                                     <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/' . $row['image_name'] . '"> 
+                                </div>
+                            </div>
+                            <div class="col-md-8 text-justify">
+                             ' . $row['short_description'] . '
+                            <div class="col-md-4">
+                            
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                        
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-default">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+';
         }
         $out_put .= '</ul> ';
+
 
         if (!empty($out_put)) {
             echo $out_put;
@@ -298,8 +333,8 @@ class Product {
 
 
         $db = new Database();
-        $result = $db->readQuery($query); 
-        
+        $result = $db->readQuery($query);
+
         $out_put = '';
         while ($row = mysql_fetch_array($result)) {
 

@@ -84,7 +84,6 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                                     $FILTER_BRAND = $PRODUCT->getBrandByCategory($id);
                                                     foreach ($FILTER_BRAND as $filter_brand) {
                                                         $BRAND = new Brand($filter_brand['brand']);
-                                                         
                                                         ?>
                                                         <li> 
                                                             <input type="checkbox"   class="common_selector brand" value="<?php echo $BRAND->id ?>">
@@ -136,47 +135,47 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                         <button>Vote</button>
                                     </div>
                                     <!-- End Vote -->
-<!--                                    <div class="widget widget-adv">
-                                        <h2 class="title-widget-adv">
-                                            <span>Week</span>
-                                            <strong>big sale</strong>
-                                        </h2>
-                                        <div class="wrap-item" data-itemscustom="[[0,1]]" data-pagination="true" data-navigation="false">
-                                            <div class="item">
-                                                <div class="item-widget-adv">
-                                                    <div class="adv-widget-thumb">
-                                                        <a href="#"><img src="images/grid/sl1.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="adv-widget-info">
-                                                        <h3>New Collection</h3>
-                                                        <h2><span>from</span> 40% off</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-widget-adv">
-                                                    <div class="adv-widget-thumb">
-                                                        <a href="#"><img src="images/grid/sl2.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="adv-widget-info">
-                                                        <h3>Quality usinesswear </h3>
-                                                        <h2><span>from</span> 30% off</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-widget-adv">
-                                                    <div class="adv-widget-thumb">
-                                                        <a href="#"><img src="images/grid/sl3.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="adv-widget-info">
-                                                        <h3>Hanbags Style 2016</h3>
-                                                        <h2><span>from</span> 20% off</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
+                                    <!--                                    <div class="widget widget-adv">
+                                                                            <h2 class="title-widget-adv">
+                                                                                <span>Week</span>
+                                                                                <strong>big sale</strong>
+                                                                            </h2>
+                                                                            <div class="wrap-item" data-itemscustom="[[0,1]]" data-pagination="true" data-navigation="false">
+                                                                                <div class="item">
+                                                                                    <div class="item-widget-adv">
+                                                                                        <div class="adv-widget-thumb">
+                                                                                            <a href="#"><img src="images/grid/sl1.jpg" alt="" /></a>
+                                                                                        </div>
+                                                                                        <div class="adv-widget-info">
+                                                                                            <h3>New Collection</h3>
+                                                                                            <h2><span>from</span> 40% off</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="item">
+                                                                                    <div class="item-widget-adv">
+                                                                                        <div class="adv-widget-thumb">
+                                                                                            <a href="#"><img src="images/grid/sl2.jpg" alt="" /></a>
+                                                                                        </div>
+                                                                                        <div class="adv-widget-info">
+                                                                                            <h3>Quality usinesswear </h3>
+                                                                                            <h2><span>from</span> 30% off</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="item">
+                                                                                    <div class="item-widget-adv">
+                                                                                        <div class="adv-widget-thumb">
+                                                                                            <a href="#"><img src="images/grid/sl3.jpg" alt="" /></a>
+                                                                                        </div>
+                                                                                        <div class="adv-widget-info">
+                                                                                            <h3>Hanbags Style 2016</h3>
+                                                                                            <h2><span>from</span> 20% off</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>-->
                                 </div>
                             </div>
 
@@ -202,6 +201,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                 <?php include './footer.php'; ?>
                 <!-- End Footer -->
             </div>
+ 
         </div>
         <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>

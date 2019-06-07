@@ -7,6 +7,12 @@ if (isset($_SESSION["id"])) {
     $CUSTOMER = new Customer($_SESSION["id"]);
 }
 ?>
+<style>
+    .popover{
+        width: 100%;
+        max-width: 800px;
+    }
+</style>
 <div id="header">
     <div class="container">
         <div class="sub-header4">
@@ -102,71 +108,31 @@ if (isset($_SESSION["id"])) {
                             </ul>
                             <p>My Account & Oder</p>
                         </div>
-                        <div class="mini-cart mini-cart-2">
-                            <a href="cart.html" class="header-mini-cart2">
+                        <div class="mini-cart mini-cart-2" >
+                            <a href="#" class="header-mini-cart2" id="cart-popover" data-placement="bottom">
                                 <span class="total-mini-cart-icon"><i class="fa fa-shopping-basket"></i></span>
-                                <span class="total-mini-cart-item">0</span>
+                                <span class="total-mini-cart-item badge" style="height: 22px;">0</span>
                             </a>
-                            <div class="content-mini-cart">
-                                <h2>(2) ITEMS IN MY CART</h2>
-                                <ul class="list-mini-cart-item">
-                                    <li>
-                                        <div class="mini-cart-edit">
-                                            <a class="delete-mini-cart-item" href="#"><i class="fa fa-trash-o"></i></a>
-                                            <a class="edit-mini-cart-item" href="#"><i class="fa fa-pencil"></i></a>
-                                        </div>
-                                        <div class="mini-cart-thumb">
-                                            <a href="#"><img alt="" src="images/home1/mini-cart-thumb.png"></a>
-                                        </div>
-                                        <div class="mini-cart-info">
-                                            <h3><a href="#">Burberry Pink &amp; black</a></h3>
-                                            <div class="info-price">
-                                                <span>$59.52</span>
-                                                <del>$17.96</del>
-                                            </div>
-                                            <div class="qty-product">
-                                                <span class="qty-down">-</span>
-                                                <span class="qty-num">1</span>
-                                                <span class="qty-up">+</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="mini-cart-edit">
-                                            <a class="delete-mini-cart-item" href="#"><i class="fa fa-trash-o"></i></a>
-                                            <a class="edit-mini-cart-item" href="#"><i class="fa fa-pencil"></i></a>
-                                        </div>
-                                        <div class="mini-cart-thumb">
-                                            <a href="#"><img alt="" src="images/home1/mini-cart-thumb.png"></a>
-                                        </div>
-                                        <div class="mini-cart-info">
-                                            <h3><a href="#">Burberry Pink &amp; black</a></h3>
-                                            <div class="info-price">
-                                                <span>$59.52</span>
-                                                <del>$17.96</del>
-                                            </div>
-                                            <div class="qty-product">
-                                                <span class="qty-down">-</span>
-                                                <span class="qty-num">1</span>
-                                                <span class="qty-up">+</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="mini-cart-total">
-                                    <label>TOTAL</label>
-                                    <span>$24.28</span>
-                                </div>
-                                <div class="mini-cart-button">
-                                    <a class="mini-cart-view" href="#">view my cart </a>
-                                    <a class="mini-cart-checkout" href="#">Checkout</a>
+                            <div id="popover_content_wrapper" style="display: none; ">
+                                <span id="cart_details" ></span>
+                                <div align="right">                                     
+                                    <a href="#" class="btn btn-primary" id="check_out_cart">
+                                        <i class="fa fa-shopping-basket"></i>
+                                        Check Out
+                                    </a>
+                                    <a href="#" class="btn btn-default" id="clear_cart">
+                                        <i class="fa fa-trash"></i>
+                                        Clear
+                                    </a>
                                 </div>
                             </div>
+                            
                         </div>
+
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         <!-- End Header2 -->
     </div>
     <div class="header-nav2 header-nav4">
@@ -189,425 +155,150 @@ if (isset($_SESSION["id"])) {
                                     <?php } ?>
                                 </ul>
                             </li>
-                            <!--                            <li>
-                                                            <a href="all-category.php">Category</a>                             
-                                                        </li>-->
-                            <!--                            <li class="has-mega-menu">
-                                                            <a href="grid.html">Fashion</a>
-                                                            <div class="mega-menu mega-menu-style1">
-                                                                <div class="row">
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="mega-hot-deal">
-                                                                            <h2 class="mega-menu-title">Hot deals</h2>
-                                                                            <div class="mega-hot-deal-slider">
-                                                                                <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1]]">
-                                                                                    <div class="item-deal-product">
-                                                                                        <div class="product-thumb">
-                                                                                            <a href="#" class="product-thumb-link">
-                                                                                                <img src="images/photos/furniture/6.jpg" alt="" class="first-thumb">
-                                                                                                <img src="images/photos/furniture/5.jpg" alt="" class="second-thumb">
-                                                                                            </a>
-                                                                                            <div class="product-info-cart">
-                                                                                                <div class="product-extra-link">
-                                                                                                    <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                    <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                    <a href="#" class="quickview-link"><i class="fa fa-search"></i></a>
-                                                                                                </div>
-                                                                                                <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="product-info">
-                                                                                            <h3 class="title-product"><a href="#">Pok Chair Classicle</a></h3>
-                                                                                            <p class="desc">Lorem Khaled Ipsum is a major key to suc cess. Another one. </p>
-                                                                                            <div class="info-price-deal">
-                                                                                                <span>$59.52</span> <label>-30%</label>
-                                                                                            </div>
-                                                                                            <div class="deal-shop-social">
-                                                                                                <a class="deal-shop-link" href="#">shop now</a>
-                                                                                                <div class="social-deal social-network">
-                                                                                                    <ul>
-                                                                                                        <li><a href="#"><img src="images/home1/s1.png" alt=""></a></li>
-                                                                                                        <li><a href="#"><img src="images/home1/s2.png" alt=""></a></li>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                    <div class="item-deal-product">
-                                                                                        <div class="product-thumb">
-                                                                                            <a href="#" class="product-thumb-link">
-                                                                                                <img src="images/photos/extras/17.jpg" alt="" class="first-thumb">
-                                                                                                <img src="images/photos/extras/16.jpg" alt="" class="second-thumb">
-                                                                                            </a>
-                                                                                            <div class="product-info-cart">
-                                                                                                <div class="product-extra-link">
-                                                                                                    <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                    <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                    <a href="#" class="quickview-link"><i class="fa fa-search"></i></a>
-                                                                                                </div>
-                                                                                                <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="product-info">
-                                                                                            <h3 class="title-product"><a href="#">Fashion Mangto</a></h3>
-                                                                                            <p class="desc">Lorem Khaled Ipsum is a major key to suc cess. Another one. </p>
-                                                                                            <div class="info-price-deal">
-                                                                                                <span>$59.52</span> <label>-30%</label>
-                                                                                            </div>
-                                                                                            <div class="deal-shop-social">
-                                                                                                <a class="deal-shop-link" href="#">shop now</a>
-                                                                                                <div class="social-deal social-network">
-                                                                                                    <ul>
-                                                                                                        <li><a href="#"><img src="images/home1/s1.png" alt=""></a></li>
-                                                                                                        <li><a href="#"><img src="images/home1/s2.png" alt=""></a></li>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                    <div class="item-deal-product">
-                                                                                        <div class="product-thumb">
-                                                                                            <a href="#" class="product-thumb-link">
-                                                                                                <img src="images/photos/sport/7.jpg" alt="" class="first-thumb">
-                                                                                                <img src="images/photos/sport/6.jpg" alt="" class="second-thumb">
-                                                                                            </a>
-                                                                                            <div class="product-info-cart">
-                                                                                                <div class="product-extra-link">
-                                                                                                    <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                    <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                    <a href="#" class="quickview-link"><i class="fa fa-search"></i></a>
-                                                                                                </div>
-                                                                                                <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="product-info">
-                                                                                            <h3 class="title-product"><a href="#">T-Shirt Sport</a></h3>
-                                                                                            <p class="desc">Lorem Khaled Ipsum is a major key to suc cess. Another one. </p>
-                                                                                            <div class="info-price-deal">
-                                                                                                <span>$59.52</span> <label>-30%</label>
-                                                                                            </div>
-                                                                                            <div class="deal-shop-social">
-                                                                                                <a class="deal-shop-link" href="#">shop now</a>
-                                                                                                <div class="social-deal social-network">
-                                                                                                    <ul>
-                                                                                                        <li><a href="#"><img src="images/home1/s1.png" alt=""></a></li>
-                                                                                                        <li><a href="#"><img src="images/home1/s2.png" alt=""></a></li>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                    <div class="item-deal-product">
-                                                                                        <div class="product-thumb">
-                                                                                            <a href="#" class="product-thumb-link">
-                                                                                                <img src="images/photos/extras/14.jpg" alt="" class="first-thumb">
-                                                                                                <img src="images/photos/extras/13.jpg" alt="" class="second-thumb">
-                                                                                            </a>
-                                                                                            <div class="product-info-cart">
-                                                                                                <div class="product-extra-link">
-                                                                                                    <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                    <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                    <a href="#" class="quickview-link"><i class="fa fa-search"></i></a>
-                                                                                                </div>
-                                                                                                <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="product-info">
-                                                                                            <h3 class="title-product"><a href="#">Bag Goodscol model</a></h3>
-                                                                                            <p class="desc">Lorem Khaled Ipsum is a major key to suc cess. Another one. </p>
-                                                                                            <div class="info-price-deal">
-                                                                                                <span>$59.52</span> <label>-30%</label>
-                                                                                            </div>
-                                                                                            <div class="deal-shop-social">
-                                                                                                <a class="deal-shop-link" href="#">shop now</a>
-                                                                                                <div class="social-deal social-network">
-                                                                                                    <ul>
-                                                                                                        <li><a href="#"><img src="images/home1/s1.png" alt=""></a></li>
-                                                                                                        <li><a href="#"><img src="images/home1/s2.png" alt=""></a></li>
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="mega-new-arrival">
-                                                                            <h2 class="mega-menu-title">New Arrivals</h2>
-                                                                            <div class="mega-new-arrival-slider">
-                                                                                <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1],[480,2]]">
-                                                                                    <div class="item">
-                                                                                        <div class="item-product">
-                                                                                            <div class="product-thumb">
-                                                                                                <a href="detail.html" class="product-thumb-link">
-                                                                                                    <img src="images/photos/extras/18.jpg" alt="" class="first-thumb">
-                                                                                                    <img src="images/photos/extras/17.jpg" alt="" class="second-thumb">
-                                                                                                </a>
-                                                                                                <div class="product-info-cart">
-                                                                                                    <div class="product-extra-link">
-                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
-                                                                                                    </div>
-                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="product-info">
-                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                <div class="info-price">
-                                                                                                    <span>$59.52</span><del>$17.96</del>
-                                                                                                </div>
-                                                                                                <div class="product-rating">
-                                                                                                    <div style="width:100%" class="inner-rating"></div>
-                                                                                                    <span>(6s)</span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                    <div class="item">
-                                                                                        <div class="item-product">
-                                                                                            <div class="product-thumb">
-                                                                                                <a href="detail.html" class="product-thumb-link">
-                                                                                                    <img src="images/photos/extras/21.jpg" alt="" class="first-thumb">
-                                                                                                    <img src="images/photos/extras/20.jpg" alt="" class="second-thumb">
-                                                                                                </a>
-                                                                                                <div class="product-info-cart">
-                                                                                                    <div class="product-extra-link">
-                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
-                                                                                                    </div>
-                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="product-info">
-                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                <div class="info-price">
-                                                                                                    <span>$59.52</span><del>$17.96</del>
-                                                                                                </div>
-                                                                                                <div class="product-rating">
-                                                                                                    <div style="width:100%" class="inner-rating"></div>
-                                                                                                    <span>(6s)</span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                    <div class="item">
-                                                                                        <div class="item-product">
-                                                                                            <div class="product-thumb">
-                                                                                                <a href="detail.html" class="product-thumb-link">
-                                                                                                    <img src="images/photos/extras/19.jpg" alt="" class="first-thumb">
-                                                                                                    <img src="images/photos/extras/15.jpg" alt="" class="second-thumb">
-                                                                                                </a>
-                                                                                                <div class="product-info-cart">
-                                                                                                    <div class="product-extra-link">
-                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
-                                                                                                    </div>
-                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="product-info">
-                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                <div class="info-price">
-                                                                                                    <span>$59.52</span><del>$17.96</del>
-                                                                                                </div>
-                                                                                                <div class="product-rating">
-                                                                                                    <div style="width:100%" class="inner-rating"></div>
-                                                                                                    <span>(6s)</span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                    <div class="item">
-                                                                                        <div class="item-product">
-                                                                                            <div class="product-thumb">
-                                                                                                <a href="detail.html" class="product-thumb-link">
-                                                                                                    <img src="images/photos/extras/3.jpg" alt="" class="first-thumb">
-                                                                                                    <img src="images/photos/extras/4.jpg" alt="" class="second-thumb">
-                                                                                                </a>
-                                                                                                <div class="product-info-cart">
-                                                                                                    <div class="product-extra-link">
-                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
-                                                                                                    </div>
-                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="product-info">
-                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                <div class="info-price">
-                                                                                                    <span>$59.52</span><del>$17.96</del>
-                                                                                                </div>
-                                                                                                <div class="product-rating">
-                                                                                                    <div style="width:100%" class="inner-rating"></div>
-                                                                                                    <span>(6s)</span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                     End Item 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>-->
+
                             <li class="has-mega-menu">
                                 <a href="list.html">Furniture</a>
-                                <!--                                <div class="mega-menu">
-                                                                    <div class="row">
-                                                                        <div class="col-md-5 col-sm-5 col-xs-12">
-                                                                            <div class="mega-adv">
-                                                                                <div class="mega-adv-thumb zoom-image-thumb">
-                                                                                    <a href="#"><img src="images/photos/newintoday/bag-shoes.jpg" alt="" /></a>
-                                                                                </div>
-                                                                                <div class="mega-adv-info">
-                                                                                    <h3><a href="#">Examplui coloniu tencaug</a></h3>
-                                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                                                    <a class="more-detail" href="#">More Detail</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-7 col-sm-7 col-xs-12">
-                                                                            <div class="mega-new-arrival">
-                                                                                <h2 class="mega-menu-title">Featured Product</h2>
-                                                                                <div class="mega-new-arrival-slider">
-                                                                                    <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1],[480,2]]">
-                                                                                        <div class="item">
-                                                                                            <div class="item-product">
-                                                                                                <div class="product-thumb">
-                                                                                                    <a href="detail.html" class="product-thumb-link">
-                                                                                                        <img src="images/photos/extras/17.jpg" alt="" class="first-thumb">
-                                                                                                        <img src="images/photos/extras/18.jpg" alt="" class="second-thumb">
-                                                                                                    </a>
-                                                                                                    <div class="product-info-cart">
-                                                                                                        <div class="product-extra-link">
-                                                                                                            <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                            <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                            <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
+                                <!--                                                            <div class="mega-menu">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-5 col-sm-5 col-xs-12">
+                                                                                                        <div class="mega-adv">
+                                                                                                            <div class="mega-adv-thumb zoom-image-thumb">
+                                                                                                                <a href="#"><img src="images/photos/newintoday/bag-shoes.jpg" alt="" /></a>
+                                                                                                            </div>
+                                                                                                            <div class="mega-adv-info">
+                                                                                                                <h3><a href="#">Examplui coloniu tencaug</a></h3>
+                                                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                                                                                <a class="more-detail" href="#">More Detail</a>
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                        <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                                <div class="product-info">
-                                                                                                    <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                    <div class="info-price">
-                                                                                                        <span>$59.52</span><del>$17.96</del>
-                                                                                                    </div>
-                                                                                                    <div class="product-rating">
-                                                                                                        <div style="width:100%" class="inner-rating"></div>
-                                                                                                        <span>(6s)</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                         End Item 
-                                                                                        <div class="item">
-                                                                                            <div class="item-product">
-                                                                                                <div class="product-thumb">
-                                                                                                    <a href="detail.html" class="product-thumb-link">
-                                                                                                        <img src="images/photos/extras/20.jpg" alt="" class="first-thumb">
-                                                                                                        <img src="images/photos/extras/21.jpg" alt="" class="second-thumb">
-                                                                                                    </a>
-                                                                                                    <div class="product-info-cart">
-                                                                                                        <div class="product-extra-link">
-                                                                                                            <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                            <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                            <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
+                                                                                                    <div class="col-md-7 col-sm-7 col-xs-12">
+                                                                                                        <div class="mega-new-arrival">
+                                                                                                            <h2 class="mega-menu-title">Featured Product</h2>
+                                                                                                            <div class="mega-new-arrival-slider">
+                                                                                                                <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1],[480,2]]">
+                                                                                                                    <div class="item">
+                                                                                                                        <div class="item-product">
+                                                                                                                            <div class="product-thumb">
+                                                                                                                                <a href="detail.html" class="product-thumb-link">
+                                                                                                                                    <img src="images/photos/extras/17.jpg" alt="" class="first-thumb">
+                                                                                                                                    <img src="images/photos/extras/18.jpg" alt="" class="second-thumb">
+                                                                                                                                </a>
+                                                                                                                                <div class="product-info-cart">
+                                                                                                                                    <div class="product-extra-link">
+                                                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
+                                                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
+                                                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
+                                                                                                                                    </div>
+                                                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="product-info">
+                                                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
+                                                                                                                                <div class="info-price">
+                                                                                                                                    <span>$59.52</span><del>$17.96</del>
+                                                                                                                                </div>
+                                                                                                                                <div class="product-rating">
+                                                                                                                                    <div style="width:100%" class="inner-rating"></div>
+                                                                                                                                    <span>(6s)</span>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                     End Item 
+                                                                                                                    <div class="item">
+                                                                                                                        <div class="item-product">
+                                                                                                                            <div class="product-thumb">
+                                                                                                                                <a href="detail.html" class="product-thumb-link">
+                                                                                                                                    <img src="images/photos/extras/20.jpg" alt="" class="first-thumb">
+                                                                                                                                    <img src="images/photos/extras/21.jpg" alt="" class="second-thumb">
+                                                                                                                                </a>
+                                                                                                                                <div class="product-info-cart">
+                                                                                                                                    <div class="product-extra-link">
+                                                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
+                                                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
+                                                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
+                                                                                                                                    </div>
+                                                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="product-info">
+                                                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
+                                                                                                                                <div class="info-price">
+                                                                                                                                    <span>$59.52</span><del>$17.96</del>
+                                                                                                                                </div>
+                                                                                                                                <div class="product-rating">
+                                                                                                                                    <div style="width:100%" class="inner-rating"></div>
+                                                                                                                                    <span>(6s)</span>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                     End Item 
+                                                                                                                    <div class="item">
+                                                                                                                        <div class="item-product">
+                                                                                                                            <div class="product-thumb">
+                                                                                                                                <a href="detail.html" class="product-thumb-link">
+                                                                                                                                    <img src="images/photos/extras/15.jpg" alt="" class="first-thumb">
+                                                                                                                                    <img src="images/photos/extras/19.jpg" alt="" class="second-thumb">
+                                                                                                                                </a>
+                                                                                                                                <div class="product-info-cart">
+                                                                                                                                    <div class="product-extra-link">
+                                                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
+                                                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
+                                                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
+                                                                                                                                    </div>
+                                                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="product-info">
+                                                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
+                                                                                                                                <div class="info-price">
+                                                                                                                                    <span>$59.52</span><del>$17.96</del>
+                                                                                                                                </div>
+                                                                                                                                <div class="product-rating">
+                                                                                                                                    <div style="width:100%" class="inner-rating"></div>
+                                                                                                                                    <span>(6s)</span>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                     End Item 
+                                                                                                                    <div class="item">
+                                                                                                                        <div class="item-product">
+                                                                                                                            <div class="product-thumb">
+                                                                                                                                <a href="detail.html" class="product-thumb-link">
+                                                                                                                                    <img src="images/photos/extras/4.jpg" alt="" class="first-thumb">
+                                                                                                                                    <img src="images/photos/extras/3.jpg" alt="" class="second-thumb">
+                                                                                                                                </a>
+                                                                                                                                <div class="product-info-cart">
+                                                                                                                                    <div class="product-extra-link">
+                                                                                                                                        <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
+                                                                                                                                        <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
+                                                                                                                                        <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
+                                                                                                                                    </div>
+                                                                                                                                    <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="product-info">
+                                                                                                                                <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
+                                                                                                                                <div class="info-price">
+                                                                                                                                    <span>$59.52</span><del>$17.96</del>
+                                                                                                                                </div>
+                                                                                                                                <div class="product-rating">
+                                                                                                                                    <div style="width:100%" class="inner-rating"></div>
+                                                                                                                                    <span>(6s)</span>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                     End Item 
+                                                                                                                </div>
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                        <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="product-info">
-                                                                                                    <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                    <div class="info-price">
-                                                                                                        <span>$59.52</span><del>$17.96</del>
-                                                                                                    </div>
-                                                                                                    <div class="product-rating">
-                                                                                                        <div style="width:100%" class="inner-rating"></div>
-                                                                                                        <span>(6s)</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                         End Item 
-                                                                                        <div class="item">
-                                                                                            <div class="item-product">
-                                                                                                <div class="product-thumb">
-                                                                                                    <a href="detail.html" class="product-thumb-link">
-                                                                                                        <img src="images/photos/extras/15.jpg" alt="" class="first-thumb">
-                                                                                                        <img src="images/photos/extras/19.jpg" alt="" class="second-thumb">
-                                                                                                    </a>
-                                                                                                    <div class="product-info-cart">
-                                                                                                        <div class="product-extra-link">
-                                                                                                            <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                            <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                            <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
-                                                                                                        </div>
-                                                                                                        <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="product-info">
-                                                                                                    <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                    <div class="info-price">
-                                                                                                        <span>$59.52</span><del>$17.96</del>
-                                                                                                    </div>
-                                                                                                    <div class="product-rating">
-                                                                                                        <div style="width:100%" class="inner-rating"></div>
-                                                                                                        <span>(6s)</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                         End Item 
-                                                                                        <div class="item">
-                                                                                            <div class="item-product">
-                                                                                                <div class="product-thumb">
-                                                                                                    <a href="detail.html" class="product-thumb-link">
-                                                                                                        <img src="images/photos/extras/4.jpg" alt="" class="first-thumb">
-                                                                                                        <img src="images/photos/extras/3.jpg" alt="" class="second-thumb">
-                                                                                                    </a>
-                                                                                                    <div class="product-info-cart">
-                                                                                                        <div class="product-extra-link">
-                                                                                                            <a href="#" class="wishlist-link"><i class="fa fa-heart-o"></i></a>
-                                                                                                            <a href="#" class="compare-link"><i class="fa fa-toggle-on"></i></a>
-                                                                                                            <a href="quick-view.html" class="quickview-link fancybox.ajax"><i class="fa fa-search"></i></a>
-                                                                                                        </div>
-                                                                                                        <a href="#" class="addcart-link"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="product-info">
-                                                                                                    <h3 class="title-product"><a href="#">Burberry Pink &amp; black</a></h3>
-                                                                                                    <div class="info-price">
-                                                                                                        <span>$59.52</span><del>$17.96</del>
-                                                                                                    </div>
-                                                                                                    <div class="product-rating">
-                                                                                                        <div style="width:100%" class="inner-rating"></div>
-                                                                                                        <span>(6s)</span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                         End Item 
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>-->
+                                                                                            </div>-->
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="grid.html">Food</a>

@@ -246,28 +246,16 @@ $PRODUCT = new Product($id);
                                                         $discount_price = $PRODUCT->price - $discount;
                                                         if ($PRODUCT->discount > 0) {
                                                             ?>
-                                                        <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                            <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($discount_price, 2) ?> </span>
                                                             <?php ?>
                                                             <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
                                                         <?php } else if ($PRODUCT->discount == 0) { ?>
                                                             <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
                                                         <?php } ?>
                                                     </div>
-                                                    
+
                                                     <div class="attr-info">
-                                                        <div class="attr-product">
-                                                            <label>Color</label>
-                                                            <div class="attr-color">
-                                                                <a href="#" class="toggle-color">Select Color</a>
-                                                                <ul class="list-color">
-                                                                    <li><a href="#">Black</a></li>
-                                                                    <li><a href="#">Red</a></li>
-                                                                    <li><a href="#">Green</a></li>
-                                                                    <li><a href="#">White</a></li>
-                                                                    <li><a href="#">Pink</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+
                                                         <div class="attr-product">
                                                             <label>Size</label>
                                                             <div class="attr-size">
@@ -282,15 +270,10 @@ $PRODUCT = new Product($id);
                                                             </div>
                                                             <span class="size-chart">Size Chart</span>
                                                         </div>
-                                                        <div class="attr-product">
-                                                            <label>Qty</label>
-                                                            <div class="info-qty">
-                                                                <a class="qty-down" href="#"><i class="fa fa-minus"></i></a>
-                                                                <span class="qty-val">1</span>
-                                                                <a class="qty-up" href="#"><i class="fa fa-plus"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <a class="addcart-link" href="#"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+
+                                                        <a href="" class="btn  btn-rounded mb-4 addcart-link" data-toggle="modal" data-target="#modalLoginForm" style="line-height:0px;padding-top: 11px;"> 
+                                                            <i class="fa fa-shopping-cart"></i> Add to Cart</a>
+
                                                         <div class="product-social-extra">
                                                             <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
                                                             <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
@@ -730,8 +713,7 @@ $PRODUCT = new Product($id);
                                         </div>
                                     </div>
                                     <!-- End Upsell Detail -->
-                                </div>
-                                <!-- End Main Content Shop -->
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -743,42 +725,71 @@ $PRODUCT = new Product($id);
             <!--loging -form-->
             <!-- Modal HTML -->
 
-            <div id="myModal" class="modal fade">
-                <div class="modal-dialog modal-login">
+            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="avatar">
-                                <img src="images/default-man.png" alt="Member" class="img-circle">
-                            </div>				
-                            <h4 class="modal-title">Member Login</h4>	
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <form   method="post" id="login-form">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email" required="required">		
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" required="required">	
-                                </div>        
-                                <div class="form-group">
-                                    <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary btn-lg btn-block login-btn" style="width: 100%;">Login</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer ">
-                            <div class="pull-left">
-                                <a href="forget-password.php">Forgot Password?</a>
-                            </div>
-                            <div class="pull-right">
-                                <a href="registration.php">Not a member?  <span style="color: blue;">Sign Up</span></a>
-                            </div>
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold"><b><?php echo $PRODUCT->name ?></b>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </h4>
 
                         </div>
+                        <div class="modal-body mx-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="thumbnail">
+                                        <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/<?php echo $PRODUCT->image_name ?>"> 
+                                    </div>
+                                </div>
+                                <div class="col-md-8"> 
+                                    <p><?php echo $PRODUCT->short_description ?></p>
+                                    <div class="col-md-6">
+                                        <div class="attr-product">
+                                            <label>Color</label>
+                                            <div class="attr-color">
+                                                <a href="#" class="toggle-color">Select Color</a>
+                                                <ul class="list-color">
+                                                    <li><a href="#">Black</a></li>
+                                                    <li><a href="#">Red</a></li>
+                                                    <li><a href="#">Green</a></li>
+                                                    <li><a href="#">White</a></li>
+                                                    <li><a href="#">Pink</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
 
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="attr-product">
+                                            <label>Qty</label>
+                                            <input   type="number" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>" value="1"  min="1" style="background: #fff none repeat scroll 0 0;
+                                                     border: 1px solid #e8e8e8;
+                                                     color: #666;
+                                                     display: block;
+                                                     height: 30px;
+                                                     line-height: 30px;
+                                                     padding: 0px 0px 0px 15px;
+                                                     position: relative;"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
+                                <button class="btn btn-default add_to_cart" name="add_to_cart"  id="<?php echo $PRODUCT->id ?>"/> <i class="fa fa-shopping-cart"></i> Add to Cart</button>
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>    
+            </div>
 
             <!-- End Content -->
             <?php include './footer.php'; ?>
@@ -798,5 +809,6 @@ $PRODUCT = new Product($id);
 
         <script src="js/ajax/login.js" type="text/javascript"></script>
         <script src="comment/validation.js" type="text/javascript"></script>
+        <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
     </body>
 </html>
