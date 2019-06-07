@@ -606,6 +606,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
         <script type="text/javascript" src="js/libs/jquery.themepunch.plugins.min.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
         <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
         <script src="js/ajax/login.js" type="text/javascript"></script>
     </body> 
 </html>
