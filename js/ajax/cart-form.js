@@ -26,7 +26,7 @@ $(document).ready(function () {
         });
 
         swal({
-            title: "Info!",
+            title: "INFO!",
             text: "Do you really want to Checkout?...",
             type: "info",
             showCancelButton: true,
@@ -46,7 +46,7 @@ $(document).ready(function () {
                     total_price: total_price
                 },
                 dataType: "JSON",
-                success: function (result) {
+                success: function (result) { 
                     if (result.status === 'error') {
                         swal({
                             title: "Error!",
@@ -57,7 +57,7 @@ $(document).ready(function () {
                         });
                     } else {
                         swal({
-                            title: "Success.!",
+                            title: "SUCCESS.!",
                             text: "Data Send Successfully!...",
                             type: 'success',
                             timer: 1500,
