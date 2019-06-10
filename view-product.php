@@ -728,66 +728,68 @@ $PRODUCT = new Product($id);
             <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold"><b><?php echo $PRODUCT->name ?></b>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </h4>
+                    
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold"><b><?php echo $PRODUCT->name ?></b>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </h4>
 
-                        </div>
-                        <div class="modal-body mx-3">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="thumbnail">
-                                        <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/<?php echo $PRODUCT->image_name ?>"> 
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/<?php echo $PRODUCT->image_name ?>"> 
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-8"> 
-                                    <p><?php echo $PRODUCT->short_description ?></p>
-                                    <div class="col-md-6">
-                                        <div class="attr-product">
-                                            <label>Color</label>
-                                            <div class="attr-color">
-                                                <a href="#" class="toggle-color">Select Color</a>
-                                                <ul class="list-color">
-                                                    <li><a href="#">Black</a></li>
-                                                    <li><a href="#">Red</a></li>
-                                                    <li><a href="#">Green</a></li>
-                                                    <li><a href="#">White</a></li>
-                                                    <li><a href="#">Pink</a></li>
-                                                </ul>
+                                    <div class="col-md-8"> 
+                                        <p><?php echo $PRODUCT->short_description ?></p>
+                                        <div class="col-md-6">
+                                            <div class="attr-product">
+                                                <label>Color</label>
+                                                <div class="attr-color">
+                                                    <a href="#" class="toggle-color">Select Color</a>
+                                                    <ul class="list-color">
+                                                        <li><a href="#">Black</a></li>
+                                                        <li><a href="#">Red</a></li>
+                                                        <li><a href="#">Green</a></li>
+                                                        <li><a href="#">White</a></li>
+                                                        <li><a href="#">Pink</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="attr-product">
+                                                <label>Qty</label>
+                                                <input   type="number" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>" value="1"  min="1" style="background: #fff none repeat scroll 0 0;
+                                                         border: 1px solid #e8e8e8;
+                                                         color: #666;
+                                                         display: block;
+                                                         height: 30px;
+                                                         line-height: 30px;
+                                                         padding: 0px 0px 0px 15px;
+                                                         position: relative;"/>
                                             </div>
                                         </div>
-
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div class="attr-product">
-                                            <label>Qty</label>
-                                            <input   type="number" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>" value="1"  min="1" style="background: #fff none repeat scroll 0 0;
-                                                     border: 1px solid #e8e8e8;
-                                                     color: #666;
-                                                     display: block;
-                                                     height: 30px;
-                                                     line-height: 30px;
-                                                     padding: 0px 0px 0px 15px;
-                                                     position: relative;"/>
-                                        </div>
-                                    </div>
+
                                 </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
+                                    <button  class="btn btn-default add_to_cart" name="add_to_cart"  id="<?php echo $PRODUCT->id ?>"/> <i class="fa fa-shopping-cart"></i> Add to Cart</button>
 
 
-                            </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                                <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
-                                <button class="btn btn-default add_to_cart" name="add_to_cart"  id="<?php echo $PRODUCT->id ?>"/> <i class="fa fa-shopping-cart"></i> Add to Cart</button>
-
-
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
 
