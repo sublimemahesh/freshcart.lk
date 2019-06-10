@@ -109,23 +109,11 @@ if (isset($_SESSION["id"])) {
                             <p>My Account & Oder</p>
                         </div>
                         <div class="mini-cart mini-cart-2" >
-                            <a href="#" class="header-mini-cart2" id="cart-popover" data-placement="bottom">
+                            <a href="add-to-cart.php" class="header-mini-cart2"  >
                                 <span class="total-mini-cart-icon"><i class="fa fa-shopping-basket"></i></span>
                                 <span class="total-mini-cart-item badge" style="height: 22px;">0</span>
                             </a>
-                            <div id="popover_content_wrapper" style="display: none; ">
-                                <span id="cart_details" ></span>
-                                <div align="right">                                     
-                                    <a href="#" class="btn btn-primary" id="check_out_cart">
-                                        <i class="fa fa-shopping-basket"></i>
-                                        Check Out
-                                    </a>
-                                    <a href="#" class="btn btn-default" id="clear_cart">
-                                        <i class="fa fa-trash"></i>
-                                        Clear
-                                    </a>
-                                </div>
-                            </div>
+                             
                             
                         </div>
 
