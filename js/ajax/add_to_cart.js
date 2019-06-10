@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     load_cart_data();
-
     function load_cart_data() {
         $.ajax({
             url: "post-and-get/ajax/fetch_cart.php",
@@ -21,10 +20,7 @@ $(document).ready(function () {
         var product_name = $('#name' + product_id + '').val();
         var product_price = $('#price' + product_id + '').val();
         var product_quantity = $('#quantity' + product_id + '').val();
-
-
         var product_price = 1200;
-
         if (product_quantity > 0) {
             $.ajax({
                 url: "post-and-get/ajax/action.php",
@@ -36,13 +32,11 @@ $(document).ready(function () {
                     product_price: product_price,
                     action: "ADD"
                 },
-
                 success: function (data) {
                     load_cart_data();
                     $('#modalLoginForm').modal('hide');
-
                     swal({
-                        title: "Success.!",
+                        title: "SUCCESS.!",
                         text: "Iteam has bean Checked!...",
                         type: 'success',
                         timer: 2000,
@@ -52,7 +46,7 @@ $(document).ready(function () {
             });
         } else {
             swal({
-                title: "info.!",
+                title: "INFO.!",
                 text: "Please Enter the quantity!...",
                 type: 'success',
                 timer: 1500,
@@ -60,18 +54,16 @@ $(document).ready(function () {
             });
         }
     });
-
     $(document).on('click', '.delete', function () {
 
         var product_id = $(this).attr("id");
-
         swal({
-            title: "Info!",
-            text: "Do you really want to Checkout?...",
+            title: "REMOVE!",
+            text: "Do you really want to remove this cart?...",
             type: "info",
             showCancelButton: true,
             confirmButtonColor: "#2b982b",
-            confirmButtonText: "  Yes, Verify It!",
+            confirmButtonText: "  Yes, Remove It!",
             closeOnConfirm: false
         }, function () {
 
@@ -83,7 +75,6 @@ $(document).ready(function () {
                     product_id: product_id,
                     action: 'REMOVE'
                 },
-
                 success: function (result) {
                     if (result.status === 'error') {
                         swal({
@@ -93,13 +84,12 @@ $(document).ready(function () {
                             timer: 2000,
                             showConfirmButton: false
                         });
-
                     } else {
                         load_cart_data();
                         $('#cart_item').hide();
                         swal({
-                            title: "Success.!",
-                            text: "Iteam has remove!...",
+                            title: "SUCCESS.!",
+                            text: "Iteam has removed!...",
                             type: 'success',
                             timer: 1500,
                             showConfirmButton: false
@@ -109,32 +99,42 @@ $(document).ready(function () {
             });
         });
         return false;
-
-
     });
-
+    
+    
     $(document).on('click', '#clear_cart', function () {
+        swal({
+            title: "CLEAR!",
+            text: "Do you really want to clear cart?...",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#2b982b",
+            confirmButtonText: "  Yes, Clear It!",
+            closeOnConfirm: false
+        }, function () {
 
-        $.ajax({
-            url: "post-and-get/ajax/action.php",
-            type: "POST",
-            data: {
-                action: 'EMPTY'
-            },
-            success: function () {
-                load_cart_data();
-                $('#cart-popover').popover('hide');
-                
-                swal({
-                    title: "Success.!",
-                    text: "Your Cart has Bean Empty !...",
-                    type: 'success',
-                    timer: 1500,
-                    showConfirmButton: false
-                });
-            }
+            //Send Form data
+            $.ajax({
+                url: "post-and-get/ajax/action.php",
+                type: "POST",
+                data: {
+                    action: 'EMPTY'
+                },
+                success: function () {
+                    load_cart_data();
+                    $('#cart-popover').popover('hide');
+                    swal({
+                        title: "SUCCESS.!",
+                        text: "Your Cart has Bean Empty !...",
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                }
+
+            });
         });
     });
-
-});
+}
+);
 
