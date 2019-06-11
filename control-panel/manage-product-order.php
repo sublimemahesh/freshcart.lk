@@ -84,11 +84,22 @@ include_once(dirname(__FILE__) . '/auth.php');
 
                                                         </td>
                                                         <td>
+                                                            <?php
+                                                            if ($add_to_cart['status'] == 'confirmed') {
+                                                                ?>
+                                                                <p class="text-success"><?php echo $add_to_cart['status'] ?></p>
+                                                                <?php
+                                                            } else {
+                                                                ?>
+                                                                <p class="text-danger">New Order</p>                                                                
 
+                                                                <?php
+                                                            }
+                                                            ?>
                                                         </td> 
                                                         <td>  
-                                                            <a href="view-product-order.php?id=<?php echo $add_to_cart['id'] ?>" title="View Product"> <button class="glyphicon glyphicon-eye-open edit-btn"></button></a> |  
-                                                            <a href="#"  class="delete-product-review" data-id="  "> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
+                                                            <a href="view-product-order.php?id=<?php echo $add_to_cart['id'] ?>" title="View Product"> <button class="glyphicon glyphicon-eye-open edit-btn"></button></a>   
+<!--                                                          <a href="#"  class="delete-product-review" data-id="  "> <button class="glyphicon glyphicon-trash delete-btn"></button></a>-->
                                                         </td>
                                                     </tr>
                                                     <?php

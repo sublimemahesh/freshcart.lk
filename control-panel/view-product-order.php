@@ -117,13 +117,14 @@ $id = $_GET['id'];
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <form method="POST">
+                                        <form method="POST" id="form-data">
                                             <div class="row">
                                                 <div class="col-md-10 ">
 
                                                 </div>
                                                 <div class="col-md-2 pull-right"  >
-                                                    <input type="submit" class="btn btn-warning" value="Confirm Order" id="submit"/>
+                                                    <input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>
+                                                    <input type="submit" class="btn btn-warning" value="Confirm Order" id="confirm_order"/>
                                                 </div>
                                             </div>
                                         </form>
@@ -160,6 +161,6 @@ $id = $_GET['id'];
         <script src="js/pages/tables/jquery-datatable.js"></script>
         <script src="js/demo.js"></script> 
         <script src="js/admin-js/product.js" type="text/javascript"></script>
-    </body>
+
 
 </html> 
