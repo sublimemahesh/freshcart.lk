@@ -1,6 +1,8 @@
 <?php
 
 include_once(dirname(__FILE__) . '/../../class/include.php');
+session_start();
+$product_array = array();
 
 $CART_FORM = new AddToCart(NULL);
 
@@ -27,8 +29,25 @@ if (isset($_POST['total_price'])) {
     $total_price = $_POST['total_price'];
 }
 
-$CART_FORM->product = $product_arr . '/' . $quantity_arr . '/' . $price_arr . '/' . $total_price;
 
+
+
+//$CART_FORM->product = $product_arr . '/' . $quantity_arr . '/' . $price_arr . '/' . $total_price;
+
+
+foreach ($_SESSION["shopping_cart"] as $product) {
+    $product_data['product_id'] = $product['product_id'];
+    $product_data['product_quantity'] = $product['product_quantity'];
+    $product_data['product_price'] = $product['product_price'];
+
+    array_push($product_array, $product_data);
+}
+
+
+//$CART_FORM->product = $product_arr . '/' . $quantity_arr . '/' . $price_arr . '/' . $total_price;
+
+$CART_FORM->product = json_encode($product_array);
+ 
 $CART_FORM->create();
 
 

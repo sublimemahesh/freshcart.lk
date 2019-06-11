@@ -38,6 +38,7 @@ if (isset($_POST["action"]) == "ADD") {
         );
         $_SESSION["shopping_cart"][] = $iteam_array;
     }
+    
 }
 
  
