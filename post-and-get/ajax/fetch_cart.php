@@ -25,8 +25,24 @@ if (!empty($_SESSION["shopping_cart"])) {
 
         $output .= '<tr class="cart_item">'
                 . '<td class="product-remove">' . $value["product_name"] . '</td>'
-                . '<td class="product-remove"><input type="number" class="form-control" id="quantity" name="quantity[]" value="' . $value["product_quantity"] . '"/></td>'
-                . '<td class="product-remove">Rs: ' . number_format($value["product_price"], 2) . '</td>'
+                . '<td class="product-remove">'
+                . '<div class="input-group" style="width: 50%">
+                    <div class="input-group-btn">
+                        <button   class="btn btn-default down" type="button">
+                            <span class="glyphicon glyphicon-minus">                                                               
+                            </span>
+                        </button>
+                    </div>                                               
+                        <input  type="text" name="quantity"  id="quantity' . $value["product_id"] . '"     min="1"    class="form-control input-number text-center" value="1" />
+                    <div class="input-group-btn">
+                     
+                    <div  class="btn btn-default up"   >
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </div>
+                     </div>
+                   </div>'
+                . '</td>'
+                . '<td class="product-remove">Rs: ' . $value["product_price"] . '</td>'
                 . '<td class="product-remove">Rs: ' . number_format($value["product_quantity"] * $value["product_price"], 2) . '</td>'
 
                 //hidden values in form

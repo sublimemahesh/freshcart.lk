@@ -46,19 +46,7 @@ $PRODUCT = new Product($id);
         <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
         <link href="css/modle-login.css" rel="stylesheet" type="text/css"/>
-        <style>
-
-            .product {
-                width: 30%;
-                margin: 30px;
-            }
-            .form-group {
-                width: 30%;
-                margin: 30px;
-
-            }
-        </style>
-
+       
     </head>
     <body>
         <div class="wrap">
@@ -258,16 +246,28 @@ $PRODUCT = new Product($id);
                                                         $discount_price = $PRODUCT->price - $discount;
                                                         if ($PRODUCT->discount > 0) {
                                                             ?>
-                                                            <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                        <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
                                                             <?php ?>
                                                             <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
                                                         <?php } else if ($PRODUCT->discount == 0) { ?>
-                                                            <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
+                                                            <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
                                                         <?php } ?>
                                                     </div>
 
                                                     <div class="attr-info">
-
+                                                        <div class="attr-product">
+                                                            <label>Color</label>
+                                                            <div class="attr-color">
+                                                                <a href="#" class="toggle-color">Select Color</a>
+                                                                <ul class="list-color">
+                                                                    <li><a href="#">Black</a></li>
+                                                                    <li><a href="#">Red</a></li>
+                                                                    <li><a href="#">Green</a></li>
+                                                                    <li><a href="#">White</a></li>
+                                                                    <li><a href="#">Pink</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
                                                         <div class="attr-product">
                                                             <label>Size</label>
                                                             <div class="attr-size">
@@ -760,113 +760,65 @@ $PRODUCT = new Product($id);
                                 <div class="col-md-8"> 
                                     <p><?php echo $PRODUCT->short_description ?></p>
                                     <div class="col-md-6">
-                                        <div class="attr-product">
-                                            <label>Color</label>
-                                            <div class="attr-color">
-                                                <a href="#" class="toggle-color">Select Color</a>
-                                                <ul class="list-color">
-                                                    <li><a href="#">Black</a></li>
-                                                    <li><a href="#">Red</a></li>
-                                                    <li><a href="#">Green</a></li>
-                                                    <li><a href="#">White</a></li>
-                                                    <li><a href="#">Pink</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
 
+                                        <label>Price:</label>
+                                        <input type="text" id="price<?php echo $PRODUCT->id ?>" class="price-format total_price_amount" value="<?php echo $discount_price ?>"/>
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <div class="attr-product">
-
-
                                             <label>Quantity: </label>
                                             <div class="input-group">
                                                 <div class="input-group-btn">
-                                                    <button id="down" class="btn btn-default"  ><span class="glyphicon glyphicon-minus"></span></button>
+                                                    <button id="down" class="btn btn-default">
+                                                        <span class="glyphicon glyphicon-minus">                                                               
+                                                        </span>
+                                                    </button>
                                                 </div>
-                                                <input  type="text" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>"    min="1"    class="form-control input-number" value="1" />
-                                                <div class="input-group-btn">
-                                                    <button id="up" class="btn btn-default"  ><span class="glyphicon glyphicon-plus"></span></button>
+                                               
+                                                <input  type="text" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>"     min="1"    class="form-control input-number text-center" value="1" />
+                                                <div class="input-group-btn"><button id="up" class="btn btn-default"  >
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
-                                    </div>
-                                    <?php
-                                    if ($PRODUCT->discount > 0) {
-                                        ?>
-                                        <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($discount_price, 2) ?> </span>
-                                        <?php ?>
-                                        <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
-                                    <?php } else if ($PRODUCT->discount == 0) { ?>
-                                        <label>Price:</label> <span id="price-details">Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
-                                    <?php } ?> 
-                                </div>
-
-
-                            </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                                <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
-                                <button  class="btn btn-default add_to_cart" name="add_to_cart"  id="<?php echo $PRODUCT->id ?>"/> <i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                    </div>  
+                                </div>  
                             </div>
                         </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <input type="hidden" id="discount" value="<?php echo $PRODUCT->discount ?>"/>
+                            <input type="hidden" id="price" value="<?php echo $PRODUCT->price ?>"/>
+                            <input type="hidden" id="max" value="<?php echo $PRODUCT->unite ?>"/>  
+                            <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
+                            <button  class="btn btn-default add_to_cart" name="add_to_cart"  id="<?php echo $PRODUCT->id ?>"/> <i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
                     </div>
-
                 </div>
             </div>
-
-            <!-- End Content -->
-            <?php include './footer.php'; ?>
-            <!-- End Footer -->
         </div>
+    </div>
 
-        <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery.fancybox.js"></script>
-        <script type="text/javascript" src="js/libs/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/libs/owl.carousel.js"></script>
-        <script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.revolution.html"></script>
-        <script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.plugins.min.html"></script>
-        <script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
-        <script type="text/javascript" src="js/theme.js"></script> 
-        <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <!-- End Content -->
+    <?php include './footer.php'; ?>
+    <!-- End Footer -->
+</div>
+<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.fancybox.js"></script>
+<script type="text/javascript" src="js/libs/jquery-ui.js"></script>
+<script type="text/javascript" src="js/libs/owl.carousel.js"></script>
+<script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.revolution.html"></script>
+<script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.plugins.min.html"></script>
+<script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
+<script type="text/javascript" src="js/theme.js"></script> 
+<script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
-        <script src="js/ajax/login.js" type="text/javascript"></script>
-        <script src="comment/validation.js" type="text/javascript"></script>
-        <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function () {
-                
-                $('#up').click(function () {
-                    var num1 = parseInt($('.input-number').val()) + 1;
-                    $('.input-number').val(num1);   
-                    
-                    
-                });
-              
-                $('#down').click(function () {
-                    var num1 = parseInt($('.input-number').val()) - 1;
-                    $('.input-number').val(num1);                  
-                });
-                
-            });
-            function up(max) {
-                document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
-                if (document.getElementById("myNumber").value >= parseInt(max)) {
-                    document.getElementById("myNumber").value = max;
-                }
-            }
-            function down(min) {
-                document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
-                if (document.getElementById("myNumber").value <= parseInt(min)) {
-                    document.getElementById("myNumber").value = min;
-                }
-            }
-
-        </script>
-    </body>
+<script src="js/ajax/login.js" type="text/javascript"></script>
+<script src="comment/validation.js" type="text/javascript"></script>
+<script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
+</body>
 </html>

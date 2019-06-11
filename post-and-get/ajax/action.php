@@ -8,7 +8,7 @@ session_start();
 if (isset($_POST["action"]) == "ADD") {
    
     if (isset($_SESSION["shopping_cart"])) {
-
+      
         $is_available = 0;
 
         foreach ($_SESSION["shopping_cart"] as $key => $values) {
