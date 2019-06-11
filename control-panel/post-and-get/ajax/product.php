@@ -24,3 +24,13 @@ if ($_POST['action'] == 'GETSUBPRODUCTBYCATEGORY') {
     header('Content-type: application/json');
     exit();
 }
+if ($_POST['action'] == 'CONFIRM') {
+
+    $ADD_TO_CART = new AddToCart($_POST['id']);
+    $ADD_TO_CART->status = 'confirmed';
+    $result = $ADD_TO_CART->update();
+
+    echo json_encode($result);
+    header('Content-type: application/json');
+    exit();
+}
