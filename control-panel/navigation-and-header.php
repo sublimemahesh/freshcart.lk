@@ -392,7 +392,7 @@
                         </li> 
                     </ul>
                 </li> 
-                
+
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
@@ -413,7 +413,7 @@
                         </li> 
                     </ul>
                 </li> 
-                
+
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
@@ -434,14 +434,21 @@
                         </li> 
                     </ul>
                 </li> 
-                
+
                 <li>
                     <a href="manage-product-review.php" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
                         <span>Product Review</span>
-                    </a>
-                     
+                    </a>                     
                 </li> 
+                <li>
+                    <a href="manage-product-order.php" class="menu-toggle">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Product Order</span>
+                    </a>                     
+                </li> 
+                
+                 
             </ul>
         </div>
         <!-- #Menu -->

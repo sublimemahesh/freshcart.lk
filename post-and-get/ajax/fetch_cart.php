@@ -33,7 +33,7 @@ if (!empty($_SESSION["shopping_cart"])) {
                             </span>
                         </button>
                     </div>                                               
-                        <input  type="text" name="quantity"  id="quantity' . $value["product_id"] . '"     min="1"    class="form-control input-number text-center" value="1" />
+                        <input  type="text" name="quantity[]"  id="quantity' . $value["product_id"] . '"     min="1"    class="form-control input-number text-center" value="1" />
                     <div class="input-group-btn">
                      
                     <div  class="btn btn-default up"   >
