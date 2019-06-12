@@ -47,7 +47,7 @@ foreach ($_SESSION["shopping_cart"] as $product) {
 //$CART_FORM->product = $product_arr . '/' . $quantity_arr . '/' . $price_arr . '/' . $total_price;
 
 $CART_FORM->product = json_encode($product_array);
- 
+ $CART_FORM->status ='new';
 $CART_FORM->create();
 
 
