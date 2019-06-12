@@ -53,61 +53,6 @@ $(document).ready(function () {
         });
     });
 });
-$(document).ready(function () {
-
-    $('#confirm_order').click(function (event) {
-        event.preventDefault();
-
-        alert();
-        swal({
-            title: "INFO!",
-            text: "Do you really want to Checkout?...",
-            type: "info",
-            showCancelButton: true,
-            confirmButtonColor: "#2b982b",
-            confirmButtonText: "  Yes, Verify It!",
-            closeOnConfirm: false
-        }, function () {
-
-            //Send Form data
-            $.ajax({
-                url: "post-and-get/ajax/cart-form.php",
-                type: 'POST',
-                data: {
-                    id: id,
-                    quantity: quantity,
-                    price: price,
-                    total_price: total_price
-                },
-                dataType: "JSON",
-                success: function (result) {
-                    if (result.status === 'error') {
-                        swal({
-                            title: "Error!",
-                            text: "Error!...",
-                            type: 'error',
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
-                    } else {
-                        swal({
-                            title: "SUCCESS.!",
-                            text: "Data Send Successfully!...",
-                            type: 'success',
-                            timer: 1500,
-                            showConfirmButton: false
-                        }, function () {
-                            setTimeout(function () {
-                                window.location.replace("add-to-cart.php");
-                            }, 2000);
-                        });
-                    }
-                }
-            });
-        });
-
-    });
-});
 
 $('#confirm_order').click(function (event) {
     event.preventDefault();
@@ -118,7 +63,7 @@ $('#confirm_order').click(function (event) {
         text: "Do you really want to confirm this order?...",
         type: "info",
         showCancelButton: true,
-        confirmButtonColor: "#2b982b",
+        confirmButtonColor: "#ff9600",
         confirmButtonText: "  Yes, confirm It!",
         closeOnConfirm: false
     }, function () {
@@ -151,7 +96,59 @@ $('#confirm_order').click(function (event) {
                         showConfirmButton: false
                     }, function () {
                         setTimeout(function () {
-                            window.location.replace("manage-product-order.php");
+                            window.location.replace("confirm-orders.php");
+                        }, 2000);
+                    });
+                }
+            }
+        });
+    });
+
+});
+
+$('#cancle').click(function (event) {
+    event.preventDefault();
+    var id = $('#id').val();
+
+    swal({
+        title: "Cancel Order.!",
+        text: "Do you really want to cancel this order?...",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#fb483a",
+        confirmButtonText: "  Yes, cancel It!",
+        closeOnConfirm: false
+    }, function () {
+
+        //Send Form data
+        $.ajax({
+            url: "post-and-get/ajax/product.php",
+            type: 'POST',
+            data: {
+                id: id,
+                action: "CANCEL",
+            },
+
+            dataType: "JSON",
+            success: function (result) {
+                if (result.status === 'error') {
+                    swal({
+                        title: "Error!",
+                        text: "Error!...",
+                        type: 'error',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    swal({
+                        title: "SUCCESS.!",
+                        text: "Order has canceled!...",
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    }, function () {
+                        setTimeout(function () {
+                            window.location.replace("cancel-orders.php");
                         }, 2000);
                     });
                 }

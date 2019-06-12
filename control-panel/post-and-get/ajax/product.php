@@ -3,6 +3,7 @@
 include_once(dirname(__FILE__) . '/../../../class/include.php');
 include_once(dirname(__FILE__) . '/../../auth.php');
 
+//Get Product by category
 if ($_POST['action'] == 'GETPRODUCTBYCATEGORY') {
 
     $PRODUCT = new Product(NULL);
@@ -14,6 +15,7 @@ if ($_POST['action'] == 'GETPRODUCTBYCATEGORY') {
     exit();
 }
 
+//GEt subcategory product
 if ($_POST['action'] == 'GETSUBPRODUCTBYCATEGORY') {
 
     $SUB_CATEGORY = new SubCategory(NULL);
@@ -24,10 +26,23 @@ if ($_POST['action'] == 'GETSUBPRODUCTBYCATEGORY') {
     header('Content-type: application/json');
     exit();
 }
+
+//Confirm order
 if ($_POST['action'] == 'CONFIRM') {
 
     $ADD_TO_CART = new AddToCart($_POST['id']);
     $ADD_TO_CART->status = 'confirmed';
+    $result = $ADD_TO_CART->update();
+
+    echo json_encode($result);
+    header('Content-type: application/json');
+    exit();
+}
+//Cancel order
+if ($_POST['action'] == 'CANCEL') {
+
+    $ADD_TO_CART = new AddToCart($_POST['id']);
+    $ADD_TO_CART->status = 'canceled';
     $result = $ADD_TO_CART->update();
 
     echo json_encode($result);

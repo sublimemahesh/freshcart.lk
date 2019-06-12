@@ -441,14 +441,42 @@
                         <span>Product Review</span>
                     </a>                     
                 </li> 
+
                 <li>
-                    <a href="manage-product-order.php" class="menu-toggle">
+                    <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
                         <span>Product Order</span>
-                    </a>                     
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="new-orders.php">
+                                <i class="material-icons">shopping_cart</i>
+                                <span>New </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="confirm-orders.php">
+                                <i class="material-icons">assignment_turned_in</i>
+                                <span>Confirm </span>
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="deliver-orders.php">
+                                <i class="material-icons">airport_shuttle</i>
+                                <span>Deliver </span>
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="cancel-orders.php">
+                                <i class="material-icons">event_busy</i>
+                                <span>Cancel </span>
+                            </a>
+                        </li> 
+                    </ul>
                 </li> 
-                
-                 
+
+
+
             </ul>
         </div>
         <!-- #Menu -->

@@ -1,10 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-$id = '';
-$id = $_GET['id'];
-$ADD_TO_CART = new AddToCart($id);
-$CUSTOMER = new Customer($ADD_TO_CART->customer);
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +37,7 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    " <?php echo $CUSTOMER->name ?> " - Product Order
+                                    Manage Order Product
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
@@ -53,15 +49,14 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                             </div>
                             <div class="body">
                                 <div class="table-responsive">
-
                                     <div>
                                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th> 
-                                                    <th>Product</th>                                                      
-                                                    <th>Quantity</th>                                                      
-                                                    <th>Price</th>
+                                                    <th>Customer</th>                                                      
+                                                    <th>Status</th>                                                      
+                                                    <th>Options</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
@@ -74,64 +69,50 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                                             </tfoot>
                                             <tbody>
                                                 <?php
-                                                $price_array = array();
                                                 $ADDTOCART = new AddToCart(NULL);
-                                                foreach ($ADDTOCART->getProductById($id) as $key => $add_to_cart) {
-                                                    $PRODUCT = (json_decode($add_to_cart['product']));
-                                                    foreach ($PRODUCT as $key => $product) {
-                                                        $key++;
-                                                        ?>
-                                                        <tr id="div<?php echo $add_to_cart['id']; ?>">
-                                                            <td><?php echo $key; ?></td> 
+                                                foreach ($ADDTOCART->all() as $key => $add_to_cart) {
 
-                                                            <td> 
-                                                                <?php
-                                                                $PRODUCTS = new Product($product->product_id);
-                                                                echo $PRODUCTS->name;
-                                                                ?> 
-                                                            </td>
+                                                    $key++;
+                                                    ?>
+                                                    <tr id="div<?php echo $add_to_cart['id']; ?>">
+                                                        <td><?php echo $key; ?></td> 
+                                                        <td> 
+                                                            <?php
+                                                            $CUSTOMER = new Customer($add_to_cart['customer']);
+                                                            echo $CUSTOMER->name;
+                                                            ?>
 
-                                                            <td>
-                                                                <?php
-                                                                echo $product->product_quantity;
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($add_to_cart['status'] == 'confirmed') {
                                                                 ?>
-                                                            </td> 
-                                                            <td>  
+                                                                <p class="text-warning"><?php echo $add_to_cart['status'] ?></p>
                                                                 <?php
-                                                                echo 'Rs: ' . number_format($product->product_price, 2);
+                                                            } else if ($add_to_cart['status'] == 'canceled') {
                                                                 ?>
-                                                            </td>
-                                                        </tr>
+                                                                <p class="text-danger"><?php echo $add_to_cart['status'] ?></p>
 
-                                                        <?php
-                                                        array_push($price_array, $product->product_price);
-                                                    }
+                                                                <?php
+                                                            } else {
+                                                                ?>
+                                                                <p class="text-primary">New Order</p>                                                                
+
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </td> 
+                                                        <td>  
+                                                            <a href="view-product-order.php?id=<?php echo $add_to_cart['id'] ?>" title="View Product"> <button class="glyphicon glyphicon-eye-open edit-btn"></button></a>   
+                                                            <!--                                                          <a href="#"  class="delete-product-review" data-id="  "> <button class="glyphicon glyphicon-trash delete-btn"></button></a>-->
+                                                        </td>
+                                                    </tr>
+                                                    <?php
                                                 }
-                                                ?> 
-                                                <tr>
-                                                    <td colspan="3" align="right" style="font-size: 20px">
-                                                        <b> Total </b>
-                                                    </td>  
-                                                    <td  align="right" style="font-size: 20px">
-                                                        <b> <?php echo 'Rs: ' . number_format(json_encode(array_sum($price_array)), 2); ?> </b>
-                                                    </td>  
-                                                </tr>
+                                                ?>   
                                             </tbody>
                                         </table>
-                                        <form method="POST" id="form-data">
-                                            <div class="row">
-                                                <div class="col-md-9 ">
-                                                </div>
-                                                <div class="col-md-3 pull-right"  >                                              
-                                                    <input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>  
-                                                    <input type="submit" class="btn btn-warning" value="Confirm" id="confirm_order"/> || 
-                                                    <input type="submit" class="btn btn-primary" value="Deliver" id="deliver"/> || 
-                                                    <input type="submit" class="btn btn-danger" value="Cancle" id="cancle"/> 
-                                                </div>
-                                            </div>
-                                        </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -161,8 +142,9 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
         <script src="plugins/sweetalert/sweetalert.min.js"></script>
         <script src="js/admin.js"></script>
         <script src="js/pages/tables/jquery-datatable.js"></script>
-        <script src="js/demo.js"></script> 
-        <script src="js/admin-js/product.js" type="text/javascript"></script>
+        <script src="js/demo.js"></script>
+        <script src="delete/js/product-review.js" type="text/javascript"></script>
 
+    </body>
 
 </html> 

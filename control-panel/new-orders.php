@@ -8,7 +8,7 @@ include_once(dirname(__FILE__) . '/auth.php');
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Manage Order Product </title>
+        <title>New Product Order</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -37,7 +37,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Manage Order Product
+                                    New Product Order
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
@@ -70,39 +70,29 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <tbody>
                                                 <?php
                                                 $ADDTOCART = new AddToCart(NULL);
-                                                foreach ($ADDTOCART->all() as $key => $add_to_cart) {
-
-                                                    $key++;
-                                                    ?>
-                                                    <tr id="div<?php echo $add_to_cart['id']; ?>">
-                                                        <td><?php echo $key; ?></td> 
-                                                        <td> 
-                                                            <?php
-                                                            $CUSTOMER = new Customer($add_to_cart['customer']);
-                                                            echo $CUSTOMER->name;
-                                                            ?>
-
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            if ($add_to_cart['status'] == 'confirmed') {
-                                                                ?>
-                                                                <p class="text-success"><?php echo $add_to_cart['status'] ?></p>
+                                                foreach ($ADDTOCART->all() as $key => $add_to_cart) {                                                
+                                                    if ($add_to_cart['status'] == 'new') {
+                                                        ?>
+                                                        <tr id="div<?php echo $add_to_cart['id']; ?>">
+                                                            <td><?php echo $key; ?></td> 
+                                                            <td> 
                                                                 <?php
-                                                            } else {
+                                                                $CUSTOMER = new Customer($add_to_cart['customer']);
+                                                                echo $CUSTOMER->name;
                                                                 ?>
-                                                                <p class="text-danger">New Order</p>                                                                
 
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </td> 
-                                                        <td>  
-                                                            <a href="view-product-order.php?id=<?php echo $add_to_cart['id'] ?>" title="View Product"> <button class="glyphicon glyphicon-eye-open edit-btn"></button></a>   
-<!--                                                          <a href="#"  class="delete-product-review" data-id="  "> <button class="glyphicon glyphicon-trash delete-btn"></button></a>-->
-                                                        </td>
-                                                    </tr>
-                                                    <?php
+                                                            </td>
+                                                            <td>
+                                                                <p class="text-primary">New Order</p>                                                                
+
+                                                            </td> 
+                                                            <td>  
+                                                                <a href="view-product-order.php?id=<?php echo $add_to_cart['id'] ?>" title="View Product"> <button class="glyphicon glyphicon-eye-open edit-btn"></button></a>   
+                                                                <!--                                                          <a href="#"  class="delete-product-review" data-id="  "> <button class="glyphicon glyphicon-trash delete-btn"></button></a>-->
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
                                                 }
                                                 ?>   
                                             </tbody>
