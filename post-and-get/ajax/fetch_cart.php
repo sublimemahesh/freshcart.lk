@@ -1,5 +1,6 @@
 <?php
 
+include_once(dirname(__FILE__) . '/../../class/include.php');
 //featch_cart
 session_start();
 
@@ -12,6 +13,7 @@ $output .= '<table cellspacing="0" class="shop_table cart table">'
         . '<thead>'
         . '<tr>'
         . '<th width="20%">Product Name </th>'
+        . '<th width="20%">Image</th>'
         . '<th width="20%">Quantity</th>'
         . '<th width="20%">Price</th>'
         . '<th width="20%">Total</th>'
@@ -22,21 +24,24 @@ $output .= '<table cellspacing="0" class="shop_table cart table">'
 if (!empty($_SESSION["shopping_cart"])) {
 
     foreach ($_SESSION["shopping_cart"] as $key => $value) {
-
+        $PRODUCT = new Product($value["product_id"]);
+        
         $output .= '<tr class="cart_item">'
                 . '<td class="product-remove">' . $value["product_name"] . '</td>'
+                . '<td class="product-remove" >'
+                . '<img src="upload/product-categories/sub-category/product/photos/'.$PRODUCT->image_name.'" width="30%"/>'
+                . '</td>'
                 . '<td class="product-remove">'
-                . '<div class="input-group" style="width: 50%">
+                . '<div class="input-group" style="width: 70%">
                     <div class="input-group-btn">
                         <button   class="btn btn-default down" type="button">
                             <span class="glyphicon glyphicon-minus">                                                               
                             </span>
                         </button>
                     </div>                                               
-                        <input  type="text" name="quantity[]"  id="quantity' . $value["product_id"] . '"     min="1"    class="form-control input-number text-center" value="1" />
-                    <div class="input-group-btn">
-                     
-                    <div  class="btn btn-default up"   >
+                        <input  type="text"      min="1"    class="form-control input-number text-center" value="1" />
+                    <div class="input-group-btn">                     
+                    <div class="btn btn-default up"  >
                             <span class="glyphicon glyphicon-plus"></span>
                         </div>
                      </div>
@@ -55,7 +60,7 @@ if (!empty($_SESSION["shopping_cart"])) {
         $total_item = $total_item + 1;
     }
     $output .= '<tr>'
-            . '<td class="product-remove" colspan="3" align="right"> Total </td>'
+            . '<td class="product-remove" colspan="4" align="right"> Total </td>'
             . '<td class="product-remove"  align="right" >Rs: ' . number_format($total_price, 2) . '</td>'
             . '<td class="product-remove" > </td>'
             . '</tr>';

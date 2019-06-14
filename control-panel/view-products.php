@@ -52,7 +52,7 @@ $SUB_CATEGORY = new SubCategory($id);
                                 <h2> "<?php echo $SUB_CATEGORY->name ?>" - Create Products</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-product-categories.php">
+                                        <a href="create-sub-category.php?id=<?php echo $category ?>">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
@@ -63,7 +63,7 @@ $SUB_CATEGORY = new SubCategory($id);
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <select class="form-control" name="brand">
+                                                <select class="form-control" name="brand" required="true">
                                                     <option> -- Please Select the Brand -- </option> 
                                                     <?php
                                                     $BRAND = new Brand(NULL);
@@ -158,16 +158,16 @@ $SUB_CATEGORY = new SubCategory($id);
                                             ?>
                                             <div class="col-md-3"  id="div<?php echo $product['id']; ?>">
                                                 <div class="photo-img-container">
-                                                    <img src="../upload/product-categories/sub-product/product/photos/<?php echo $product['image_name']; ?>" class="img-responsive img-thumbnail">
+                                                    <img src="../upload/product-categories/sub-category/product/photos/<?php echo $product['image_name']; ?>" class="img-responsive img-thumbnail">
                                                 </div>
                                                 <div class="img-caption">
                                                     <p class="maxlinetitle"><?php echo $product['name']; ?></p>
                                                     <div class="d">
-                                                        <a href="#" class="delete-product" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
                                                         <a href="edit-product.php?id=<?php echo $product['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                         <a href="arrange-products.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
                                                         <a href="view-product-photos.php?id=<?php echo $product['id']; ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
-                                                        
+                                                        <a href="#" class="delete-product" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
+
                                                     </div>
                                                 </div>
                                             </div>

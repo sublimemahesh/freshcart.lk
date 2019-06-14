@@ -46,7 +46,7 @@ $PRODUCT = new Product($id);
         <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
         <link href="css/modle-login.css" rel="stylesheet" type="text/css"/>
-       
+
     </head>
     <body>
         <div class="wrap">
@@ -56,6 +56,7 @@ $PRODUCT = new Product($id);
                 <div class="content-shop">
                     <div class="container">
                         <div class="row">
+
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                 <div class="sidebar-shop sidebar-left">
                                     <div class="widget widget-related-product">
@@ -191,7 +192,7 @@ $PRODUCT = new Product($id);
                                             <div class="col-md-5 col-sm-12 col-xs-12">
                                                 <div class="detail-gallery">
                                                     <div class="mid">
-                                                        <img src="upload/product-categories/sub-product/product/photos/<?php echo $PRODUCT->image_name ?>" alt=""/>
+                                                        <img src="upload/product-categories/sub-category/product/photos/<?php echo $PRODUCT->image_name ?>" alt=""/>
                                                         <p><i class="fa fa-search"></i> Mouse over to zoom in</p>
                                                     </div>
                                                     <div class="carousel">
@@ -201,11 +202,11 @@ $PRODUCT = new Product($id);
                                                             foreach ($PRODUCT_PHOTO->getProductPhotosById($id) as $key => $product_photo) {
                                                                 if ($key === 1) {
                                                                     ?>
-                                                                    <li><a href="#" class="active"><img src="upload/product-categories/sub-product/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
+                                                                    <li><a href="#" class="active"><img src="upload/product-categories/sub-category/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
                                                                     <?php
                                                                 } else {
                                                                     ?> 
-                                                                    <li><a href="#"><img src="upload/product-categories/sub-product/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
+                                                                    <li><a href="#"><img src="upload/product-categories/sub-category/product/photos/gallery/<?php echo $product_photo['image_name'] ?>" alt=""/></a></li>
                                                                     <?php
                                                                 }
                                                             }
@@ -246,15 +247,49 @@ $PRODUCT = new Product($id);
                                                         $discount_price = $PRODUCT->price - $discount;
                                                         if ($PRODUCT->discount > 0) {
                                                             ?>
-                                                        <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                            <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                            <input type="hidden" id="price<?php echo $PRODUCT->id ?>" class="price-format total_price_amount" value="<?php echo $discount_price ?>"/>
                                                             <?php ?>
                                                             <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
                                                         <?php } else if ($PRODUCT->discount == 0) { ?>
                                                             <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
+                                                            <input type="hidden" id="price<?php echo $PRODUCT->id ?>" class="price-format total_price_amount" value="<?php echo $PRODUCT->price ?>"/>
                                                         <?php } ?>
                                                     </div>
 
-                                                    <div class="attr-info">
+                                                    <div class="attr-info"> 
+
+
+                                                        <!--                                                        <div class="attr-product">
+                                                                                                                    <label>Qty</label>
+                                                                                                                    <div class="info-qty">
+                                                                                                                        <a class="qty-down" href="#"><i class="fa fa-minus"></i></a>                                                                
+                                                                                                                        <span class="qty-val">1</span>
+                                                                                                                        <a class="qty-up" href="#"><i class="fa fa-plus"></i></a>
+                                                                                                                    </div>
+                                                                                                                </div>-->
+                                                        <div class="attr-product">
+                                                            <label>Qty</label>
+                                                            <div class="attr-color"> 
+                                                                <div class="input-group">
+
+                                                                    <div class="input-group-btn">
+                                                                        <button   class="btn btn-sm btn-default down">
+                                                                            <span class="glyphicon glyphicon-minus">                                                               
+                                                                            </span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <input  type="text" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>"     min="1"    class="quty-size form-control input-number text-center" value="1" />
+                                                                    <div class="input-group-btn"><button   class="btn btn-default btn-sm up"  >
+                                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div> 
+                                                        </div> 
+
                                                         <div class="attr-product">
                                                             <label>Color</label>
                                                             <div class="attr-color">
@@ -283,8 +318,13 @@ $PRODUCT = new Product($id);
                                                             <span class="size-chart">Size Chart</span>
                                                         </div>
 
-                                                        <a href="" class="btn  btn-rounded mb-4 addcart-link" data-toggle="modal" data-target="#modalLoginForm" style="line-height:0px;padding-top: 11px;"> 
-                                                            <i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                                        <input type="hidden" id="discount" value="<?php echo $PRODUCT->discount ?>"/>
+                                                        <input type="hidden" id="price" value="<?php echo $PRODUCT->price ?>"/>
+                                                        <input type="hidden" id="quantity<?php echo $PRODUCT->id ?>" value="1"/>
+                                                        <input type="hidden" id="max" value="<?php echo $PRODUCT->unite ?>"/>  
+                                                        <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
+                                                        <button type="button" class="btn btn-default add_to_cart  btn-addcart "   name="add_to_cart"  id="<?php echo $PRODUCT->id ?>" > <i class="fa fa-shopping-cart"></i> Add to Cart</button>
+
 
                                                         <div class="product-social-extra">
                                                             <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
@@ -314,20 +354,11 @@ $PRODUCT = new Product($id);
                                             <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane active" id="details">
                                                     <div class="table-content-tab-detail">
-                                                        <div class="title-table-detail"><span>Return Policy</span></div>
-                                                        <div class="icon-table-detail"><img src="images/grid/rv1.png" alt="" /></div>
-                                                        <div class="info-table-detail">
-                                                            <p>If the product you receive is not as described or low quality, the seller promises that you may return it before order completion (when you click ‘Confirm Order Received’ or exceed confirmation timeframe) and receive a full refund. The return shipping fee will be paid by you. Or, you can choose to keep the product and agree the refund amount directly with the seller.</p>
+                                                        <div class="info-table-detail text-justify">
+                                                            <?php echo $PRODUCT->description ?>
                                                         </div>
                                                     </div>
-                                                    <div class="table-content-tab-detail">
-                                                        <div class="title-table-detail"><span>Seller Service</span></div>
-                                                        <div class="icon-table-detail"><img src="images/grid/rv2.png" alt="" /></div>
-                                                        <div class="info-table-detail">
-                                                            <h3>On-time Delivery</h3>
-                                                            <p>If you do not receive your purchase within 60 days, you can ask for a full refund before order completion (when you click ‘Confirm Order Received’ or exceed confirmation timeframe).</p>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane" id="feedback">
                                                     <div class="inner-content-tab-detail">
@@ -486,6 +517,7 @@ $PRODUCT = new Product($id);
                                                                                             <input type="hidden"   name="customer" value="<?php echo $_SESSION['id'] ?>">
                                                                                             <input type="hidden"   name="image_name" value="<?php echo $_SESSION['image_name'] ?>">
                                                                                             <?php
+                                                                                            echo $_SESSION['id'];
                                                                                             if (empty($_SESSION['id'])) {
                                                                                                 ?>
                                                                                                 <a  href="#myModal" class="trigger-btn" data-toggle="modal" id="model-button"><input type="submit" name="submit" id="Btn-z"   class="Btn-z form-control btn btn-login" value="Add review"></a>
@@ -719,85 +751,16 @@ $PRODUCT = new Product($id);
                                                             <span><label>55%</label> OFF</span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- End Item -->
+                                                </div> 
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- End Upsell Detail -->
+                                    </div> 
                                 </div> 
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- End Content Shop -->
-            </div>
-
-
-            <!--loging -form-->
-            <!-- Modal HTML -->
-
-            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold"><b><?php echo $PRODUCT->name ?></b>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </h4>
-
-                        </div>
-                        <div class="modal-body mx-3">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="thumbnail">
-                                        <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/<?php echo $PRODUCT->image_name ?>"> 
-                                    </div>
-                                </div>
-                                <div class="col-md-8"> 
-                                    <p><?php echo $PRODUCT->short_description ?></p>
-                                    <div class="col-md-6">
-
-                                        <label>Price:</label>
-                                        <input type="text" id="price<?php echo $PRODUCT->id ?>" class="price-format total_price_amount" value="<?php echo $discount_price ?>"/>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="attr-product">
-                                            <label>Quantity: </label>
-                                            <div class="input-group">
-                                                <div class="input-group-btn">
-                                                    <button id="down" class="btn btn-default">
-                                                        <span class="glyphicon glyphicon-minus">                                                               
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                               
-                                                <input  type="text" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>"     min="1"    class="form-control input-number text-center" value="1" />
-                                                <div class="input-group-btn"><button id="up" class="btn btn-default"  >
-                                                        <span class="glyphicon glyphicon-plus"></span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </div>  
-                            </div>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <input type="hidden" id="discount" value="<?php echo $PRODUCT->discount ?>"/>
-                            <input type="hidden" id="price" value="<?php echo $PRODUCT->price ?>"/>
-                            <input type="hidden" id="max" value="<?php echo $PRODUCT->unite ?>"/>  
-                            <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
-                            <button  class="btn btn-default add_to_cart" name="add_to_cart"  id="<?php echo $PRODUCT->id ?>"/> <i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div> 
+            </div> 
         </div>
     </div>
 
@@ -820,5 +783,8 @@ $PRODUCT = new Product($id);
 <script src="js/ajax/login.js" type="text/javascript"></script>
 <script src="comment/validation.js" type="text/javascript"></script>
 <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
+<script>
+
+</script>
 </body>
 </html>

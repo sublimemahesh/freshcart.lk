@@ -123,10 +123,10 @@ $PRODUCT = new Product($id);
 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="file" id="image" class="form-control" value="<?php echo $PRODUCT->image_name; ?>"  name="image">
-                                                <img src="../upload/product-categories/product/photos/<?php echo $PRODUCT->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
-                                            </div>
+                                            
+                                            <input type="file" id="image" class="form-control" value="<?php echo $PRODUCT->image_name; ?>"  name="image" required="true">
+                                                <img src="../upload/product-categories/sub-category/product/photos/<?php echo $PRODUCT->image_name; ?>"  class="  img img-responsive img-thumbnail"  alt="old image" width="20%" >
+                                         
                                         </div>
                                     </div>
                                     <div class="col-sm-12">

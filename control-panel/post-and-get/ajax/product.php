@@ -49,3 +49,15 @@ if ($_POST['action'] == 'CANCEL') {
     header('Content-type: application/json');
     exit();
 }
+ 
+//Deliver order
+if ($_POST['action'] == 'DELIVER') {
+   
+    $ADD_TO_CART = new AddToCart($_POST['id']);
+    $ADD_TO_CART->status = $_POST['type'];
+    $result = $ADD_TO_CART->update();
+
+    echo json_encode($result);
+    header('Content-type: application/json');
+    exit();
+}
