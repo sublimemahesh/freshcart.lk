@@ -1,4 +1,12 @@
 /*General*/
+
+.quty-size{
+    height: 30px;
+}
+#price-padd{
+    padding-left: 0px;
+    padding-top: 15px;
+}
 .product {
     width: 30%;
     margin: 30px;
@@ -2988,6 +2996,32 @@ a:focus {
     -webkit-transition:all 0.3s ease-out 0s;
     transition:all 0.3s ease-out 0s;
 }
+.btn-addcart {
+    background: #f00 none repeat scroll 0 0;
+    color: #fff;
+    display: block;
+    height: 35px;
+
+    margin: 10px 0 0 60px;
+    max-width: 240px;
+    text-align: center;
+    width: 100%;
+
+
+}
+.btn-addcart:hover{
+    background: #f00 none repeat scroll 0 0;
+    color: #fff;
+    display: block;
+    height: 35px;
+
+    margin: 10px 0 0 60px;
+    max-width: 240px;
+    text-align: center;
+    width: 100%;
+
+
+}
 .addcart-link i {
     margin-right: 5px;
     transition:all 0.3s ease-out 0s;
@@ -3069,7 +3103,7 @@ a:focus {
 }
 .info-table-detail  p {
     margin: 0;
-    padding: 0 20px 0 0;
+    padding: 0 20px 0 20px;
 }
 .info-table-detail  h3 {
     font-size: 14px;

@@ -104,10 +104,10 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                                                 <div class="img-caption">
                                                     <p class="maxlinetitle"><?php echo $sub_category['name']; ?></p>
                                                     <div class="d">
-                                                        <a href="#" class="delete-sub-product" data-id="<?php echo $sub_category['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
-                                                        <a href="edit-sub-category.php?id=<?php echo $sub_category['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
-                                                        <a href="arrange-sub-product.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
-                                                        <a href="view-products.php?id=<?php echo $sub_category['id']; ?>&category=<?php echo $id ?>" title="Add Product">  <button class="glyphicon glyphicon-briefcase defult"></button></a>
+                                                        <a href="edit-sub-category.php?id=<?php echo $sub_category['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn" title="Edit"></button></a> | 
+                                                        <a href="arrange-sub-product.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn" title="Arrange"></button></a> | 
+                                                        <a href="#" class="delete-sub-product" data-id="<?php echo $sub_category['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn" title="Delete"></button></a> | 
+                                                        <a href="view-products.php?id=<?php echo $sub_category['id']; ?>&category=<?php echo $id ?>" title="Add Products">  <button class="glyphicon glyphicon-briefcase defult"></button></a>
 
                                                     </div>
                                                 </div>

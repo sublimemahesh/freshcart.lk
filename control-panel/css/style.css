@@ -4241,8 +4241,8 @@ section.content {
 .thumbnail h3 {
     font-weight: bold;
     font-size: 17px; }
-
-/* Modals ====================================== */
+/*
+ Modals ====================================== 
 .modal .modal-header {
     border: none;
     padding: 25px 25px 5px 25px; }
@@ -4514,7 +4514,7 @@ section.content {
 .modal-col-white .modal-footer .btn-link {
     color: #fff !important; }
 .modal-col-white .modal-footer .btn-link:hover, .modal-col-white .modal-footer .btn-link:active, .modal-col-white .modal-footer .btn-link:focus {
-    background-color: rgba(0, 0, 0, 0.12); }
+    background-color: rgba(0, 0, 0, 0.12); }*/
 
 /* Labels ====================================== */
 .label {

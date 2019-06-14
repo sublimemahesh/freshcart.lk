@@ -54,6 +54,7 @@ $(document).ready(function () {
     });
 });
 
+//Confirm order
 $('#confirm_order').click(function (event) {
     event.preventDefault();
     var id = $('#id').val();
@@ -106,6 +107,7 @@ $('#confirm_order').click(function (event) {
 
 });
 
+//Cancel order
 $('#cancle').click(function (event) {
     event.preventDefault();
     var id = $('#id').val();
@@ -157,3 +159,73 @@ $('#cancle').click(function (event) {
     });
 
 });
+
+//Deliver order
+
+$('#deliver').click(function (event) {
+    event.preventDefault();
+
+    var type = $('#type').val();
+    var id = $('#id').val();
+
+    if (!$('#type').val() || $('#type').val().length === 0) {
+        swal({
+            title: "Error!",
+            text: "Please enter the deliver type",
+            type: 'error',
+            timer: 2000,
+            showConfirmButton: false
+        });
+
+    } else {
+
+        swal({
+            title: "Deliver Order.!",
+            text: "Do you really want to deliver this order?...",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#00b0e4",
+            confirmButtonText: "  Yes, deliver It!",
+            closeOnConfirm: false
+        }, function () {
+
+            //Send Form data
+            $.ajax({
+                url: "post-and-get/ajax/product.php",
+                type: 'POST',
+                data: {
+                    id: id,
+                    type: type,
+                    action: "DELIVER"
+                },
+                dataType: "JSON",
+                success: function (result) {
+                    if (result.status === 'error') {
+                        swal({
+                            title: "Error!",
+                            text: "Error!...",
+                            type: 'error',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        swal({
+                            title: "SUCCESS.!",
+                            text: "Order has canceled!...",
+                            type: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }, function () {
+                            setTimeout(function () {
+                                $('#myModal').modal('hide');
+                                window.location.replace("deliver-orders.php");
+                            }, 2000);
+                        });
+                    }
+                }
+            });
+        });
+    }
+});
+
+

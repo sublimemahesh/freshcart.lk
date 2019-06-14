@@ -8,7 +8,7 @@ include_once(dirname(__FILE__) . '/auth.php');
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Manage Order Product </title>
+        <title>Deliver Orders </title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -37,7 +37,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Manage Order Product
+                                    Manage Deliver Orders
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
@@ -71,43 +71,45 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                 <?php
                                                 $ADDTOCART = new AddToCart(NULL);
                                                 foreach ($ADDTOCART->all() as $key => $add_to_cart) {
-
-                                                    $key++;
-                                                    ?>
-                                                    <tr id="div<?php echo $add_to_cart['id']; ?>">
-                                                        <td><?php echo $key; ?></td> 
-                                                        <td> 
-                                                            <?php
-                                                            $CUSTOMER = new Customer($add_to_cart['customer']);
-                                                            echo $CUSTOMER->name;
-                                                            ?>
-
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            if ($add_to_cart['status'] == 'confirmed') {
-                                                                ?>
-                                                                <p class="text-warning"><?php echo $add_to_cart['status'] ?></p>
+                                                    if ($add_to_cart['status'] == 'mail' || $add_to_cart['status'] == 'vehicle' || $add_to_cart['status'] =='moter_bick') {
+                                                        
+                                                        ?>
+                                                        <tr id="div<?php echo $add_to_cart['id']; ?>">
+                                                            <td><?php echo $key; ?></td> 
+                                                            <td> 
                                                                 <?php
-                                                            } else if ($add_to_cart['status'] == 'canceled') {
+                                                                $CUSTOMER = new Customer($add_to_cart['customer']);
+                                                                echo $CUSTOMER->name;
                                                                 ?>
-                                                                <p class="text-danger"><?php echo $add_to_cart['status'] ?></p>
 
+                                                            </td>
+                                                            <td>
                                                                 <?php
-                                                            } else {
+                                                                if ($add_to_cart['status'] == 'mail') {
+                                                                    ?>
+                                                                    <p class="text-danger">Mail</p>
+                                                                    <?php
+                                                                } else if ($add_to_cart['status'] == 'vehicle') {
+                                                                    ?>
+                                                                    <p class="text-danger">Vehicle</p>
+
+                                                                    <?php
+                                                                } else if ($add_to_cart['status'] == 'moter_bick') {
+                                                                    ?>
+                                                                    <p class="text-danger">Moter Bick</p> 
+
+
+                                                                    <?php
+                                                                }
                                                                 ?>
-                                                                <p class="text-primary">New Order</p>                                                                
-
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </td> 
-                                                        <td>  
-                                                            <a href="view-product-order.php?id=<?php echo $add_to_cart['id'] ?>" title="View Product"> <button class="glyphicon glyphicon-eye-open edit-btn"></button></a>   
-                                                            <!--                                                          <a href="#"  class="delete-product-review" data-id="  "> <button class="glyphicon glyphicon-trash delete-btn"></button></a>-->
-                                                        </td>
-                                                    </tr>
-                                                    <?php
+                                                            </td> 
+                                                            <td>  
+                                                                <a href="view-product-order.php?id=<?php echo $add_to_cart['id'] ?>" title="View Product"> <button class="glyphicon glyphicon-eye-open edit-btn"></button></a>   
+                                                                <!--                                                          <a href="#"  class="delete-product-review" data-id="  "> <button class="glyphicon glyphicon-trash delete-btn"></button></a>-->
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
                                                 }
                                                 ?>   
                                             </tbody>
@@ -119,6 +121,8 @@ include_once(dirname(__FILE__) . '/auth.php');
                     </div>
 
                 </div>
+
+
         </section>
 
         <script src="plugins/jquery/jquery.min.js"></script>

@@ -71,7 +71,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <label for="icon" class="hidden-lg hidden-md">Icon</label>
-                                                    <input type="file" id="icon" class="form-control" name="icon"   >
+                                                    <input type="file" id="icon" class="form-control" name="icon"    required="true">
                                                 </div>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <label for="banner" class="hidden-lg hidden-md">Banner</label>
-                                                    <input type="file" id="banner" class="form-control" name="banner"   >
+                                                    <input type="file" id="banner" class="form-control" name="banner"   required="true" >
                                                 </div>
                                             </div>
                                         </div>

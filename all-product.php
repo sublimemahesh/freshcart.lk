@@ -43,6 +43,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <link rel="stylesheet" type="text/css" href="css/libs/settings.css"/>
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
+        <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -201,7 +202,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                 <?php include './footer.php'; ?>
                 <!-- End Footer -->
             </div>
- 
+
         </div>
         <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
@@ -213,6 +214,9 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
+
+        <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script src="js/ajax/product.js" type="text/javascript"></script>
+        <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
     </body>
 </html>

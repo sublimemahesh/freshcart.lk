@@ -45,7 +45,7 @@ $PRODUCT = new Product($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $PRODUCT->name ?>" - Create Product Photos</h2>
+                                <h2> "<?php echo $PRODUCT->name ?>" - Product Photos</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="manage-product-categories.php">
@@ -73,13 +73,11 @@ $PRODUCT = new Product($id);
                                         </div>
                                     </div>
 
-
                                     <div class="col-md-12"> 
                                         <input type="hidden" id="id" value="<?php echo $PRODUCT->id; ?>" name="id"/>
                                         <input type="submit" name="create" class="btn btn-primary TYPEm-t-15 waves-effect" value="create"/>
                                     </div>
                                 </form>
-
                             </div>
                             <div class="row">
 
@@ -99,7 +97,7 @@ $PRODUCT = new Product($id);
                                             ?>
                                             <div class="col-md-3"  id="div<?php echo $product_photo['id']; ?>">
                                                 <div class="photo-img-container">
-                                                    <img src="../upload/product-categories/sub-product/product/photos/gallery/thumb/<?php echo $product_photo['image_name']; ?>" class="img-responsive img-thumbnail">
+                                                    <img src="../upload/product-categories/sub-category/product/photos/gallery/thumb/<?php echo $product_photo['image_name']; ?>" class="img-responsive img-thumbnail">
                                                 </div>
                                                 <div class="img-caption">
                                                     <p class="maxlinetitle"><?php echo $product_photo['caption']; ?></p> 

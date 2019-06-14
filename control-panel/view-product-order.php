@@ -120,14 +120,39 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                                         </table>
                                         <form method="POST" id="form-data">
                                             <div class="row">
-                                                <div class="col-md-9 ">
-                                                </div>
-                                                <div class="col-md-3 pull-right"  >                                              
-                                                    <input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>  
-                                                    <input type="submit" class="btn btn-warning" value="Confirm" id="confirm_order"/> || 
-                                                    <input type="submit" class="btn btn-primary" value="Deliver" id="deliver"/> || 
-                                                    <input type="submit" class="btn btn-danger" value="Cancle" id="cancle"/> 
-                                                </div>
+                                                <?php if ($ADD_TO_CART->status == 'new') { ?>
+
+                                                    <div class="col-md-10 ">
+                                                    </div>
+                                                    <div class="col-md-2 pull-right"  >   
+
+                                                        <input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>  
+                                                        <input type="submit" class="btn btn-warning" value="Confirm" id="confirm_order"/> || 
+                                                        <input type="submit" class="btn btn-danger" value="Cancle" id="cancle"/> 
+                                                    </div>
+
+                                                <?php } else if ($ADD_TO_CART->status == 'mail' || $ADD_TO_CART->status == 'vehicle' || $ADD_TO_CART->status == 'moter_bick') { ?>
+
+                                                    <div class="col-md-10 ">
+                                                    </div>
+                                                    <div class="col-md-2 pull-right"  >   
+
+                                                        <input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>  
+                                                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Deliver</button> ||   
+                                                        <input type="submit" class="btn btn-danger" value="Cancle" id="cancle"/> 
+                                                    </div>
+                                                <?php } else {
+                                                    ?>
+                                                    <div class="col-md-9 ">
+                                                    </div>
+                                                    <div class="col-md-3 pull-right"  >  
+                                                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Deliver</button> ||  
+                                                        <input type="submit" class="btn btn-danger" value="Cancle" id="cancle"/> 
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>
+
                                             </div>
                                         </form>
                                     </div>
@@ -136,7 +161,45 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                             </div>
                         </div>
                     </div>
+                </div>
 
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog"> 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h1 class="modal-title text-center">Deliver By</h1>
+                            </div> 
+                            <div class="modal-body"> 
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 hidden-sm hidden-xs form-control-label">
+                                        <label for="type">Type</label>
+                                    </div>
+                                    <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 " id="p-margin-0">
+                                        <div class="form-group">                                          
+                                            <select  class="form-control" name="type" id="type">
+                                                <option selected value=""> -- Please select the type -- </option>
+                                                <option value="mail">Mail</option>
+                                                <option value="vehicle">Vehicle</option>
+                                                <option value="moter_bick">Motor Bick</option>
+                                            </select>                                              
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="modal-footer">
+                                <input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
+                                <input type="submit" class="btn btn-info" value="Submit" id="deliver" /> || 
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>  
+
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
         </section>
 

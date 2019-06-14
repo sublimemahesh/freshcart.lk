@@ -37,7 +37,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Confirm Orders
+                                   Manage Confirm Orders
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>

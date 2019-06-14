@@ -6,7 +6,7 @@ session_start();
 
 
 if (isset($_POST["action"]) == "ADD") {
-   
+  
     if (isset($_SESSION["shopping_cart"])) {
       
         $is_available = 0;
@@ -29,6 +29,7 @@ if (isset($_POST["action"]) == "ADD") {
             );
             $_SESSION["shopping_cart"][] = $iteam_array;
         }
+          
     } else {
         $iteam_array = array(
             'product_id' => $_POST["product_id"],
@@ -38,7 +39,7 @@ if (isset($_POST["action"]) == "ADD") {
         );
         $_SESSION["shopping_cart"][] = $iteam_array;
     }
-    
+     
 }
 
  
