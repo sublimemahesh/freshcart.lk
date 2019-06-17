@@ -3,15 +3,6 @@
 include './class/include.php';
 include './auth.php';
 
-//
-//if (!isset($_SESSION)) {
-//    session_start();
-//}
-//
-//if (isset($_SESSION["id"])) {
-//    $CUSTOMER = new Customer($_SESSION["id"]);
-//}
-
 $id = '';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -61,86 +52,50 @@ $PRODUCT = new Product($id);
                                 <div class="sidebar-shop sidebar-left">
                                     <div class="widget widget-related-product">
                                         <h2 class="widget-title">RELATED PRODUCTS</h2>
-                                        <ul class="list-product-related">
-                                            <li class="clearfix">
-                                                <div class="product-related-thumb">
-                                                    <a href="#"><img src="images/photos/extras/3.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="product-related-info">
-                                                    <h3 class="title-product"><a href="#">Burberry Pink</a></h3>
-                                                    <div class="info-price">
-                                                        <span>$59.52</span><del>$17.96</del>
+                                        <ul class="list-product-related  scroll-bar"  >
+                                            <?php
+                                            foreach ($PRODUCT->getProductBySubCategories($PRODUCT->sub_category) as $products) {
+                                                ?>
+                                                <li class="clearfix">
+                                                    <div class="product-related-thumb">
+                                                        <a href="#"><img src="upload/product-categories/sub-category/product/photos/<?php echo $products['image_name'] ?>" alt="" /></a>
                                                     </div>
-                                                    <div class="product-rating">
-                                                        <div class="inner-rating" style="width:100%"></div>
-                                                        <span>(6s)</span>
+                                                    <div class="product-related-info">
+                                                        <h3 class="title-product"><a href="#"><?php echo $products['name'] ?></a></h3>
+                                                        <div class="info-price">
+                                                            <div class="info-price info-price-detail">
+                                                                <?php
+                                                                $price_amount = 0;
+                                                                $discount = 0;
+
+                                                                $discount = $products['discount'];
+                                                                $price_amount = $products['price'];
+
+                                                                $discount = ($price_amount * $discount) / 100;
+                                                                $discount_price =$products['price'] - $discount;
+                                                                if ( $products['discount'] > 0) {
+                                                                    ?>
+                                                                    <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                                     <?php ?>
+                                                                    <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
+                                                                <?php } else if ($PRODUCT->discount == 0) { ?>
+                                                                    <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
+                                                                 <?php } ?>
+                                                            </div>
+                                                           
+                                                        </div>
+<!--                                                        <div class="product-rating">
+                                                            <div class="inner-rating" style="width:100%"></div>
+                                                            <span>(6s)</span>   
+                                                        </div>-->
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix">
-                                                <div class="product-related-thumb">
-                                                    <a href="#"><img src="images/photos/extras/14.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="product-related-info">
-                                                    <h3 class="title-product"><a href="#">Burberry Pink</a></h3>
-                                                    <div class="info-price">
-                                                        <span>$59.52</span><del>$17.96</del>
-                                                    </div>
-                                                    <div class="product-rating">
-                                                        <div class="inner-rating" style="width:100%"></div>
-                                                        <span>(6s)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix">
-                                                <div class="product-related-thumb">
-                                                    <a href="#"><img src="images/photos/extras/13.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="product-related-info">
-                                                    <h3 class="title-product"><a href="#">Burberry Pink</a></h3>
-                                                    <div class="info-price">
-                                                        <span>$59.52</span><del>$17.96</del>
-                                                    </div>
-                                                    <div class="product-rating">
-                                                        <div class="inner-rating" style="width:100%"></div>
-                                                        <span>(6s)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix">
-                                                <div class="product-related-thumb">
-                                                    <a href="#"><img src="images/photos/extras/21.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="product-related-info">
-                                                    <h3 class="title-product"><a href="#">Burberry Pink</a></h3>
-                                                    <div class="info-price">
-                                                        <span>$59.52</span><del>$17.96</del>
-                                                    </div>
-                                                    <div class="product-rating">
-                                                        <div class="inner-rating" style="width:100%"></div>
-                                                        <span>(6s)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix">
-                                                <div class="product-related-thumb">
-                                                    <a href="#"><img src="images/photos/extras/2.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="product-related-info">
-                                                    <h3 class="title-product"><a href="#">Burberry Pink</a></h3>
-                                                    <div class="info-price">
-                                                        <span>$59.52</span><del>$17.96</del>
-                                                    </div>
-                                                    <div class="product-rating">
-                                                        <div class="inner-rating" style="width:100%"></div>
-                                                        <span>(6s)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            <?php } ?>
+
                                         </ul>
                                     </div>
                                     <!-- End Related Product -->
-                                    <div class="widget widget-adv">
+<!--                                    <div class="widget widget-adv">
                                         <h2 class="title-widget-adv">
                                             <span>Week</span>
                                             <strong>big sale</strong>
@@ -180,7 +135,7 @@ $PRODUCT = new Product($id);
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <!-- End Adv -->
                                 </div>
                                 <!-- End Sidebar Shop -->
@@ -257,38 +212,15 @@ $PRODUCT = new Product($id);
                                                         <?php } ?>
                                                     </div>
 
-                                                    <div class="attr-info"> 
-
-
-                                                        <!--                                                        <div class="attr-product">
-                                                                                                                    <label>Qty</label>
-                                                                                                                    <div class="info-qty">
-                                                                                                                        <a class="qty-down" href="#"><i class="fa fa-minus"></i></a>                                                                
-                                                                                                                        <span class="qty-val">1</span>
-                                                                                                                        <a class="qty-up" href="#"><i class="fa fa-plus"></i></a>
-                                                                                                                    </div>
-                                                                                                                </div>-->
+                                                    <div class="attr-info">  
                                                         <div class="attr-product">
                                                             <label>Qty</label>
-                                                            <div class="attr-color"> 
-                                                                <div class="input-group">
+                                                            <div class="qty">
+                                                                <input type="number" name="quantity" min="1"   id="quantity<?php echo $PRODUCT->id ?>"    class=" form-control form-input-design"  value="1"/>
 
-                                                                    <div class="input-group-btn">
-                                                                        <button   class="btn btn-sm btn-default down">
-                                                                            <span class="glyphicon glyphicon-minus">                                                               
-                                                                            </span>
-                                                                        </button>
-                                                                    </div>
-
-                                                                    <input  type="text" name="quantity"  id="quantity<?php echo $PRODUCT->id ?>"     min="1"    class="quty-size form-control input-number text-center" value="1" />
-                                                                    <div class="input-group-btn"><button   class="btn btn-default btn-sm up"  >
-                                                                            <span class="glyphicon glyphicon-plus"></span>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div> 
+                                                            </div>
                                                         </div> 
+
 
                                                         <div class="attr-product">
                                                             <label>Color</label>
@@ -320,8 +252,7 @@ $PRODUCT = new Product($id);
 
                                                         <input type="hidden" id="discount" value="<?php echo $PRODUCT->discount ?>"/>
                                                         <input type="hidden" id="price" value="<?php echo $PRODUCT->price ?>"/>
-                                                        <input type="hidden" id="quantity<?php echo $PRODUCT->id ?>" value="1"/>
-                                                        <input type="hidden" id="max" value="<?php echo $PRODUCT->unite ?>"/>  
+                                                        <input type="hidden" id="quantity<?php echo $PRODUCT->id ?>" value="1"/> 
                                                         <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
                                                         <button type="button" class="btn btn-default add_to_cart  btn-addcart "   name="add_to_cart"  id="<?php echo $PRODUCT->id ?>" > <i class="fa fa-shopping-cart"></i> Add to Cart</button>
 
@@ -501,7 +432,7 @@ $PRODUCT = new Product($id);
                                                                                     </div>
 
                                                                                     <div class="form-group">
-                                                                                        <textarea rows="5" class="form-control" cols="8" name="comment" id="comment"></textarea>
+                                                                                        <textarea rows="5" class="form-control" cols="8" name="comment" id="comment" placeholder="Comment "></textarea>
                                                                                     </div> 
                                                                                     <div class="form-group">
                                                                                         <div class="col-lg-5" style="padding-left: 0px;">
@@ -517,7 +448,6 @@ $PRODUCT = new Product($id);
                                                                                             <input type="hidden"   name="customer" value="<?php echo $_SESSION['id'] ?>">
                                                                                             <input type="hidden"   name="image_name" value="<?php echo $_SESSION['image_name'] ?>">
                                                                                             <?php
-                                                                                            echo $_SESSION['id'];
                                                                                             if (empty($_SESSION['id'])) {
                                                                                                 ?>
                                                                                                 <a  href="#myModal" class="trigger-btn" data-toggle="modal" id="model-button"><input type="submit" name="submit" id="Btn-z"   class="Btn-z form-control btn btn-login" value="Add review"></a>
@@ -569,7 +499,7 @@ $PRODUCT = new Product($id);
                                         </div>
                                     </div>
                                     <!-- End Tab Detail -->
-                                    <div class="upsell-detail">
+<!--                                    <div class="upsell-detail">
                                         <h2 class="title-default">UPSELL PRODUCTS</h2>
                                         <div class="upsell-detail-slider">
                                             <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1],[600,2],[1024,3]]">
@@ -601,7 +531,7 @@ $PRODUCT = new Product($id);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Item -->
+                                                 End Item 
                                                 <div class="item">
                                                     <div class="item-product">
                                                         <div class="product-thumb">
@@ -630,7 +560,7 @@ $PRODUCT = new Product($id);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Item -->
+                                                 End Item 
                                                 <div class="item">
                                                     <div class="item-product">
                                                         <div class="product-thumb">
@@ -662,7 +592,7 @@ $PRODUCT = new Product($id);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Item -->
+                                                 End Item 
                                                 <div class="item">
                                                     <div class="item-product">
                                                         <div class="product-thumb">
@@ -691,7 +621,7 @@ $PRODUCT = new Product($id);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Item -->
+                                                 End Item 
                                                 <div class="item">
                                                     <div class="item-product">
                                                         <div class="product-thumb">
@@ -720,7 +650,7 @@ $PRODUCT = new Product($id);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Item -->
+                                                 End Item 
                                                 <div class="item">
                                                     <div class="item-product">
                                                         <div class="product-thumb">
@@ -754,7 +684,7 @@ $PRODUCT = new Product($id);
                                                 </div> 
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div> -->
                                 </div> 
                             </div>
                         </div>

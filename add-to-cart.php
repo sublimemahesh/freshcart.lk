@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-include './class/include.php'; 
+include './class/include.php';
 ?>
 <html lang="en-US">
     <head>
@@ -25,6 +25,7 @@ include './class/include.php';
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
         <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="css/modle-login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="wrap">
@@ -42,12 +43,27 @@ include './class/include.php';
                                     <div id="add-cart">
                                     </div> 
                                 </div>
-                                
+
                                 <!--Buttons -->
                                 <div class="col-md-3 pull-right" style="margin-top: -30px;" id="hidden-cart-button">
-                                    <span   >
-                                        <input type="submit" id="submit" class="btn btn-success  " value="PROCEED TO CHECKOUT"/>
-                                    </span>  
+                                    <?php
+                                    if (empty($_SESSION['id'])) {
+                                        ?> 
+                                        <span>
+                                            <a  href="#myModal" class="trigger-btn" data-toggle="modal" id="model-button">  
+                                                <input type="submit"   class="btn btn-info check-btn  " value="PROCEED TO CHECKOUT"  />
+                                            </a>
+                                        </span> 
+
+                                    <?php } else { ?>
+                                        <span id="cart-form">
+                                            <input type="submit" id="submit"  class="btn  btn-info check-btn " value="PROCEED TO CHECKOUT"/>
+                                        </span> 
+                                    <?php } ?>
+
+                                    <span id="cart-form" style="display: none">
+                                        <input type="submit" id="submit"  class="btn  btn-info check-btn " value="PROCEED TO CHECKOUT"/>
+                                    </span> 
                                     <span>
                                         <a href="#" class="btn btn-default pull-right" id="clear_cart">
                                             <i class="fa fa-trash"></i>
@@ -62,22 +78,26 @@ include './class/include.php';
             </div>	
         </div>
         <!-- End Content Page -->
+
+        <?php include './footer.php'; ?>
+        <!-- End Footer -->
     </div>
-    <?php include './footer.php'; ?>
-    <!-- End Footer -->
-</div>
-<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-<script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/libs/jquery.fancybox.js"></script>
-<script type="text/javascript" src="js/libs/jquery-ui.js"></script>
-<script type="text/javascript" src="js/libs/owl.carousel.js"></script>
-<script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.revolution.html"></script>
-<script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.plugins.min.html"></script>
-<script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
-<script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
-<script type="text/javascript" src="js/theme.js"></script>
-<script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
-<script src="js/ajax/cart-form.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+    <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/libs/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/libs/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.revolution.html"></script>
+    <script type="text/javascript" src="js/libs/slideshow/jquery.themepunch.plugins.min.html"></script>
+    <script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
+    <script type="text/javascript" src="js/theme.js"></script>
+
+    <script src="js/ajax/cart-form.js" type="text/javascript"></script>
+    <script src="js/ajax/add_to_cart.js" type="text/javascript"></script> 
+    <script src="js/ajax/login.js" type="text/javascript"></script>
+
+
 </body>
 </html>

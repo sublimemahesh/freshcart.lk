@@ -87,8 +87,8 @@ class Customer {
 
     public function login($email, $password) {
 
-        $enPass = md5($password);
-        $query = "SELECT  * FROM `customer` WHERE `email`= '" . $email . "' AND `password`= '" . $enPass . "'";
+        
+        $query = "SELECT  * FROM `customer` WHERE `email`= '" . $email . "' AND `password`= '" . $password . "'";
         $db = new Database();
 
         $result = mysql_fetch_array($db->readQuery($query));

@@ -83,6 +83,7 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (result) {
+                    alert(result.image_name);
                     if (result.status === 'error') {
                         swal({
                             title: "Error!",
@@ -94,13 +95,23 @@ $(document).ready(function () {
                     } else {
                         swal({
                             title: "Success.!",
-                            text: "Thank For You..! Your Account has been Active in few minutes.",
+                            text: " Your Account has been Active now.",
                             type: 'success',
                             timer: 2000,
                             showConfirmButton: false
                         }, function () {
                             setTimeout(function () {
-                                window.location.replace("index.php");
+
+                                var html = '<img  class="img-circle" src=../upload/customer/profile/thumb/' + result.image_name + '>  ' + result.name;
+                                html += '<ul class="sub-menu-top">';
+                                html += '<li><a href="post-and-get/logout.php"><i class="fa fa-sign-in"></i> Log Out</a></li>';
+                                html += '</ul>';
+                                $("#img_url").empty();
+                                $("#img_url").append(html);
+                                $("#img-t").hide();
+                                $("#model-button").hide();
+                                $("#create").show();
+                                window.location.replace("customer-dashboard.php");
                             }, 2000);
                         });
                     }

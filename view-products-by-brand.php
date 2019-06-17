@@ -32,7 +32,10 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <link rel="stylesheet" type="text/css" href="css/libs/settings.css"/>
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
+        <link href="css/modle-login.css" rel="stylesheet" type="text/css"/>
+        <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
+
 
     <body>
         <div class="wrap" >
@@ -71,7 +74,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
 
                                                 </div>
                                                 <div class="box-filter manufacturer-filter">
-                                                    <h2 class="widget-title">fddfdfd</h2>                                             
+                                                    <h2 class="widget-title">Price</h2>                                             
                                                 </div>
                                                 <input type="hidden" id="hidden_minimum_price" value="0">
                                                 <input type="hidden" id="hidden_maximum_price"id="10000">
@@ -136,6 +139,9 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <script type="text/javascript" src="js/libs/jquery.jcarousellite.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
+        <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        
         <script src="js/ajax/product-by-brand.js" type="text/javascript"></script>
+        <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
     </body>
 </html>

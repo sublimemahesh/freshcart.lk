@@ -6,13 +6,7 @@ if (!isset($_SESSION)) {
 if (isset($_SESSION["id"])) {
     $CUSTOMER = new Customer($_SESSION["id"]);
 }
-?>
-<style>
-    .popover{
-        width: 100%;
-        max-width: 800px;
-    }
-</style>
+?> 
 <div id="header">
     <div class="container">
         <div class="sub-header4">
@@ -349,7 +343,7 @@ if (isset($_SESSION["id"])) {
 </div>
 
 
-<!-- Modal HTML -->
+<!-- login dashboard -->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
@@ -369,7 +363,7 @@ if (isset($_SESSION["id"])) {
                         <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" >	
                     </div>        
                     <div class="form-group">
-                        <button type="submit" name="login-submit" id="login-submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                        <button type="submit" name="login-submit" id="login" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
                     </div>
                 </form>
             </div>
@@ -385,7 +379,45 @@ if (isset($_SESSION["id"])) {
 
         </div>
     </div>
-</div>     
+</div>   
+
+<!--Any Page Access -->
+<!--<div id="myModalAny" class="modal fade">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="avatar">
+                    <img src="images/default-man.png" alt="Member" class="img-circle">
+                </div>				
+                <h4 class="modal-title">Member Login</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form   method="post" id="login-form">
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email" >		
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Password" >	
+                    </div>        
+                    <div class="form-group">
+                        <button type="submit" name="login-submit" id="login-page" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <div class="pull-left">
+                    <a href="forget-password.php">Forgot Password?</a>
+                </div>
+                <div class="pull-right">
+                    <a href="registration.php">Not a member?  <span style="color: blue;">Sign Up</span></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>-->
 
 
 

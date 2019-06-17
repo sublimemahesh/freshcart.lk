@@ -1,5 +1,5 @@
 $(document).ready(function () {
- 
+
     load_cart_data();
     function load_cart_data() {
         $.ajax({
@@ -12,18 +12,15 @@ $(document).ready(function () {
             }
         });
     }
- 
 
-
-    $(document).on('click', '.add_to_cart', function () {
+//Add to cart
+$(document).on('click', '.add_to_cart', function () {
 
         var product_id = $(this).attr("id");
         var product_name = $('#name' + product_id + '').val();
         var product_price = $('#price' + product_id + '').val();
         var product_quantity = $('#quantity' + product_id + '').val();
-
-
-
+        
         if (product_quantity > 0) {
             $.ajax({
                 url: "post-and-get/ajax/action.php",
@@ -39,8 +36,8 @@ $(document).ready(function () {
                     load_cart_data();
                     $('#modalLoginForm' + product_id).modal('hide');
                     swal({
-                        title: "SUCCESS.!",
-                        text: "Iteam has bean Checked!...",
+                        title: "Success.!",
+                        text: "Iteam has been Check!...",
                         type: 'success',
                         timer: 2000,
                         showConfirmButton: false
@@ -49,20 +46,21 @@ $(document).ready(function () {
             });
         } else {
             swal({
-                title: "INFO.!",
+                title: "Error.!",
                 text: "Please Enter the quantity!...",
-                type: 'success',
+                type: 'error',
                 timer: 1500,
                 showConfirmButton: false
             });
         }
     });
- 
-    $(document).on('click', '.delete', function () {
+    
+//Delete cart
+     $(document).on('click', '.delete', function () {
 
         var product_id = $(this).attr("id");
         swal({
-            title: "REMOVE!",
+            title: "Remove.!",
             text: "Do you really want to remove this cart?...",
             type: "info",
             showCancelButton: true,
@@ -92,7 +90,7 @@ $(document).ready(function () {
                         load_cart_data();
                         $('#cart_item').hide();
                         swal({
-                            title: "SUCCESS.!",
+                            title: "Success.!",
                             text: "Iteam has removed!...",
                             type: 'success',
                             timer: 1500,
@@ -104,10 +102,11 @@ $(document).ready(function () {
         });
         return false;
     });
-
+ 
+//Clear cart
     $(document).on('click', '#clear_cart', function () {
         swal({
-            title: "CLEAR!",
+            title: "Clear!",
             text: "Do you really want to clear cart?...",
             type: "info",
             showCancelButton: true,
@@ -116,7 +115,7 @@ $(document).ready(function () {
             closeOnConfirm: false
         }, function () {
 
-            //Send Form data
+//Send Form data
             $.ajax({
                 url: "post-and-get/ajax/action.php",
                 type: "POST",
@@ -127,7 +126,7 @@ $(document).ready(function () {
                     load_cart_data();
                     $('#cart-popover').popover('hide');
                     swal({
-                        title: "SUCCESS.!",
+                        title: "Success.!",
                         text: "Your Cart has Bean Empty !...",
                         type: 'success',
                         timer: 1500,
@@ -138,128 +137,28 @@ $(document).ready(function () {
             });
         });
     });
- 
-    $('.up').click(function () {
-       alert();
-        var num = parseInt($('.input-number').val()) + 1;
-        var max = parseInt($('#max').val());
+    
+//Quantity up  
+    $(document).on('change', '.quantity', function (event) {
+        event.preventDefault();
 
-        // var price = parseFloat($('#price').val());
-        // var discount = parseFloat($('#discount').val());
-
-        //  if (discount >= 0) {
-        //    if (price >= 0) {
-        if (num >= max) {
-
-            // var discount_amount = (price * discount) / 100;
-            //  var discount_price = (price - discount_amount) * max;
-
-            $('.input-number').val(max);
-            //   $('.total_price_amount').val(discount_price);
-
-        } else {
-            //   var discount_amount = (price * discount) / 100;
-            //   var discount_price = (price - discount_amount) * num;
-            $('.input-number').val(num);
-            //  $('.total_price_amount').val(discount_price);
-            //  }
+        var product_id = $(this).attr("product_id");
+        var quantity = $(this).val();
+        
+        if (quantity >= 1) {
+            $.ajax({
+                url: "post-and-get/ajax/action.php",
+                type: "POST",
+                data: {
+                    action: "ADD",
+                    product_id: product_id,
+                    quantity: quantity
+                },
+                success: function () {
+                    load_cart_data();
+                }
+            });
         }
-        //} else {
-        // if (price >= 0) {
-        //  if (num >= max) {
-        //  var total_price = price * max;
-        //  $('.total_price_amount').val(total_price);
-        //   $('.input-number').val(max);
-        //  } else {
-        //  var total_price = price * num;
-        //$('.total_price_amount').val(total_price);
-        //     $('.input-number').val(num);
-        // }
-
-        //}
-
     });
-
-    $('.down').click(function () {
-
-        var num = parseInt($('.input-number').val()) - 1;
-        //  var price = parseFloat($('#price').val());
-        //  var discount = parseFloat($('#discount').val());
-        var min = 1;
-
-//        if (discount >= 0) {
-//            if (price >= 0) {
-        if (num <= min) {
-//                    var discount_amount = (price * discount) / 100;
-//                    var discount_price = (price - discount_amount) * min;
-
-            $('.input-number').val(min);
-//                    $('.total_price_amount').val(discount_price);
-
-        } else {
-//                    var discount_amount = (price * discount) / 100;
-//                    var discount_price = (price - discount_amount) * num;
-
-            $('.input-number').val(num);
-//                    $('.total_price_amount').val(discount_price);
-        }
-//            }
-//        } else {
-//            if (price >= 0) {
-//
-//                if (num <= min) {
-//                    $('.input-number').val(min);
-//                    var total_price = price * min;
-//                    $('.total_price_amount').val(total_price);
-//                } else {
-//                    $('.input-number').val(num);
-//                    var total_price = price * num;
-//                    $('.total_price_amount').val(total_price);
-//                }
-//            }
-//        }
-
-    });
-//      $('.down').click(function () {
-//
-//        var num = parseInt($('.input-number').val()) - 1;
-//        var price = parseFloat($('#price').val());
-//        var discount = parseFloat($('#discount').val());
-//        var min = 1;
-//
-//        if (discount >= 0) {
-//            if (price >= 0) {
-//                if (num <= min) {
-//                    var discount_amount = (price * discount) / 100;
-//                    var discount_price = (price - discount_amount) * min;
-//
-//                    $('.input-number').val(min);
-//                    $('.total_price_amount').val(discount_price);
-//
-//                } else {
-//                    var discount_amount = (price * discount) / 100;
-//                    var discount_price = (price - discount_amount) * num;
-//
-//                    $('.input-number').val(num);
-//                    $('.total_price_amount').val(discount_price);
-//                }
-//            }
-//        } else {
-//            if (price >= 0) {
-//
-//                if (num <= min) {
-//                    $('.input-number').val(min);
-//                    var total_price = price * min;
-//                    $('.total_price_amount').val(total_price);
-//                } else {
-//                    $('.input-number').val(num);
-//                    var total_price = price * num;
-//                    $('.total_price_amount').val(total_price);
-//                }
-//            }
-//        }
-//
-//    });
 });
-
 

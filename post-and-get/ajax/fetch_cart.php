@@ -4,7 +4,8 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 //featch_cart
 session_start();
 
-
+$product = 0;
+$quantity = 0;
 $total_item = 0;
 $total_price = 0;
 $output = '';
@@ -25,34 +26,27 @@ if (!empty($_SESSION["shopping_cart"])) {
 
     foreach ($_SESSION["shopping_cart"] as $key => $value) {
         $PRODUCT = new Product($value["product_id"]);
-        
+
+       
+
+
         $output .= '<tr class="cart_item">'
                 . '<td class="product-remove">' . $value["product_name"] . '</td>'
                 . '<td class="product-remove" >'
-                . '<img src="upload/product-categories/sub-category/product/photos/'.$PRODUCT->image_name.'" width="30%"/>'
+                . '<img src="upload/product-categories/sub-category/product/photos/' . $PRODUCT->image_name . '" width="30%"/>'
                 . '</td>'
                 . '<td class="product-remove">'
-                . '<div class="input-group" style="width: 70%">
-                    <div class="input-group-btn">
-                        <button   class="btn btn-default down" type="button">
-                            <span class="glyphicon glyphicon-minus">                                                               
-                            </span>
-                        </button>
-                    </div>                                               
-                        <input  type="text"      min="1"    class="form-control input-number text-center" value="1" />
-                    <div class="input-group-btn">                     
-                    <div class="btn btn-default up"  >
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </div>
-                     </div>
-                   </div>'
+                . ' <div class="input-group" style="width: 70%"> '
+                . ' <input  type="number" name="quantity"   class=" quty-size form-control  text-center quantity "  product_id=' . $value["product_id"] . ' value="' . $value["product_quantity"] . '" min="1"/>
+                     </div> '
                 . '</td>'
-                . '<td class="product-remove">Rs: ' . $value["product_price"] . '</td>'
+                . '<td class="product-remove">Rs: ' . number_format($value["product_price"], 2) . '</td>'
                 . '<td class="product-remove">Rs: ' . number_format($value["product_quantity"] * $value["product_price"], 2) . '</td>'
-
-                //hidden values in form
-                . '<input type="hidden" class="form-control" id="id" name="id[]" value="' . $value["product_id"] . '"/>'
-                . '<input type="hidden" class="form-control" id="price" name="price[]" value="' . $value["product_price"] . '"/>'
+                //  . '<td class="product-remove">Rs: ' . $value["product_quantity"] . '</td>'
+                //hidden values in form 
+                . ' <input type="hidden" class="form-control  "  product_id="' . $value["product_id"] . '" /> '
+                . '<input type="hidden" class="form-control" id="price" name="price" value="' . $value["product_price"] . '"/>'
+                . '<input type="hidden" class="form-control max"   value="' . $PRODUCT->unite . '"/>'
                 . '<td class="product-remove"> <button name="delete" class="btn btn-danger btn-xs delete" id="' . $value["product_id"] . '">Remove</button></td>'
                 . '</tr>';
 
@@ -76,7 +70,7 @@ $output .= '</table>';
 
 $data = array(
     'cart_details' => $output,
-    'total_price' => '$' . number_format($total_item, 2),
+    'total_price' => 'Rs' . number_format($total_item, 2),
     'total_item' => $total_item
 );
 

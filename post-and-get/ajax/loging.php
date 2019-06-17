@@ -5,10 +5,10 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 $CUSTOMER = new Customer(NULL);
 
 $username = filter_var($_POST['user_email'], FILTER_SANITIZE_STRING);
-$password = filter_var($_POST['user_password'], FILTER_SANITIZE_STRING);
+$password = $_POST['user_password'];
 
-if ($CUSTOMER->login($username, $password)) {
-    $data = $CUSTOMER->login($username, $password);
+if ($CUSTOMER->login($username, md5($password))) {
+    $data = $CUSTOMER->login($username, md5($password));
 
     if (empty($data->image_name)) {
         $image_name = 'user.png';

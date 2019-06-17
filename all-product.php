@@ -44,6 +44,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
         <link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
         <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="css/modle-login.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>

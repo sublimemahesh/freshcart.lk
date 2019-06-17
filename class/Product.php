@@ -176,6 +176,21 @@ class Product {
         return $array_res;
     }
 
+    public function getProductBySubCategories($subcategory) {
+
+        $query = 'SELECT * FROM `product` WHERE sub_category="' . $subcategory . '"   ORDER BY queue ASC';
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+        return $array_res;
+    }
+
     public function getProductsByCategory($category) {
 
         $query = 'SELECT * FROM `product` WHERE category="' . $category . '"   ORDER BY queue ASC';
@@ -272,8 +287,7 @@ class Product {
             $out_put .= ''
                     . '<div class="modal fade" id="modalLoginForm' . $row['id'] . '"tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog" role="document">
-
+                <div class="modal-dialog" role="document"> 
                     <div class="modal-content">
                         <div class="modal-header text-center">
                             <h4 class="modal-title w-100 font-weight-bold"><b>' . $row['name'] . '</b>
@@ -293,25 +307,14 @@ class Product {
                                 <div class="col-md-8"> 
                                     <p class="text-justify">' . $row['short_description'] . '</p>                                     
                                       <span pull-left> <i class="fa fa-circle"></i> Brand : ' . $BRAND->name . ' </span> </br>
-                                      <span pull-right> <i class="fa fa-circle"></i> Unites : ' .  $row['unite'] . ' </span></br>
+                                      <span pull-right> <i class="fa fa-circle"></i> Unites : ' . $row['unite'] . ' </span></br>
                                         <div class="col-md-6  " id="price-padd">                                         
                                             <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $row['price'] . '"/>
-                                        </div>
-                                        
+                                        </div>                                        
                                         <div class="col-md-6 "  id="price-padd">                                               
                                         <div class="attr-product">                                            
-                                            <div class="input-group">
-                                                <div class="input-group-btn">
-                                                    <button    class="btn btn-default down">
-                                                        <span class="glyphicon glyphicon-minus"></span>
-                                                    </button>
-                                                </div>
-                                                <input  type="text" name="quantity"  id="quantity' . $row['id'] . '"     min="1"    class="form-control input-number text-center" value="1" />
-                                                <div class="input-group-btn">
-                                                <button  type="submit" class="btn btn-default up">
-                                                        <span class="glyphicon glyphicon-plus"></span>
-                                                </button>
-                                                </div>
+                                            <div class="input-group">                                             
+                                                <input type="number" name="quantity" min="1" value="1"   id="quantity' . $row['id'] . '"     class=" form-control form-input-design"  />
                                             </div>
                                         </div>                                            
                                      </div>
@@ -319,10 +322,8 @@ class Product {
                              </div>  
                         </div>
                         
-                        <div class="modal-footer d-flex justify-content-center">
-                            <input type="hidden" id="discount" value="' . $row['discount'] . '"/>
-                            <input type="hidden" id="price" value="<?php echo $PRODUCT->price ?>"/>
-                            <input type="hidden" id="max" value="' . $row['unite'] . '"/>  
+                        <div class="modal-footer d-flex justify-content-center">  
+                           <input type="hidden" class="form-control  "   id="product_id" value="' . $row['id'] . '" />
                             <input   type="hidden" name="name"  id="name' . $row['id'] . '" value="' . $row['name'] . '" />
                             <input type="button" class="btn btn-default add_to_cart" name="add_to_cart"  id="' . $row['id'] . '" value="   Add to Cart"/>
                            </div>
@@ -381,7 +382,7 @@ class Product {
                             <div class="item-product">
                                 <div class="product-thumb">
                                         <a class="product-thumb-link" href="view-product.php?id=' . $row['id'] . '">
-                                            <img class="first-thumb" alt="" src="upload/product-categories/sub-product/product/photos/' . $row['image_name'] . '"> 
+                                             <img class="first-thumb" alt="" src="upload/product-categories/sub-category/product/photos/' . $row['image_name'] . '"> 
                                          </a>
                                             <div class="product-info-cart">
                                                 <div class="product-extra-link">
@@ -389,17 +390,17 @@ class Product {
                                                     <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
                                                     <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
                                                 </div>
-                                                <a class="addcart-link" href="#"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
-                                            </div>
+                                                   <a class="addcart-link" href="#"  class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm' . $row['id'] . '"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                         </div>
                                 </div>
                              <div class="product-info">
                                 <h3 class="title-product"><a href="view-product.php?id=' . $row['id'] . '">' . $row['name'] . '</a></h3>
                         <div class="info-price">';
 
             if (!empty($discount)) {
-                $out_put .= ' <span id="price-details">Rs: ' . number_format($discount_price, 2) . '</span><del>Rs: ' . number_format($price_amount, 2) . '</del>';
+                $out_put .= ' <span id="price-format-design">Rs: ' . number_format($discount_price, 2) . '</span><del>Rs: ' . number_format($price_amount, 2) . '</del>';
             } else {
-                $out_put .= '<span id="price-details">Rs: ' . number_format($price_amount, 2) . '</span> ';
+                $out_put .= '<span id="price-format-design">Rs: ' . number_format($price_amount, 2) . '</span> ';
             }
 
             $out_put .= '</div>';
@@ -411,6 +412,53 @@ class Product {
             }
             $out_put .= '</div> ';
             $out_put .= '</li> ';
+              $BRAND = new Brand($row['brand']);
+            $out_put .= ''
+                    . '<div class="modal fade" id="modalLoginForm' . $row['id'] . '"tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document"> 
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold"><b>' . $row['name'] . '</b>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </h4>
+                        </div>
+                        
+                        <div class="modal-body mx-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="thumbnail">
+                                        <img class="first-thumb" alt="" src="upload/product-categories/sub-category/product/photos/' . $row['image_name'] . '"> 
+                                    </div>
+                                </div>
+                                <div class="col-md-8"> 
+                                    <p class="text-justify">' . $row['short_description'] . '</p>                                     
+                                      <span pull-left> <i class="fa fa-circle"></i> Brand : ' . $BRAND->name . ' </span> </br>
+                                      <span pull-right> <i class="fa fa-circle"></i> Unites : ' . $row['unite'] . ' </span></br>
+                                        <div class="col-md-6  " id="price-padd">                                         
+                                            <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $row['price'] . '"/>
+                                        </div>                                        
+                                        <div class="col-md-6 "  id="price-padd">                                               
+                                        <div class="attr-product">                                            
+                                            <div class="input-group">                                             
+                                                <input type="number" name="quantity" min="1" value="1"   id="quantity' . $row['id'] . '"     class=" form-control form-input-design"  />
+                                            </div>
+                                        </div>                                            
+                                     </div>
+                                </div>  
+                             </div>  
+                        </div>
+                        
+                        <div class="modal-footer d-flex justify-content-center">  
+                           <input type="hidden" class="form-control  "   id="product_id" value="' . $row['id'] . '" />
+                            <input   type="hidden" name="name"  id="name' . $row['id'] . '" value="' . $row['name'] . '" />
+                            <input type="button" class="btn btn-default add_to_cart" name="add_to_cart"  id="' . $row['id'] . '" value="   Add to Cart"/>
+                           </div>
+                    </div>
+                </div>
+            </div>';
         }
         $out_put .= '</ul> ';
 

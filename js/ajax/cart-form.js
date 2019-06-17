@@ -26,12 +26,12 @@ $(document).ready(function () {
         });
 
         swal({
-            title: "INFO!",
+            title: "Info!",
             text: "Do you really want to Checkout?...",
             type: "info",
             showCancelButton: true,
-            confirmButtonColor: "#2b982b",
-            confirmButtonText: "  Yes, Verify It!",
+            confirmButtonColor: "#10d1ca",
+            confirmButtonText: "  Yes, Checkout It!",
             closeOnConfirm: false
         }, function () {
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
                         });
                     } else {
                         swal({
-                            title: "SUCCESS.!",
+                            title: "Success.!",
                             text: "Data Send Successfully!...",
                             type: 'success',
                             timer: 1500,
