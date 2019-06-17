@@ -1,5 +1,21 @@
 /*General*/
+.scroll-bar{
+    height: 647px;
+    overflow: scroll;
+}
+.form-input-design{ 
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e8e8e8; 
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 3px 0 15px;
+    border-radius: 0px;
+}
 
+.check-btn{
+    border-radius: 4px!important;
+}
 .quty-size{
     height: 30px;
 }
@@ -2934,6 +2950,17 @@ a:focus {
     text-align: center;
     width: 100%;
 }
+.qty {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e8e8e8;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    max-width: 240px;    
+    position: relative;    
+    width: 100%;
+
+}
 .info-qty a {
     color: #333;
 }
@@ -3001,20 +3028,17 @@ a:focus {
     color: #fff;
     display: block;
     height: 35px;
-
     margin: 10px 0 0 60px;
     max-width: 240px;
     text-align: center;
     width: 100%;
-
 
 }
 .btn-addcart:hover{
     background: #f00 none repeat scroll 0 0;
     color: #fff;
     display: block;
-    height: 35px;
-
+    height: 35px; 
     margin: 10px 0 0 60px;
     max-width: 240px;
     text-align: center;

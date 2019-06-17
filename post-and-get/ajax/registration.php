@@ -59,10 +59,24 @@ if ($handle->uploaded) {
 $CUSTOMER->image_name = $imgName;
 
 $CUSTOMER->create();
+if ($CUSTOMER->id) {
+    $data = $CUSTOMER->login($CUSTOMER->email, $CUSTOMER->password);
+    
+    if (empty($data->image_name)) {
+        $image_name = 'user.png';
+    } else {
+        $image_name = $data->image_name;
+    }
+     
+    $result = ["status" => 'success', 'image_name' => $image_name, 'name' => $data->name];
+    echo json_encode($result);
+    exit();
+} else {
+    $result = ["status" => 'error'];
+    echo json_encode($result);
+    exit();
+}
 
-$result = ["status" => 'success'];
-echo json_encode($result);
-exit();
 
 // put your code here
 ?>
