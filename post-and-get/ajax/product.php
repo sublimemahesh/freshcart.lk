@@ -126,21 +126,4 @@ if ($_POST['action'] == 'SHOWPAGINATION') {
 
     echo $result;
 }
-
-//Get Brands
-//if ($_POST['action'] == 'GETBRAND') {
-//
-//    $category = '';
-//    $sub_category = '';
-//
-//    if (isset($_POST["category"])) {
-//        $category = $_POST["category"];
-//    }
-//   
-//
-//    $PRODUCT = new Product(NULL);
-//    $result = $PRODUCT->getBrandByCategory($category);
-//    
-//    //Print the element out.
-//    echo $result;
-//}
+ 

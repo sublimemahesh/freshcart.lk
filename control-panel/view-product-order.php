@@ -62,6 +62,7 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                                                     <th>Product</th>                                                      
                                                     <th>Quantity</th>                                                      
                                                     <th>Price</th>
+                                                    <th>Total</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
@@ -70,6 +71,7 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                                                     <th>Customer</th>                                                      
                                                     <th>Status</th>                                                      
                                                     <th>Options</th>
+                                                    <th>Total</th>
                                                 </tr>
                                             </tfoot>
                                             <tbody>
@@ -101,15 +103,21 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                                                                 echo 'Rs: ' . number_format($product->product_price, 2);
                                                                 ?>
                                                             </td>
+                                                            <td>  
+                                                                <?php
+                                                                $total = $product->product_price * $product->product_quantity;
+                                                                echo 'Rs: ' . number_format($total, 2);
+                                                                ?>
+                                                            </td>
                                                         </tr>
 
                                                         <?php
-                                                        array_push($price_array, $product->product_price);
+                                                        array_push($price_array, $total);
                                                     }
                                                 }
                                                 ?> 
                                                 <tr>
-                                                    <td colspan="3" align="right" style="font-size: 20px">
+                                                    <td colspan="4" align="right" style="font-size: 20px">
                                                         <b> Total </b>
                                                     </td>  
                                                     <td  align="right" style="font-size: 20px">
