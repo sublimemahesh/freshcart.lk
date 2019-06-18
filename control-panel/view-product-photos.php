@@ -73,11 +73,13 @@ $PRODUCT = new Product($id);
                                         </div>
                                     </div>
 
+
                                     <div class="col-md-12"> 
                                         <input type="hidden" id="id" value="<?php echo $PRODUCT->id; ?>" name="id"/>
                                         <input type="submit" name="create" class="btn btn-primary TYPEm-t-15 waves-effect" value="create"/>
                                     </div>
                                 </form>
+
                             </div>
                             <div class="row">
 

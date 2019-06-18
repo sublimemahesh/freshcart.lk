@@ -43,6 +43,7 @@ if (isset($_POST['create'])) {
 
     $VALID->check($PRODUCT, [
         'name' => ['required' => TRUE],
+        'brand' => ['required' => TRUE],
         'short_description' => ['required' => TRUE],
         'description' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
@@ -101,8 +102,8 @@ if (isset($_POST['update'])) {
 
         $PRODUCT_CATEGORIES->icon = $handle->file_dst_name;
     }
-    
-  
+
+
 
     $PRODUCT = new Product($_POST['id']);
 
@@ -114,6 +115,7 @@ if (isset($_POST['update'])) {
 
     $VALID = new Validator();
     $VALID->check($PRODUCT, [
+        'brand' => ['required' => TRUE],
         'name' => ['required' => TRUE],
         'short_description' => ['required' => TRUE],
         'description' => ['required' => TRUE],

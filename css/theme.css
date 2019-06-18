@@ -1,4 +1,5 @@
 /*General*/
+ 
 .scroll-bar{
     height: 647px;
     overflow: scroll;
@@ -3865,7 +3866,7 @@ a:focus {
     padding: 20px;
 }
 .item-hot-deal-product .title-product{
-    font-weight:400;
+    font-weight:700;
     margin-bottom:3px;
 }
 .item-hot-deal-product .info-price span {

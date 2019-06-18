@@ -135,6 +135,7 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                                                     <div class="col-md-2 pull-right"  >   
 
                                                         <input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>  
+                                                        <input type="hidden" name="customer" id="customer" value="<?php echo $add_to_cart['customer'] ?>"/>  
                                                         <input type="submit" class="btn btn-warning" value="Confirm" id="confirm_order"/> || 
                                                         <input type="submit" class="btn btn-danger" value="Cancle" id="cancle"/> 
                                                     </div>
@@ -146,6 +147,7 @@ $CUSTOMER = new Customer($ADD_TO_CART->customer);
                                                     <div class="col-md-2 pull-right"  >   
 
                                                         <input type="hidden" name="id" id="id" value="<?php echo $id ?>"/>  
+
                                                         <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Deliver</button> ||   
                                                         <input type="submit" class="btn btn-danger" value="Cancle" id="cancle"/> 
                                                     </div>

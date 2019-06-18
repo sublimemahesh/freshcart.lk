@@ -4,6 +4,7 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 session_start();
 
 if ($_POST['create'] == 'create') {
+
     $product_array = array();
     $customer_id = 0;
 
@@ -37,18 +38,15 @@ if ($_POST['create'] == 'create') {
     $comEmail = "info@islandwide.website";
     $from = 'info@islandwide.website';
 
-
-
     $product_details = json_encode($product_array);
 
     $visitor_email = $CUSTOMER->email;
     $visitor_name = $CUSTOMER->name;
-  
-    
+
     $find_us = 'test';
 
     $subject = 'Contact Message - Supirimarket.lk';
-    $subject2 = 'Thank you - Supirimarket.lk';
+    $subject2 = 'Your have new Product order  - Supirimarket.lk';
 
     $message = 'Message';
 
@@ -62,7 +60,6 @@ if ($_POST['create'] == 'create') {
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
 
-
     $headers1 = "From: " . $from . "\r\n";
 
     $headers1 .= "Reply-To: " . $comEmail . "\r\n";
@@ -71,6 +68,9 @@ if ($_POST['create'] == 'create') {
 
     $headers1 .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
+
+//Unset remove cart
+ //   unset($_SESSION["shopping_cart"]);
 
     $company_message = 'Message';
 // Sending mail

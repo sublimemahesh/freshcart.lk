@@ -57,7 +57,9 @@ $(document).ready(function () {
 //Confirm order
 $('#confirm_order').click(function (event) {
     event.preventDefault();
+
     var id = $('#id').val();
+    var customer = $('#customer').val();
 
     swal({
         title: "Confirm Order.!",
@@ -75,6 +77,7 @@ $('#confirm_order').click(function (event) {
             type: 'POST',
             data: {
                 id: id,
+                customer: customer,
                 action: "CONFIRM",
             },
 
@@ -93,7 +96,7 @@ $('#confirm_order').click(function (event) {
                         title: "SUCCESS.!",
                         text: "Order has confirmed!...",
                         type: 'success',
-                        timer: 1500,
+                        timer: 2000,
                         showConfirmButton: false
                     }, function () {
                         setTimeout(function () {

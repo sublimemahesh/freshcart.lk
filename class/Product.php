@@ -265,7 +265,7 @@ class Product {
                                     </div>
                                 </div>
                              <div class="product-info">
-                                <h3 class="title-product"><a href="view-product.php?id=' . $row['id'] . '">' . $row['name'] . '</a></h3>
+                                <h3 class="title-product"><a href="view-product.php?id=' . $row['id'] . '">' . $row['name']    . '</a></h3>
                         <div class="info-price">';
 
             if (!empty($discount)) {
@@ -308,8 +308,11 @@ class Product {
                                     <p class="text-justify">' . $row['short_description'] . '</p>                                     
                                       <span pull-left> <i class="fa fa-circle"></i> Brand : ' . $BRAND->name . ' </span> </br>
                                       <span pull-right> <i class="fa fa-circle"></i> Unites : ' . $row['unite'] . ' </span></br>
-                                        <div class="col-md-6  " id="price-padd">                                         
-                                            <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $discount_price . '"/>
+                                        <div class="col-md-6  " id="price-padd">    
+                                        
+                                            <label>Rs :</label> <span id="price-format-design" > ' . number_format($discount_price, 2) . ' </span>
+                                              
+                                            <input type="hidden" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $discount_price . '"/>
                                         </div>                                        
                                         <div class="col-md-6 "  id="price-padd">                                               
                                         <div class="attr-product">                                            
@@ -325,7 +328,7 @@ class Product {
                         <div class="modal-footer d-flex justify-content-center">  
                            <input type="hidden" class="form-control  "   id="product_id" value="' . $row['id'] . '" />
                             <input   type="hidden" name="name"  id="name' . $row['id'] . '" value="' . $row['name'] . '" />
-                            <input type="button" class="btn btn-default add_to_cart" name="add_to_cart"  id="' . $row['id'] . '" value="   Add to Cart"/>
+                            <input type="button" class="btn btn-info add_to_cart" name="add_to_cart"  id="' . $row['id'] . '" value="   Add to Cart"/>
                            </div>
                     </div>
                 </div>
@@ -412,7 +415,7 @@ class Product {
             }
             $out_put .= '</div> ';
             $out_put .= '</li> ';
-              $BRAND = new Brand($row['brand']);
+            $BRAND = new Brand($row['brand']);
             $out_put .= ''
                     . '<div class="modal fade" id="modalLoginForm' . $row['id'] . '"tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
@@ -438,7 +441,9 @@ class Product {
                                       <span pull-left> <i class="fa fa-circle"></i> Brand : ' . $BRAND->name . ' </span> </br>
                                       <span pull-right> <i class="fa fa-circle"></i> Unites : ' . $row['unite'] . ' </span></br>
                                         <div class="col-md-6  " id="price-padd">                                         
-                                            <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $discount_price . '"/>
+                                                   <label>Rs :</label> <span id="price-format-design" > ' . number_format($discount_price, 2) . ' </span>
+
+                                                <input type="hidden" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $discount_price . '"/>
                                         </div>                                        
                                         <div class="col-md-6 "  id="price-padd">                                               
                                         <div class="attr-product">                                            
@@ -454,7 +459,7 @@ class Product {
                         <div class="modal-footer d-flex justify-content-center">  
                            <input type="hidden" class="form-control  "   id="product_id" value="' . $row['id'] . '" />
                             <input   type="hidden" name="name"  id="name' . $row['id'] . '" value="' . $row['name'] . '" />
-                            <input type="button" class="btn btn-default add_to_cart" name="add_to_cart"  id="' . $row['id'] . '" value="   Add to Cart"/>
+                            <input type="button" class="btn btn-info add_to_cart" name="add_to_cart"  id="' . $row['id'] . '" value="   Add to Cart"/>
                            </div>
                     </div>
                 </div>

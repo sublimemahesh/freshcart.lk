@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
     $('#submit').click(function (event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         swal({
             title: "Info!",
             text: "Do you really want to Checkout?...",
             type: "info",
             showCancelButton: true,
-            confirmButtonColor: "#10d1ca",
+            confirmButtonColor: "#28a4c9",
             confirmButtonText: "  Yes, Checkout It!",
             closeOnConfirm: false
         }, function () {
@@ -32,9 +32,19 @@ $(document).ready(function () {
                             showConfirmButton: false
                         });
                     } else {
-                        
-                        
+                        swal({
+                            title: "Success.!",
+                            text: "Data Send Successfully!...",
+                            type: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }, function () {
+                            setTimeout(function () {
+                                window.location.replace("add-to-cart.php");
+                            }, 2000);
+                        });
                     }
+
                 }
             });
         });

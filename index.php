@@ -104,7 +104,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="hot-deals">
                                 <h2><i class="fa fa-clock-o"></i> hot deals</h2>
@@ -292,7 +292,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                                     </div>
                                                                     <div class="product-thumb">
                                                                         <a href="view-product.php?id=<?php echo $product['id'] ?>">
-                                                                            <img alt="" src="upload/product-categories/sub-product/product/photos/<?php echo $product['image_name'] ?>"  > 
+                                                                            <img alt="" src="upload/product-categories/sub-category/product/photos/<?php echo $product['image_name'] ?>"  > 
                                                                         </a>
                                                                         <div class="product-info-cart">
                                                                             <div class="product-extra-link">
@@ -300,13 +300,15 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                                                 <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
                                                                                 <a class="quickview-link" href="#"><i class="fa fa-search"></i></a>
                                                                             </div>
-                                                                            <a class="addcart-link"  href="view-product.php?id=<?php echo $product['id'] ?>"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+                                                                            <a class="addcart-link" href="#"  class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm<?php echo $product['id'] ?>"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
+
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="hot-deal-product-info">
-                                                                    <h3 class="title-product"><a  href="view-product.php?id=<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a></h3>
+                                                                    <h3 class="title-product  "><a  href="view-product.php?id=<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a></h3>
                                                                     <div class="info-price">
                                                                         <?php
                                                                         $price_amount = 0;
@@ -329,9 +331,75 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div> 
+                                                        </div>  
+
                                                     <?php } ?>
+
                                                 </div>
+                                                <?php
+                                                $PRODUCT = new Product(NULL);
+                                                foreach ($PRODUCT->getProductsByCategory($product_categories['id']) as $product) {
+                                                    $BRAND = new Brand($product['id']);
+                                                    $price_amount = 0;
+                                                    $discount = 0;
+
+                                                    $discount = $product['discount'];
+                                                    $price_amount = $product['price'];
+
+                                                    $discount = ($price_amount * $discount) / 100;
+                                                    $discount_price = $product['price'] - $discount;
+                                                    ?> 
+                                                    <!--Model in add to cart -->
+                                                    <div class="modal fade" id="modalLoginForm<?php echo $product['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document"> 
+                                                            <div class="modal-content">
+                                                                <div class="modal-header text-center">
+                                                                    <h4 class="modal-title w-100 font-weight-bold"><b> <?php echo $product['name'] ?> </b>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </h4>
+                                                                </div>
+
+                                                                <div class="modal-body mx-3">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="thumbnail">
+                                                                                <img class="first-thumb" alt="" src="upload/product-categories/sub-category/product/photos/<?php echo $product['image_name'] ?>"> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-8"> 
+                                                                            <p class="text-justify"><?php echo $product['short_description'] ?> </p>                                     
+                                                                            <span pull-left> <i class="fa fa-circle"></i> Brand : <?php echo $BRAND->name ?> </span> </br>
+                                                                            <span pull-right> <i class="fa fa-circle"></i> Unite : <?php echo $product['unite'] ?>  </span></br>
+                                                                            <div class="col-md-6  " id="price-padd">    
+
+                                                                                <label>Rs :</label> <span id="price-format-design" ><?php echo number_format($discount_price, 2) ?>   </span>
+
+                                                                                <input type="hidden" id="price<?php echo $product['id'] ?>" class="price-format total_price_amount" value="<?php echo $discount_price ?>"/>
+                                                                            </div>                                        
+                                                                            <div class="col-md-6 "  id="price-padd">                                               
+                                                                                <div class="attr-product">                                            
+                                                                                    <div class="input-group">                                             
+                                                                                        <input type="number" name="quantity" min="1" value="1"   id="quantity<?php echo $product['id'] ?>"     class=" form-control form-input-design"  />
+                                                                                    </div>
+                                                                                </div>                                            
+                                                                            </div>
+                                                                        </div>  
+                                                                    </div>  
+                                                                </div>
+
+                                                                <div class="modal-footer d-flex justify-content-center">  
+                                                                    <input type="hidden" class="form-control  "   id="product_id" value="<?php echo $product['id'] ?>" />
+                                                                    <input   type="hidden" name="name"  id="name<?php echo $product['id'] ?>" value="<?php echo $product['name'] ?>" />
+
+                                                                    <input type="button" class="btn btn-info add_to_cart" name="add_to_cart"  id="<?php echo $product['id'] ?>" value="   Add to Cart"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
                                             </div>    
                                         </div>
                                         <!-- End Hot Deal Tab -->
@@ -424,7 +492,11 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                         </div>
                                     </div>
                                 </div>
+
+
                             <?php } ?>
+
+
                         </div>
                     </div>
                 </div>
@@ -606,6 +678,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
         <script type="text/javascript" src="js/libs/jquery.themepunch.plugins.min.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
         <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+
         <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
         <script src="js/ajax/login.js" type="text/javascript"></script>
     </body> 
