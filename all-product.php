@@ -103,7 +103,6 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                             <h2 class="widget-title">Price Filter</h2>
                                             <input type="hidden" id="hidden_minimum_price" value="0">
                                             <input type="hidden" id="hidden_maximum_price"id="max-price">
-
                                             <input type="hidden" id="category" value="<?php echo $PRODUCT_CATEGORIES->id ?>">
                                             <input type="hidden" id="pagelimit" value="<?php echo $pagelimit ?>">
                                             <input type="hidden" id="setlimit" value="<?php echo $setlimit ?>"> 

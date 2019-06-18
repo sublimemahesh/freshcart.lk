@@ -83,7 +83,7 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (result) {
-                    alert(result.image_name);
+                  
                     if (result.status === 'error') {
                         swal({
                             title: "Error!",

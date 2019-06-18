@@ -47,7 +47,6 @@ $PRODUCT = new Product($id);
                 <div class="content-shop">
                     <div class="container">
                         <div class="row">
-
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                 <div class="sidebar-shop sidebar-left">
                                     <div class="widget widget-related-product">
@@ -77,9 +76,9 @@ $PRODUCT = new Product($id);
                                                                     ?>
                                                                     <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
                                                                      <?php ?>
-                                                                    <del>Rs:<?php echo number_format($PRODUCT->price, 2) ?></del>
+                                                                    <del>Rs:<?php echo number_format($price_amount, 2) ?></del>
                                                                 <?php } else if ($PRODUCT->discount == 0) { ?>
-                                                                    <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($PRODUCT->price, 2) ?> </span>
+                                                                    <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
                                                                  <?php } ?>
                                                             </div>
                                                            

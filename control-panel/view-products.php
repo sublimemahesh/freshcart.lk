@@ -64,7 +64,7 @@ $SUB_CATEGORY = new SubCategory($id);
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <select class="form-control" name="brand" required="true">
-                                                    <option> -- Please Select the Brand -- </option> 
+                                                    <option value=""> -- Please Select the Brand -- </option> 
                                                     <?php
                                                     $BRAND = new Brand(NULL);
                                                     foreach ($BRAND->all() as $brand) {
@@ -165,8 +165,8 @@ $SUB_CATEGORY = new SubCategory($id);
                                                     <div class="d">
                                                         <a href="edit-product.php?id=<?php echo $product['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                         <a href="arrange-products.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
-                                                        <a href="view-product-photos.php?id=<?php echo $product['id']; ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
-                                                        <a href="#" class="delete-product" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
+                                                        <a href="view-product-photos.php?id=<?php echo $product['id']; ?>" title="Add Product">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a> | 
+                                                        <a href="#" class="delete-product" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
 
                                                     </div>
                                                 </div>

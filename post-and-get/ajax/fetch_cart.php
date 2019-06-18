@@ -27,9 +27,6 @@ if (!empty($_SESSION["shopping_cart"])) {
     foreach ($_SESSION["shopping_cart"] as $key => $value) {
         $PRODUCT = new Product($value["product_id"]);
 
-       
-
-
         $output .= '<tr class="cart_item">'
                 . '<td class="product-remove">' . $value["product_name"] . '</td>'
                 . '<td class="product-remove" >'
