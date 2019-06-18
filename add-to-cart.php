@@ -59,13 +59,17 @@ include './class/include.php';
                                         <span id="cart-form">
                                             <input type="submit" id="submit"  class="btn  btn-info check-btn " value="PROCEED TO CHECKOUT"/>
                                         </span> 
+                                    <input type="hidden" name="customer_id_session"   value="<?php echo $_SESSION['id'] ?>">
                                     <?php } ?>
-
+                                    
+                                     <input type="hidden" name="customer_id" id="customer_id" >
+                                    <input type="hidden" name="create" value="create">
+                                   
                                     <span id="cart-form" style="display: none">
                                         <input type="submit" id="submit"  class="btn  btn-info check-btn " value="PROCEED TO CHECKOUT"/>
                                     </span> 
                                     <span>
-                                        <a href="#" class="btn btn-default pull-right" id="clear_cart">
+                                        <a href="#" class="btn btn-warning pull-right" id="clear_cart">
                                             <i class="fa fa-trash"></i>
                                             Clear
                                         </a>

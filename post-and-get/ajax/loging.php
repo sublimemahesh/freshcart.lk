@@ -15,7 +15,7 @@ if ($CUSTOMER->login($username, md5($password))) {
     } else {
         $image_name = $data->image_name;
     }
-    $result = ["status" => 'success', 'image_name' => $image_name, 'name' => $data->name];
+    $result = ["status" => 'success', 'image_name' => $image_name, 'name' => $data->name, 'id' => $data->id];
     echo json_encode($result);
     exit();
 } else {

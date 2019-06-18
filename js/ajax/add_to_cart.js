@@ -57,7 +57,6 @@ $(document).on('click', '.add_to_cart', function () {
     
 //Delete cart
      $(document).on('click', '.delete', function () {
-
         var product_id = $(this).attr("id");
         swal({
             title: "Remove.!",
@@ -160,5 +159,7 @@ $(document).on('click', '.add_to_cart', function () {
             });
         }
     });
+    
+   
 });
 

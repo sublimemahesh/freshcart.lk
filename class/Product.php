@@ -309,7 +309,7 @@ class Product {
                                       <span pull-left> <i class="fa fa-circle"></i> Brand : ' . $BRAND->name . ' </span> </br>
                                       <span pull-right> <i class="fa fa-circle"></i> Unites : ' . $row['unite'] . ' </span></br>
                                         <div class="col-md-6  " id="price-padd">                                         
-                                            <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $row['price'] . '"/>
+                                            <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $discount_price . '"/>
                                         </div>                                        
                                         <div class="col-md-6 "  id="price-padd">                                               
                                         <div class="attr-product">                                            
@@ -438,7 +438,7 @@ class Product {
                                       <span pull-left> <i class="fa fa-circle"></i> Brand : ' . $BRAND->name . ' </span> </br>
                                       <span pull-right> <i class="fa fa-circle"></i> Unites : ' . $row['unite'] . ' </span></br>
                                         <div class="col-md-6  " id="price-padd">                                         
-                                            <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $row['price'] . '"/>
+                                            <input type="text" id="price' . $row['id'] . '" class="price-format total_price_amount" value="' . $discount_price . '"/>
                                         </div>                                        
                                         <div class="col-md-6 "  id="price-padd">                                               
                                         <div class="attr-product">                                            
