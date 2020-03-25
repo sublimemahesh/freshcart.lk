@@ -6,7 +6,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
 <html lang="en-US"> 
     <head>
 
-        <title>Supiri market.lk </title>
+        <title>FRESHCART.LK</title>
 
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -107,104 +107,39 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
 
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="hot-deals">
-                                <h2><i class="fa fa-clock-o"></i> hot deals</h2>
+                                <h2><i class="fa fa-clock-o"></i> TESTIMONIAL</h2>
                                 <div class="hotdeals-slider slider-home4 simple-owl-slider">
                                     <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1]]">
-                                        <div class="item">
-                                            <ul class="list-product-hotdeal">
-                                                <li>
-                                                    <div class="zoom-image-thumb product-thumb">
-                                                        <a href="#"><img src="images/photos/furniture/6.jpg" alt="" /></a>
-                                                        <a class="addcart-link addcart-single" href="#"><i class="fa fa-shopping-basket"></i></a>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h3 class="title-product"><a href="#">Product Name 02</a></h3>
-                                                        <div class="info-price">
-                                                            <span>$130.00</span>
-                                                            <del>$195.99</del>
+                                        <?php
+                                        $testimonials = Comments::all();
+
+                                        foreach ($testimonials as $testimonial) {
+                                            ?>
+                                            <div class="item">
+                                                <ul class="list-product-hotdeal">
+                                                    <li>
+                                                        <div class="author-testimo">
+                                                            <div class="author-test-link">
+                                                                <a href="#">
+                                                                    <img src="upload/comments/<?php echo $testimonial['image_name']; ?>" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="author-test-info">
+                                                                <h3>
+                                                                    <a href="#"><?php echo $testimonial['name']; ?></a>
+                                                                </h3>
+                                                                <span><?php echo $testimonial['title']; ?></span>
+                                                            </div>
                                                         </div>
-                                                        <div class="hotdeal-countdown"  data-date="12/15/2016"></div>
-                                                        <p class="desc-hidden">Que eget malesuada at nequeVivamus eget nibh. Etiamursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et trices.</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="zoom-image-thumb product-thumb">
-                                                        <a href="#"><img src="images/photos/furniture/21.jpg" alt="" /></a>
-                                                        <a class="addcart-link addcart-single" href="#"><i class="fa fa-shopping-basket"></i></a>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h3 class="title-product"><a href="#">Product Name 3</a></h3>
-                                                        <div class="info-price">
-                                                            <span>$200.00</span>
-                                                            <del>$220.00</del>
-                                                        </div>
-                                                        <div class="hotdeal-countdown"  data-date="11/25/2016"></div>
-                                                        <p class="desc-hidden">Que eget malesuada at nequeVivamus eget nibh. Etiamursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et trices.</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="zoom-image-thumb product-thumb">
-                                                        <a href="#"><img src="images/photos/furniture/11.jpg" alt="" /></a>
-                                                        <a class="addcart-link addcart-single" href="#"><i class="fa fa-shopping-basket"></i></a>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h3 class="title-product"><a href="#">Product Name 04</a></h3>
-                                                        <div class="info-price">
-                                                            <span>$120.99</span>
-                                                            <del>$250.99</del>
-                                                        </div>
-                                                        <div class="hotdeal-countdown"  data-date="10/20/2016"></div>
-                                                        <p class="desc-hidden">Que eget malesuada at nequeVivamus eget nibh. Etiamursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et trices.</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="item">
-                                            <ul class="list-product-hotdeal">
-                                                <li>
-                                                    <div class="zoom-image-thumb">
-                                                        <a href="#"><img src="images/photos/furniture/8.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h3 class="title-product"><a href="#">Product Name 02</a></h3>
-                                                        <div class="info-price">
-                                                            <span>$130.00</span>
-                                                            <del>$195.99</del>
-                                                        </div>
-                                                        <div class="hotdeal-countdown"  data-date="12/15/2016"></div>
-                                                        <p class="desc-hidden">Que eget malesuada at nequeVivamus eget nibh. Etiamursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et trices.</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="zoom-image-thumb">
-                                                        <a href="#"><img src="images/photos/furniture/23.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h3 class="title-product"><a href="#">Product Name 3</a></h3>
-                                                        <div class="info-price">
-                                                            <span>$200.00</span>
-                                                            <del>$220.00</del>
-                                                        </div>
-                                                        <div class="hotdeal-countdown"  data-date="12/15/2016"></div>
-                                                        <p class="desc-hidden">Que eget malesuada at nequeVivamus eget nibh. Etiamursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et trices.</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="zoom-image-thumb">
-                                                        <a href="#"><img src="images/photos/furniture/26.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h3 class="title-product"><a href="#">Product Name 04</a></h3>
-                                                        <div class="info-price">
-                                                            <span>$120.99</span>
-                                                            <del>$250.99</del>
-                                                        </div>
-                                                        <div class="hotdeal-countdown"  data-date="12/15/2016"></div>
-                                                        <p class="desc-hidden">Que eget malesuada at nequeVivamus eget nibh. Etiamursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et trices.</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                                        <p class="desc">
+                                                            <?php echo $testimonial['comment'], 0, 50; ?>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
