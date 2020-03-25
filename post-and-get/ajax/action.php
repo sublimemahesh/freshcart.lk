@@ -3,29 +3,33 @@
 include_once(dirname(__FILE__) . '/../../class/include.php');
 session_start();
 
- 
+
 
 if (isset($_POST["action"]) == "ADD") {
 
     if (isset($_SESSION["shopping_cart"])) {
-       
+
         $is_available = 0;
-      
+
         foreach ($_SESSION["shopping_cart"] as $key => $values) {
 
             if ($_SESSION["shopping_cart"] [$key] ['product_id'] == $_POST["product_id"]) {
                 $is_available++;
-                if (isset($_POST['quantity'])) {
-                      
-                    $_SESSION["shopping_cart"][$key]
-                            ['product_quantity'] =   $_POST['quantity']; 
-                    } else { 
-                    $_SESSION["shopping_cart"][$key]
-                            ['product_quantity'] = $_SESSION["shopping_cart"][$key] ['product_quantity'] + $_POST["product_quantity"];
-                }
+//                if (isset($_POST['quantity'])) {
+//                      
+//                    $_SESSION["shopping_cart"][$key]
+//                            ['product_quantity'] =   $_POST['quantity']; 
+//                    } else { 
+//                    $_SESSION["shopping_cart"][$key]
+//                            ['product_quantity'] = $_SESSION["shopping_cart"][$key] ['product_quantity'] + $_POST["product_quantity"];
+//                }
+                $result = "error";
+                echo json_encode($result);
+                header('Content-type: application/json');
+                exit();
             }
         }
-   
+
 
         if ($is_available == 0) {
             $iteam_array = array(

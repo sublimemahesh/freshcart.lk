@@ -9,7 +9,7 @@ $(document).ready(function () {
             type: "info",
             showCancelButton: true,
             confirmButtonColor: "#28a4c9",
-            confirmButtonText: "  Yes, Checkout It!",
+            confirmButtonText: "Yes, Checkout It!",
             closeOnConfirm: false
         }, function () {
             var formData = new FormData($("form#form-data")[0]);
