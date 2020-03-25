@@ -56,9 +56,7 @@ include './class/include.php';
                                         </span> 
 
                                     <?php } else { ?>
-                                        <span id="cart-form">
-                                            <input type="submit" id="submit"  class="btn  btn-info check-btn " value="PROCEED TO CHECKOUT"/>
-                                        </span> 
+                                        <a href="./checkout.php" id="cart-form" class="btn  btn-info check-btn ">PROCEED TO CHECKOUT</a> 
                                     <input type="hidden" name="customer_id_session"   value="<?php echo $_SESSION['id'] ?>">
                                     <?php } ?>
                                     
@@ -98,7 +96,7 @@ include './class/include.php';
     <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="js/theme.js"></script>
 
-    <script src="js/ajax/cart-form.js" type="text/javascript"></script>
+    <!--<script src="js/ajax/cart-form.js" type="text/javascript"></script>-->
     <script src="js/ajax/add_to_cart.js" type="text/javascript"></script> 
     <script src="js/ajax/login.js" type="text/javascript"></script>
 

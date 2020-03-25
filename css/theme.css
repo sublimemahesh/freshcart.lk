@@ -1,5 +1,5 @@
 /*General*/
- 
+
 .scroll-bar{
     height: 647px;
     overflow: scroll;
@@ -15485,4 +15485,101 @@ a.button24:hover {
 }
 .footer-bottom24 {
     padding: 20px 0px;
+}
+.agree-check-box {
+    margin-bottom: 10px;
+}
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-top: 0;
+}
+.text-green {
+    color: #164c25!important;
+    font-weight: 600;
+}
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-top: 0px;
+}
+#agree {
+    z-index: -9999;
+}
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #f9f9f9;
+    border: 1px solid #5ee600;
+    margin-left: 0px;
+}
+.agree-check-box {
+    margin-bottom: 10px;
+}
+.text-green {
+    color: #5ee600 !important;
+    font-weight: 600;
+}
+.text-green:hover {
+    color: #f9bc02 !important;
+}
+.checkbox-container input:checked ~ .checkmark::after {
+    display: block;
+}
+.checkbox-container .checkmark::after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #5ee600;
+}
+.place-order-btn button {
+    background: #5ee600 none repeat scroll 0 0;
+    border: none;
+    color: #fff;
+    height: 40px;
+    padding: 0 25px;
+    text-transform: capitalize;
+    -webkit-transition: all .3s ease-out 0s;
+    transition: all .3s ease-out 0s;
 }

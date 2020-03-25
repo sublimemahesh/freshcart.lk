@@ -14,15 +14,14 @@ $(document).ready(function () {
     }
 
 //Add to cart
-$(document).on('click', '.add_to_cart', function () {
+    $(document).on('click', '.add_to_cart', function () {
 
         var product_id = $(this).attr("id");
-       
         var product_name = $('#name' + product_id + '').val();
         var product_price = $('#price' + product_id + '').val();
         var product_quantity = $('#quantity' + product_id + '').val();
-         
-       
+
+
         if (product_quantity > 0) {
             $.ajax({
                 url: "post-and-get/ajax/action.php",
@@ -35,15 +34,26 @@ $(document).on('click', '.add_to_cart', function () {
                     action: "ADD"
                 },
                 success: function (data) {
-                    load_cart_data();
-                    $('#modalLoginForm' + product_id).modal('hide');
-                    swal({
-                        title: "Success.!",
-                        text: "Iteam has been Check!...",
-                        type: 'success',
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
+                    if (data === 'error') {
+                        swal({
+                            title: "Error.!",
+                            text: "Iteam already exist in the cart!...",
+                            type: 'error',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        load_cart_data();
+                        $('#modalLoginForm' + product_id).modal('hide');
+                        swal({
+                            title: "Success.!",
+                            text: "Iteam has been Check!...",
+                            type: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
+
                 }
             });
         } else {
@@ -56,9 +66,9 @@ $(document).on('click', '.add_to_cart', function () {
             });
         }
     });
-    
+
 //Delete cart
-     $(document).on('click', '.delete', function () {
+    $(document).on('click', '.delete', function () {
         var product_id = $(this).attr("id");
         swal({
             title: "Remove.!",
@@ -103,7 +113,7 @@ $(document).on('click', '.add_to_cart', function () {
         });
         return false;
     });
- 
+
 //Clear cart
     $(document).on('click', '#clear_cart', function () {
         swal({
@@ -138,14 +148,14 @@ $(document).on('click', '.add_to_cart', function () {
             });
         });
     });
-    
+
 //Quantity up  
     $(document).on('change', '.quantity', function (event) {
         event.preventDefault();
 
         var product_id = $(this).attr("product_id");
         var quantity = $(this).val();
-        
+
         if (quantity >= 1) {
             $.ajax({
                 url: "post-and-get/ajax/action.php",
@@ -161,7 +171,7 @@ $(document).on('click', '.add_to_cart', function () {
             });
         }
     });
-    
-   
+
+
 });
 
