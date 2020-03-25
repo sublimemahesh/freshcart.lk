@@ -157,11 +157,12 @@ $(document).ready(function () {
         var quantity = $(this).val();
 
         if (quantity >= 1) {
+            
             $.ajax({
-                url: "post-and-get/ajax/action.php",
+                url: "post-and-get/ajax/order.php",
                 type: "POST",
                 data: {
-                    action: "ADD",
+                    action: "ADDTOQTY",
                     product_id: product_id,
                     quantity: quantity
                 },

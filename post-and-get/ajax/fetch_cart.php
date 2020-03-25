@@ -34,7 +34,7 @@ if (!empty($_SESSION["shopping_cart"])) {
                 . '</td>'
                 . '<td class="product-remove">'
                 . ' <div class="input-group" style="width: 70%"> '
-                . ' <input  type="number" name="quantity"   class=" quty-size form-control  text-center quantity "  product_id=' . $value["product_id"] . ' value="' . $value["product_quantity"] . '" min="1"/>
+                . ' <input type="number" name="quantity"   class="quty-size form-control  text-center quantity"  product_id=' . $value["product_id"] . ' value="' . $value["product_quantity"] . '" min="1" max="10"/>
                      </div> '
                 . '</td>'
                 . '<td class="product-remove">Rs: ' . number_format($value["product_price"], 2) . '</td>'
@@ -57,7 +57,7 @@ if (!empty($_SESSION["shopping_cart"])) {
             . '</tr>';
 } else {
     $output .= '<tr>'
-            . '<td colspan="5" align="center" class="product-remove">'
+            . '<td colspan="6" align="center" class="product-remove">'
             . 'Your Cart is Empty!.'
             . '</td>'
             . '</tr>';

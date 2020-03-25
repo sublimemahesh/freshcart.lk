@@ -90,19 +90,6 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                     </div>
                                     <!-- End Filter -->
 
-                                    <div class="widget widget-vote">
-                                        <h2 class="widget-title">COMMUNITY POLL</h2>
-                                        <p>What is your favorite color</p>
-                                        <ul>
-                                            <li><a href="#">Green</a></li>
-                                            <li><a href="#" class="active">Red</a></li>
-                                            <li><a href="#">Black</a></li>
-                                            <li><a href="#">Magenta</a></li>
-                                        </ul>
-                                        <button>Vote</button>
-                                    </div>
-                                    <!-- End Vote -->
-
                                 </div>
                             </div>
 

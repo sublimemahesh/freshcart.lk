@@ -230,11 +230,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                                             <img alt="" src="upload/product-categories/sub-category/product/photos/<?php echo $product['image_name'] ?>"  > 
                                                                         </a>
                                                                         <div class="product-info-cart">
-                                                                            <div class="product-extra-link">
-                                                                                <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
-                                                                                <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
-                                                                                <a class="quickview-link" href="#"><i class="fa fa-search"></i></a>
-                                                                            </div>
+                                                                            
                                                                             <a class="addcart-link" href="#"  class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm<?php echo $product['id'] ?>"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
 
 
