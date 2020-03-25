@@ -15583,3 +15583,6 @@ a.button24:hover {
     -webkit-transition: all .3s ease-out 0s;
     transition: all .3s ease-out 0s;
 }
+button.disabled {
+    background: #ddd;
+}

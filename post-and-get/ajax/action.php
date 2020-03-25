@@ -52,6 +52,7 @@ if (isset($_POST["action"]) == "ADD") {
 }
 
 
+
 if ($_POST["action"] == 'REMOVE') {
 
     foreach ($_SESSION["shopping_cart"] as $key => $value) {

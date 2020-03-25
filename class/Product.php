@@ -388,11 +388,6 @@ class Product {
                                              <img class="first-thumb" alt="" src="upload/product-categories/sub-category/product/photos/' . $row['image_name'] . '"> 
                                          </a>
                                             <div class="product-info-cart">
-                                                <div class="product-extra-link">
-                                                    <a class="wishlist-link" href="#"><i class="fa fa-heart-o"></i></a>
-                                                    <a class="compare-link" href="#"><i class="fa fa-toggle-on"></i></a>
-                                                    <a class="quickview-link fancybox.ajax" href="quick-view.html"><i class="fa fa-search"></i></a>
-                                                </div>
                                                    <a class="addcart-link" href="#"  class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm' . $row['id'] . '"><i class="fa fa-shopping-basket"></i> Add to Cart</a>
                                          </div>
                                 </div>
