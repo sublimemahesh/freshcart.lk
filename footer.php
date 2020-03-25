@@ -42,9 +42,9 @@
                     <div class="item-box-footer2">
                         <h2>Contact us</h2>
                         <ul class="contact-footer2">
-                            <li><i class="fa fa-map-marker"></i>  No. 205, Colombo Rd, Bokundara, Piliyandala, Sri Lanka.</li>
+                            <li><i class="fa fa-map-marker"></i>  No. 55, Isipathanarama Rd, Nawinna, Maharagama, Sri Lanka.</li>
                             <li><i class="fa fa-phone"></i> (+94) 70 277 3500 /<br> (+94) 11 366 3500 </li>
-                            <li><i class="fa fa-envelope-o"></i> <a href="mailto:info@supirimarket.lk">info@supirimarket.lk</a></li>
+                            <li><i class="fa fa-envelope-o"></i> <a href="mailto:info@supirimarket.lk">info@freshcart.lk</a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-xs-12">
                     <div class="copyright2">
-                        <p> Copyright Supirimarket.lk ©   <?php echo date('Y') ?> All Rights    </p>
+                        <p> Copyright FreshCart.lk ©   <?php echo date('Y') ?> All Rights    </p>
                         <p>Website By:  <i class="fa fa-hand-o-right text-primary heart"  style="color:white;"></i> <a href="https://www.synotec.lk/"  target="_blank"  style="color:white;">  Synotec Holdings (Pvt) Ltd.  </a></p>
                     </div>
                 </div>
