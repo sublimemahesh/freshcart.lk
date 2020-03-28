@@ -11,7 +11,7 @@ if ($_POST['action'] == 'ADDORDER') {
     $ORDER->orderedAt = $orderedAt;
     $ORDER->member = $_POST['member'];
     $ORDER->address = $_POST['address'];
-    $ORDER->city = md5($_POST['city']);
+    $ORDER->city = $_POST['city'];
     $ORDER->postalCode = $_POST['postalCode'];
     $ORDER->country = $_POST['country'];
     $ORDER->orderNote = $_POST['orderNote'];

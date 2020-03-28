@@ -8,18 +8,15 @@ if (isset($_GET["page"])) {
     $page = 1;
 }
 
-
 $setlimit = 2;
 $pagelimit = ($page * $setlimit);
-
 $setlimit = 3;
-
 $pagelimit = ($page * $setlimit) - $setlimit;
 $id = '';
-
 $id = $_GET['id'];
 $PRODUCT = new Product(NULL);
 $PRODUCT_CATEGORIES = new ProductCategories($id);
+
 ?>
 <html lang="en-US">
     <head>

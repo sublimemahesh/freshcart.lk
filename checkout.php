@@ -6,6 +6,8 @@ $disabled = '';
 if (!isset($_SESSION["shopping_cart"])) {
     $disabled = 'disabled';
 }
+$CUSTOMER = new Customer($_SESSION['id']);
+$CITY = new City($CUSTOMER->city);
 ?>
 <html lang="en-US">
     <head>
@@ -47,11 +49,11 @@ if (!isset($_SESSION["shopping_cart"])) {
                                         <div class="check-billing">
                                             <form class="form-my-account">
                                                 <h2 class="title">Billing Details</h2>
-                                                <p><input type="text" name="txtCountry" id="txtCountry" placeholder="Country *" /></p>
-                                                <p><input type="text" name="txtAddress" id="txtAddress" placeholder="Address *" /></p>
+                                                <p><input type="text" name="txtCountry" id="txtCountry" placeholder="Country *" value="" /></p>
+                                                <p><input type="text" name="txtAddress" id="txtAddress" placeholder="Address *" value="<?php echo $CUSTOMER->address; ?>"/></p>
                                                 <p class="clearfix box-col2">
                                                     <input type="text" name="txtPostcode" id="txtPostcode" placeholder="Postcode" />
-                                                    <input type="text" name=txtCity" id="txtCity" placeholder="City *" />
+                                                    <input type="text" name=txtCity" id="txtCity" placeholder="City *" value="<?php echo $CITY->name; ?>"/>
                                                 </p>
                                             </form>
                                         </div>
@@ -60,7 +62,7 @@ if (!isset($_SESSION["shopping_cart"])) {
                                         <div class="check-address">
                                             <form class="form-my-account">
                                                 <p>
-                                                    <textarea cols="30" rows="9" id="txtOrderNote" name="txtOrderNote">Order Notes</textarea>
+                                                    <textarea cols="30" rows="9" id="txtOrderNote" name="txtOrderNote" placeholder="Order Notes"></textarea>
                                                 </p>
                                             </form>
                                         </div>		

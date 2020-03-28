@@ -45,10 +45,10 @@ $PRODUCT = new Product($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $PRODUCT->name ?>" - Product Photos</h2>
+                                <h2> Product Photos - "<?php echo $PRODUCT->name ?>"</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-product-categories.php">
+                                        <a href="view-products.php?id=<?php echo $PRODUCT->sub_category; ?>">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>

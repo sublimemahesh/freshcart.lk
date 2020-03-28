@@ -37,10 +37,7 @@ if (isset($_SESSION["id"])) {
 
                                     <?php } ?>
                                     <ul class="sub-menu-top">
-                                       <!--                                    <li><a href="my-account.html"><i class="fa fa-user"></i> Account Info</a></li>
-                                                                           <li><a href="#"><i class="fa fa-heart-o"></i> Wish List</a></li>
-                                                                           <li><a href="#"><i class="fa fa-toggle-on"></i> Compare</a></li>
-                                                                           <li><a href="#"><i class="fa fa-unlock-alt"></i> Sign in</a></li>-->
+                                       
                                         <li><a href="post-and-get/logout.php"><span> <i class="fa fa-sign-in " ></i>Log Out</span></a></li>
                                     </ul>
                                     <?php
@@ -55,9 +52,6 @@ if (isset($_SESSION["id"])) {
 
 
                             </li>
-
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="#"><i class="fa fa-arrow-circle-o-right"></i>Checkout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,28 +66,29 @@ if (isset($_SESSION["id"])) {
                         <a href="./"><img src="images/logo.jpg" alt="" /></a>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-5 col-sm-4 col-xs-12">
                     <div class="smart-search search-form4">
-                        <div class="select-category">
-                            <a href="#" class="category-toggle-link">All</a>
-                            <ul class="list-category-toggle sub-menu-top">
-                                <li><a href="#">Computer &amp; Office</a></li>
-                                <li><a href="#">Elextronics</a></li>
-                                <li><a href="#">Jewelry &amp; Watches</a></li>
-                                <li><a href="#">Home &amp; Garden</a></li>
-                                <li><a href="#">Bags &amp; Shoes</a></li>
-                                <li><a href="#">Kids &amp; Baby</a></li>
-                            </ul>
-                        </div>
-                        <form class="smart-search-form">
-                            <input type="text"  name="search" value="Find product, categories..." onfocus="if (this.value == this.defaultValue)
-                                        this.value = ''" onblur="if (this.value == '')
-                                                    this.value = this.defaultValue" />
-                            <input type="submit" value="search" />
+                        <form action="search.php" method="get">
+                            <div class="select-category">
+                                <select name="category" class="category-toggle-link">
+                                    <option value="">Category</option>
+                                    <?php
+                                    foreach (ProductCategories::all() as $category) {
+                                        ?>
+                                        <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="smart-search-form">
+                                <input type="text"  name="keyword" placeholder="Find product, categories..."  />
+                                <input type="submit" value="search" name="search"/>
+                            </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-4 col-xs-12">
                     <div class="wrap-register-cart">
                         <div class="register-box">
                             <ul>
@@ -120,14 +115,23 @@ if (isset($_SESSION["id"])) {
     <div class="header-nav2 header-nav4">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 col-sm-12 col-xs-12 col-md-offset-3">
+                <div class="col-md-3 col-sm-3 col-xs-6 hidden-sm">
+                    <div class="category-dropdown hidden-category-dropdown">
+                        <a href="all-categories.php"><h2 class="title-category-dropdown"><span>Categories</span></h2></a>
+                    </div>
+                    <!-- End Category Dropdown -->
+                </div>
+                <div class="col-md-9 col-sm-12 col-xs-12">
                     <nav class="main-nav main-nav4">
                         <ul>
                             <li>
                                 <a href="./">home</a>                             
                             </li>
                             <li>
-                                <a href="#">Products</a>
+                                <a href="all-products.php">All Products</a>
+                            </li>
+                            <li>
+                                <a href="packages.php">Packages</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Brands</a>
@@ -144,9 +148,9 @@ if (isset($_SESSION["id"])) {
                                 <a href="#">Offer</a>
                             </li>
                             <li>
-                                <a href="#">About</a>
+                                <a href="#">About Us</a>
                             </li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Contact Us</a></li>
                         </ul>
                         <a href="#" class="toggle-mobile-menu"><span>Menu</span></a>
                     </nav>

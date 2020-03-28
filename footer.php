@@ -7,34 +7,44 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="item-box-footer2">
-                        <h2>My account</h2>
+                        <h2>Categories</h2>
                         <ul class="menu-footer2">
-                            <li><a href="#">My Orders</a></li>
-                            <li><a href="#">My Credit Slips</a></li>
-                            <li><a href="#">My Addresses</a></li>
-                            <li><a href="#">My Personal Info</a></li>
+                            <?php
+                            foreach (ProductCategories::all() as $key => $category) {
+                                if ($key < 4) {
+                                    ?>
+                                    <li><a href="view-sub-categories.php?id=<?php echo $category['id'] ?>"><?php echo $category['name']; ?></a></li>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="item-box-footer2">
-                        <h2>Orders</h2>
+                        <h2>Brands</h2>
                         <ul class="menu-footer2">
-                            <li><a href="#">Payment options</a></li>
-                            <li><a href="#">Shipping and delivery</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Shipping</a></li>
+                            <?php
+                            foreach (Brand::all() as $key => $brand) {
+                                if ($key < 4) {
+                                    ?>
+                                    <li><a href="view-products-by-brand.php?id=<?php echo $brand['id'] ?>"><?php echo $brand['name']; ?></a></li>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="item-box-footer2">
-                        <h2>Information</h2>
+                        <h2>Quick Links</h2>
                         <ul class="menu-footer2">
-                            <li><a href="#">Specials</a></li>
-                            <li><a href="#">New Products</a></li>
-                            <li><a href="#">Best Sellers</a></li>
-                            <li><a href="#">Our Stores</a></li>
+                            <li><a href="all-products.php">All Products</a></li>
+                            <li><a href="#">Offers</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>

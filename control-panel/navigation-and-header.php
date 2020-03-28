@@ -275,7 +275,38 @@
                         <span>Home</span>
                     </a>
                 </li> 
-
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Order</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="manage-orders.php?status=0">
+                                <i class="material-icons">list</i>
+                                <span>Manage Pending Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage-orders.php?status=1">
+                                <i class="material-icons">list</i>
+                                <span>Manage Confirmed Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage-orders.php?status=2">
+                                <i class="material-icons">list</i>
+                                <span>Manage Success Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage-canceled-orders.php">
+                                <i class="material-icons">list</i>
+                                <span>Manage Canceled Orders</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="qqq">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>

@@ -45,7 +45,7 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $SUB_PRODUCT_CATEGORIES->name ?>" - Create Sub Categories</h2>
+                                <h2> Create Sub Category - "<?php echo $SUB_PRODUCT_CATEGORIES->name ?>"</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="manage-product-categories.php">
@@ -104,7 +104,7 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                                                 <div class="img-caption">
                                                     <p class="maxlinetitle"><?php echo $sub_category['name']; ?></p>
                                                     <div class="d">
-                                                        <a href="edit-sub-category.php?id=<?php echo $sub_category['id']; ?>&&category=<?php echo $id ?>"> <button class="glyphicon glyphicon-pencil edit-btn" title="Edit"></button></a> | 
+                                                        <a href="edit-sub-category.php?id=<?php echo $sub_category['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn" title="Edit"></button></a> | 
                                                         <a href="arrange-sub-product.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn" title="Arrange"></button></a> | 
                                                         <a href="#" class="delete-sub-product" data-id="<?php echo $sub_category['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn" title="Delete"></button></a> | 
                                                         <a href="view-products.php?id=<?php echo $sub_category['id']; ?>&category=<?php echo $id ?>" title="Add Products">  <button class="glyphicon glyphicon-briefcase defult"></button></a>
@@ -116,7 +116,7 @@ $SUB_PRODUCT_CATEGORIES = new ProductCategories($id);
                                         }
                                     } else {
                                         ?> 
-                                        <b style="padding-left: 15px;">No sub Products in the database.</b> 
+                                        <b style="padding-left: 15px;">No sub categories in the database.</b> 
                                     <?php } ?> 
 
                                 </div>

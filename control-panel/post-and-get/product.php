@@ -16,6 +16,9 @@ if (isset($_POST['create'])) {
     $PRODUCT->price = $_POST['price'];
     $PRODUCT->short_description = $_POST['short_description'];
     $PRODUCT->description = $_POST['description'];
+    $PRODUCT->in_stock = $_POST['in_stock'];
+    $PRODUCT->min_qty = $_POST['min_qty'];
+    $PRODUCT->max_qty = $_POST['max_qty'];
 
     $dir_dest = '../../upload/product-categories/sub-category/product/photos/';
 
@@ -107,11 +110,19 @@ if (isset($_POST['update'])) {
 
     $PRODUCT = new Product($_POST['id']);
 
+    $PRODUCT->category = $_POST['category'];
+    $PRODUCT->sub_category = $_POST['sub_category'];
     $PRODUCT->brand = $_POST['brand'];
     $PRODUCT->image_name = $_POST['oldImageName'];
     $PRODUCT->name = $_POST['name'];
     $PRODUCT->short_description = $_POST['short_description'];
     $PRODUCT->description = $_POST['description'];
+    $PRODUCT->in_stock = $_POST['in_stock'];
+    $PRODUCT->min_qty = $_POST['min_qty'];
+    $PRODUCT->max_qty = $_POST['max_qty'];
+    $PRODUCT->discount = $_POST['discount'];
+    $PRODUCT->unite = $_POST['unite'];
+    $PRODUCT->price = $_POST['price'];
 
     $VALID = new Validator();
     $VALID->check($PRODUCT, [

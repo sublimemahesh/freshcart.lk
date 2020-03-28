@@ -50,7 +50,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                 <div class="sidebar-shop sidebar-left">
                                     <div class="widget widget-filter">
                                         <div class="box-filter manufacturer-filter">
-                                            <h2 class="widget-title"><?php echo $BRAND->name ?></h2>                                             
+                                            <h2 class="widget-title">Brands</h2>                                             
                                         </div>
                                         <div class="box-filter  "> 
                                             <!-- End Price -->
@@ -62,9 +62,13 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                                                             <?php
                                                             $BRANDS = new Brand(NULL);
                                                             foreach ($BRANDS->all() as $brand) {
+                                                                $checked = '';
+                                                                if($brand['id'] == $id) {
+                                                                    $checked = 'checked';
+                                                                }
                                                                 ?>
                                                                 <li> 
-                                                                    <input type="checkbox"   class="common_selector brand" value="<?php echo $brand['id'] ?>">
+                                                                    <input type="checkbox"   class="common_selector brand" <?php echo $checked; ?> value="<?php echo $brand['id'] ?>">
                                                                     <?php echo $brand['name'] ?> 
                                                                 </li>
                                                             <?php }
@@ -127,8 +131,8 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
         <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
         <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-        
         <script src="js/ajax/product-by-brand.js" type="text/javascript"></script>
         <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
+        <script src="js/ajax/login.js" type="text/javascript"></script>
     </body>
 </html>

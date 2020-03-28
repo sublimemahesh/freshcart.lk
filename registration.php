@@ -67,7 +67,7 @@ include './auth.php';
                                                         </div>
                                                         <div class="form-group">
                                                             <select class="form-control" type="text" id="district" autocomplete="off" name="district">
-                                                                <option class="active light-c"> -- Please  Select Country State -- </option>
+                                                                <option class="active light-c"> -- Please  Select a District -- </option>
                                                                 <?php
                                                                 $DISTRICT = new District(NULL);
                                                                 foreach ($DISTRICT->all() as $key => $district) {
@@ -81,7 +81,7 @@ include './auth.php';
                                                         </div>
                                                         <div class="form-group">
                                                             <select class="form-control" autocomplete="off" type="text" id="city-bar" autocomplete="off" name="city"  >
-                                                                <option value=""> -- Please Select a Country State First -- </option>
+                                                                <option value=""> -- Please Select a City -- </option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
@@ -133,8 +133,8 @@ include './auth.php';
     <script type="text/javascript" src="js/theme.js"></script>
     <script src="js/ajax/city.js" type="text/javascript"></script>  
     <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-
     <script src="js/ajax/registration.js" type="text/javascript"></script>
+    <script src="js/ajax/login.js" type="text/javascript"></script>
 
 </body>
 </html>

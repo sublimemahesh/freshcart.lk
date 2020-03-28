@@ -63,7 +63,7 @@ $PRODUCT_PHOTO = $PRODUCT_PHOTO->getProductPhotosById($id);
                                                             <div class="col-md-3" style="list-style: none;">
                                                                 <li class="ui-state-default">
                                                                     <span class="number-class">(<?php echo $key + 1; ?>)</span>
-                                                                    <img class="img-responsive" src="../upload/product-categories/product/photos/gallery/thumb/<?php echo $img["image_name"]; ?>" alt=""/>
+                                                                    <img class="img-responsive" src="../upload/product-categories/sub-category/product/photos/gallery/thumb/<?php echo $img["image_name"]; ?>" alt=""/>
                                                                     <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
 
                                                                 </li>

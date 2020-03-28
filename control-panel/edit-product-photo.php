@@ -74,10 +74,10 @@ $PRODUCT_PHOTO = new ProductPhoto($id);
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">                                       
+                                    <div class="col-md-6">                                       
                                         <div class="form-group form-float"> 
                                             <input type="file" id="image" class="form-control" value="<?php echo $PRODUCT_PHOTO->image_name; ?>"  name="image">
-                                            <img src="../upload/product-categories/product/photos/gallery/thumb/<?php echo $PRODUCT_PHOTO->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
+                                            <img src="../upload/product-categories/sub-category/product/photos/gallery/thumb/<?php echo $PRODUCT_PHOTO->image_name; ?>"  class="view-edit-img img img-responsive img-thumbnail"  alt="old image">
 
                                         </div>
                                     </div>

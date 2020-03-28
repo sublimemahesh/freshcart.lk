@@ -17,7 +17,6 @@ if ($_SESSION['CAPTCHACODE'] != $_POST['captchacode']) {
     $PRODUCT_REVIEW = new ProductReview(NULL);
 
     $PRODUCT_REVIEW->customer = $_POST['customer'];
-    $PRODUCT_REVIEW->image_name = $_POST['image_name'];
     $PRODUCT_REVIEW->date_time = $today;
     $PRODUCT_REVIEW->description = $_POST['comment'];
     $PRODUCT_REVIEW->product = $_POST['product'];

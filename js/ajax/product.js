@@ -10,12 +10,12 @@ $(document).ready(function () {
 
         var minimum_price = $('#hidden_minimum_price').val();
         var maximum_price = $('#hidden_maximum_price').val();
-        var category = $('#category').val();
+        var category = get_filter('category');
         var pagelimit = $('#pagelimit').val();
         var setlimit = $('#setlimit').val();
         var sub_category = get_filter('sub_category');
         var brand = get_filter('brand');
-       
+        
         $.ajax({
             url: "post-and-get/ajax/product.php",
             type: "POST",

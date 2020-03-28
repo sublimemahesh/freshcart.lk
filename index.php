@@ -1,14 +1,16 @@
 <?php
-include './class/include.php';
+
+include_once(dirname(__FILE__) . '/class/include.php');
+
 $PRODUCT_CATEGORIES = new ProductCategories(NULL);
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US"> 
-    <head>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
         <title>FRESHCART.LK</title>
 
-        <meta http-equiv="content-type" content="text/html;charset=UTF-8" /> 
+         
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -45,13 +47,13 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                         <div class="col-md-3 col-sm-3 col-xs-12 hidden-sm hidden-xs">
                             <div class="wrap-category-hover4">
                                 <div class="inner-category-hover4">
-                                    <h2 class="title-category-hover"><span>Categories</span></h2>
+                                    <a href="all-categories.php"><h2 class="title-category-hover"><span>Categories</span></h2></a>
                                     <ul class="list-category-hover">
                                         <?php
                                         foreach ($PRODUCT_CATEGORIES->all() as $product_categories) {
                                             ?>
                                             <li class="has-cat-mega">
-                                                <a href="all-product.php?id=<?php echo $product_categories['id'] ?>"> <?php echo $product_categories['name'] ?></a>
+                                                <a href="view-sub-categories.php?id=<?php echo $product_categories['id'] ?>"> <?php echo $product_categories['name'] ?></a>
                                                 <div class="cat-mega-menu cat-mega-style1"> 
                                                     <div class="row">
                                                         <?php
@@ -61,7 +63,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                             <div class="col-md-4 col-sm-3">
                                                                 <div class="list-cat-mega-menu"> 
 
-                                                                    <h2 class="title-cat-mega-menu"><?php echo $sub_category['name'] ?></h2>
+                                                                    <a href="all-products-by-category.php?id=<?php echo $product_categories['id'] ?>&subcategory=<?php echo $sub_category['id'] ?>"><h2 class="title-cat-mega-menu"><?php echo $sub_category['name'] ?></h2></a>
                                                                     <?php
                                                                     $PRODUCT = new Product(NULL);
                                                                     foreach ($PRODUCT->getProductsBySubProduct($sub_category['id']) as $product) {
@@ -203,13 +205,13 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                 ?> 
 
                                 <div class="row" style="margin-bottom: 50px;">
-                                    <div class="col-md-9 col-sm-8 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="hot-deal-tab-slider">
                                             <div class="hot-deal-tab-title">
                                                 <label><?php echo $product_categories['name'] ?></label>
                                             </div>
                                             <div class="hot-deal-slider slider-home2">
-                                                <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1],[480,2],[768,3],[980,4],[1200,4]]">
+                                                <div class="wrap-item" data-navigation="true" data-pagination="false" data-itemscustom="[[0,1],[480,2],[768,3],[980,4],[1200,5]]">
                                                     <?php
                                                     $PRODUCT = new Product(NULL);
                                                     foreach ($PRODUCT->getProductsByCategory($product_categories['id']) as $product) {
@@ -338,7 +340,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                             <a href="#"><img alt="" src="upload/product-categories/banner/<?php echo $product_categories['banner'] ?>"></a>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-4 col-xs-12">
+<!--                                    <div class="col-md-3 col-sm-4 col-xs-12">
                                         <div class="product-bestseller-slider">
                                             <h2>best sellers</h2>
                                             <div class="slider-home2">
@@ -421,7 +423,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                                 <a href="#"><img src="images/home18/ad12.jpg" alt=""></a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
 
 
@@ -471,7 +473,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                         </div>
                     </div>
                     <!-- End List Service -->
-                    <div class="bottom-home2">
+<!--                    <div class="bottom-home2">
                         <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="box-bottom-home2 box-from-blog">
@@ -590,7 +592,7 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- End Bottom Home 2 -->
                 </div>
             </div>
@@ -609,7 +611,6 @@ $PRODUCT_CATEGORIES = new ProductCategories(NULL);
         <script type="text/javascript" src="js/libs/jquery.themepunch.plugins.min.js"></script>
         <script type="text/javascript" src="js/theme.js"></script>
         <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-
         <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>
         <script src="js/ajax/login.js" type="text/javascript"></script>
     </body> 

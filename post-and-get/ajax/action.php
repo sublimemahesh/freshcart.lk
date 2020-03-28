@@ -5,7 +5,7 @@ session_start();
 
 
 
-if (isset($_POST["action"]) == "ADD") {
+if ($_POST["action"] === "ADD") {
 
     if (isset($_SESSION["shopping_cart"])) {
 
@@ -51,11 +51,10 @@ if (isset($_POST["action"]) == "ADD") {
     }
 }
 
-
-
-if ($_POST["action"] == 'REMOVE') {
-
+if ($_POST["action"] === 'REMOVE') {
+    
     foreach ($_SESSION["shopping_cart"] as $key => $value) {
+        
         if ($value["product_id"] == $_POST["product_id"]) {
             unset($_SESSION["shopping_cart"] [$key]);
         }
