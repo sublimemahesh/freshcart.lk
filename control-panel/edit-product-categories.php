@@ -12,7 +12,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Edit Products Categories </title>
+        <title>Edit Product Category </title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@ $PRODUCT_CATEGORIES = new ProductCategories($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Edit Products Categories </h2>
+                                <h2>Edit Product Category </h2>
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="manage-product-categories.php">

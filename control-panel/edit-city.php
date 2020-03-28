@@ -51,7 +51,7 @@ $CITY = new City($id);
                                     </h2>
                                     <ul class="header-dropdown">
                                         <li class="">
-                                            <a href="manage-district.php">
+                                            <a href="create-city.php?id=<?php echo $CITY->district; ?>">
                                                 <i class="material-icons">list</i> 
                                             </a>
                                         </li>

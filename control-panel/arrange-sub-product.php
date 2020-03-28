@@ -37,7 +37,14 @@ $SUB_CATEGORY = new SubCategory(NULL);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Arrange Sub Product</h2> 
+                                <h2>Arrange Sub Categories</h2> 
+                                <ul class = "header-dropdown">
+                                    <li class = "">
+                                        <a href = "create-sub-category.php?id=<?php echo $id; ?>">
+                                            <i class = "material-icons">list</i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="body">
                                 <form method="post" action="post-and-get/sub-category.php" class="form-horizontal" >

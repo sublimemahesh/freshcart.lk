@@ -7,8 +7,8 @@ if ($_POST['option'] == 'delete') {
 
     $PRODUCT_PHOTO = new ProductPhoto($_POST['id']);
 
-    unlink('../../../upload/product-categories/product/photos/gallery/' . $PRODUCT_PHOTO->image_name);
-    unlink('../../../upload/product-categories/product/photos/gallery/thumb/' . $PRODUCT_PHOTO->image_name);
+    unlink('../../../upload/product-categories/sub-category/product/photos/gallery/' . $PRODUCT_PHOTO->image_name);
+    unlink('../../../upload/product-categories/sub-category/product/photos/gallery/thumb/' . $PRODUCT_PHOTO->image_name);
 
     $result = $PRODUCT_PHOTO->delete();
 

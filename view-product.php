@@ -10,8 +10,7 @@ if (isset($_GET['id'])) {
 $PRODUCT = new Product($id);
 ?>
 <html lang="en-US">
-
-    <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -54,87 +53,46 @@ $PRODUCT = new Product($id);
                                         <ul class="list-product-related  scroll-bar"  >
                                             <?php
                                             foreach ($PRODUCT->getProductBySubCategories($PRODUCT->sub_category) as $products) {
-                                                ?>
-                                                <li class="clearfix">
-                                                    <div class="product-related-thumb">
-                                                        <a href="#"><img src="upload/product-categories/sub-category/product/photos/<?php echo $products['image_name'] ?>" alt="" /></a>
-                                                    </div>
-                                                    <div class="product-related-info">
-                                                        <h3 class="title-product"><a href="#"><?php echo $products['name'] ?></a></h3>
-                                                        <div class="info-price">
-                                                            <div class="info-price info-price-detail">
-                                                                <?php
-                                                                $price_amount = 0;
-                                                                $discount = 0;
-
-                                                                $discount = $products['discount'];
-                                                                $price_amount = $products['price'];
-
-                                                                $discount = ($price_amount * $discount) / 100;
-                                                                $discount_price =$products['price'] - $discount;
-                                                                if ( $products['discount'] > 0) {
-                                                                    ?>
-                                                                    <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
-                                                                     <?php ?>
-                                                                    <del>Rs:<?php echo number_format($price_amount, 2) ?></del>
-                                                                <?php } else if ($PRODUCT->discount == 0) { ?>
-                                                                    <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
-                                                                 <?php } ?>
-                                                            </div>
-                                                           
+                                                if ($products['id'] != $id) {
+                                                    ?>
+                                                    <li class="clearfix">
+                                                        <div class="product-related-thumb">
+                                                            <a href="#"><img src="upload/product-categories/sub-category/product/photos/<?php echo $products['image_name'] ?>" alt="" /></a>
                                                         </div>
-<!--                                                        <div class="product-rating">
-                                                            <div class="inner-rating" style="width:100%"></div>
-                                                            <span>(6s)</span>   
-                                                        </div>-->
-                                                    </div>
-                                                </li>
-                                            <?php } ?>
+                                                        <div class="product-related-info">
+                                                            <h3 class="title-product"><a href="view-product.php?id=<?php echo $products['id'] ?>"><?php echo $products['name'] ?></a></h3>
+                                                            <div class="info-price">
+                                                                <div class="info-price info-price-detail">
+                                                                    <?php
+                                                                    $price_amount = 0;
+                                                                    $discount = 0;
+
+                                                                    $discount = $products['discount'];
+                                                                    $price_amount = $products['price'];
+
+                                                                    $discount = ($price_amount * $discount) / 100;
+                                                                    $discount_price = $products['price'] - $discount;
+                                                                    if ($products['discount'] > 0) {
+                                                                        ?>
+                                                                        <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                                        <?php ?>
+                                                                        <del>Rs:<?php echo number_format($price_amount, 2) ?></del>
+                                                                    <?php } else if ($PRODUCT->discount == 0) { ?>
+                                                                        <label>Price:</label> <span id="price-format-design" >Rs: <?php echo number_format($discount_price, 2) ?> </span>
+                                                                    <?php } ?>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
 
                                         </ul>
                                     </div>
                                     <!-- End Related Product -->
-<!--                                    <div class="widget widget-adv">
-                                        <h2 class="title-widget-adv">
-                                            <span>Week</span>
-                                            <strong>big sale</strong>
-                                        </h2>
-                                        <div class="wrap-item" data-navigation="false" data-pagination="true" data-itemscustom="[[0,1]]">
-                                            <div class="item">
-                                                <div class="item-widget-adv">
-                                                    <div class="adv-widget-thumb">
-                                                        <a href="#"><img src="images/grid/sl1.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="adv-widget-info">
-                                                        <h3>New Collection</h3>
-                                                        <h2><span>from</span> 40% off</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-widget-adv">
-                                                    <div class="adv-widget-thumb">
-                                                        <a href="#"><img src="images/grid/sl2.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="adv-widget-info">
-                                                        <h3>Quality usinesswear </h3>
-                                                        <h2><span>from</span> 30% off</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-widget-adv">
-                                                    <div class="adv-widget-thumb">
-                                                        <a href="#"><img src="images/grid/sl3.jpg" alt="" /></a>
-                                                    </div>
-                                                    <div class="adv-widget-info">
-                                                        <h3>Hanbags Style 2016</h3>
-                                                        <h2><span>from</span> 20% off</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
                                     <!-- End Adv -->
                                 </div>
                                 <!-- End Sidebar Shop -->
@@ -187,7 +145,15 @@ $PRODUCT = new Product($id);
                                                         <label>Item Code: </label> <span>#12980496023</span>
                                                     </div>
                                                     <div class="product-stock">
-                                                        <label>Availability: </label> <span>In stock</span>
+                                                        <label>Availability: </label> <span>
+                                                            <?php
+                                                            if ($PRODUCT->in_stock == 1) {
+                                                                echo 'In stock';
+                                                            } else {
+                                                                echo 'Not Available';
+                                                            }
+                                                            ?>
+                                                        </span>
                                                     </div>
                                                     <div class="info-price info-price-detail">
                                                         <?php
@@ -224,7 +190,11 @@ $PRODUCT = new Product($id);
                                                         <input type="hidden" id="price" value="<?php echo $PRODUCT->price ?>"/>
                                                         <input type="hidden" id="quantity<?php echo $PRODUCT->id ?>" value="1"/> 
                                                         <input   type="hidden" name="name"  id="name<?php echo $PRODUCT->id ?>" value="<?php echo $PRODUCT->name ?>" />
-                                                        <button type="button" class="btn btn-default add_to_cart  btn-addcart "   name="add_to_cart"  id="<?php echo $PRODUCT->id ?>" > <i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                                        <button type="button" class="btn btn-default add_to_cart  btn-addcart "   name="add_to_cart"  id="<?php echo $PRODUCT->id ?>" <?php
+                                                        if ($PRODUCT->in_stock == 0) {
+                                                            echo 'disabled';
+                                                        }
+                                                        ?>> <i class="fa fa-shopping-cart"></i> Add to Cart</button>
 
                                                     </div>
                                                     <!-- End Attr Info -->
@@ -246,7 +216,7 @@ $PRODUCT = new Product($id);
                                                 <div role="tabpanel" class="tab-pane active" id="details">
                                                     <div class="table-content-tab-detail">
                                                         <div class="info-table-detail text-justify">
-                                                            <?php echo $PRODUCT->description ?>
+<?php echo $PRODUCT->description ?>
                                                         </div>
                                                     </div>
 
@@ -258,6 +228,7 @@ $PRODUCT = new Product($id);
                                                         <?php
                                                         $PRODUCT_REVIEWS = new ProductReview(NULL);
                                                         foreach ($PRODUCT_REVIEWS->getReviwsByProduct($id) as $key => $review) {
+                                                            $CUSTOMER = new Customer($review['customer']);
                                                             if ($key % 2 == 0) {
                                                                 ?>
                                                                 <div class="row">
@@ -265,18 +236,18 @@ $PRODUCT = new Product($id);
                                                                         <div class="panel panel-login p-des row"  >
                                                                             <div class="col-md-2">
                                                                                 <?php
-                                                                                if (empty($review['image_name'])) {
+                                                                                if (empty($CUSTOMER->image_name)) {
                                                                                     ?>
                                                                                     <img src="images/man.png" alt=""/>
                                                                                     <?php
                                                                                 } else {
                                                                                     ?>
-                                                                                    <img src="upload/customer/profile/<?php echo $review['image_name'] ?>" alt="" class="img-circle"/>
-                                                                                <?php } ?>
+                                                                                    <img src="upload/customer/profile/<?php echo $CUSTOMER->image_name; ?>" alt="" class="img-circle"/>
+        <?php } ?>
                                                                             </div>
 
                                                                             <div class="col-md-10  text-justify">
-                                                                                <h5><i class="fa fa-user" aria-hidden="true"></i>  Chalana dulaj                                                                
+                                                                                <h5><i class="fa fa-user" aria-hidden="true"></i>  <?php echo $CUSTOMER->name; ?>                                                                
                                                                                     <div class="pull-right">
                                                                                         <i class="fa fa-calendar" aria-hidden="true"></i>   <?php echo $review['date_time'] ?>
 
@@ -302,19 +273,19 @@ $PRODUCT = new Product($id);
                                                                                         </div>
                                                                                     </div>
                                                                                 </h5>
-                                                                                <h5><b><?php echo $review['title'] ?></b></h5>
-                                                                                <?php echo $review['description'] ?>...
+                                                                                <h5><b><?php echo $review['title']; ?></b></h5>
+        <?php echo $review['description']; ?>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
-                                                            <?php } else { ?>
+    <?php } else { ?>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="panel panel-login p-des row">  
                                                                             <div class="col-md-10 text-justify">
-                                                                                <h5><i class="fa fa-user" aria-hidden="true"></i>  Chalana dulaj                                                                
+                                                                                <h5><i class="fa fa-user" aria-hidden="true"></i>  <?php echo $CUSTOMER->name; ?>                                                                
                                                                                     <div class="pull-right">
                                                                                         <i class="fa fa-calendar" aria-hidden="true"></i>   <?php echo $review['date_time'] ?>
                                                                                         <div style="margin-top: 5px;">
@@ -340,18 +311,18 @@ $PRODUCT = new Product($id);
                                                                                     </div>
                                                                                 </h5>
                                                                                 <h5><b><?php echo $review['title'] ?></b></h5>
-                                                                                <?php echo $review['description'] ?>...
+        <?php echo $review['description']; ?>
                                                                             </div>
                                                                             <div class="col-md-2">
                                                                                 <?php
-                                                                                if (empty($review['image_name'])) {
+                                                                                if (empty($CUSTOMER->image_name)) {
                                                                                     ?>
                                                                                     <img src="images/man.png" alt=""/>
                                                                                     <?php
                                                                                 } else {
                                                                                     ?>
-                                                                                    <img src="upload/customer/profile/<?php echo $review['image_name'] ?>" alt="" class="img-circle"/>
-                                                                                <?php } ?>
+                                                                                    <img src="upload/customer/profile/<?php echo $CUSTOMER->image_name; ?>" alt="" class="img-circle"/>
+        <?php } ?>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -401,12 +372,11 @@ $PRODUCT = new Product($id);
                                                                                             <span id="capspan" ></span>
                                                                                         </div>
                                                                                         <div class="col-lg-3" style="margin-top: 20px;" >
-                                                                                            <?php include("./comment/captchacode-widget.php"); ?>
+<?php include("./comment/captchacode-widget.php"); ?>
                                                                                         </div>
                                                                                         <div class="col-md-4" style="margin-top: 20px;" >
-                                                                                            <input type="hidden" id="product"   name="product" value="<?php echo $id ?>">
-                                                                                            <input type="hidden"   name="customer" value="<?php echo $_SESSION['id'] ?>">
-                                                                                            <input type="hidden"   name="image_name" value="<?php echo $_SESSION['image_name'] ?>">
+                                                                                            <input type="hidden" id="product"   name="product" value="<?php echo $id; ?>">
+                                                                                            <input type="hidden"   name="customer" value="<?php echo $_SESSION['id']; ?>">
                                                                                             <?php
                                                                                             if (empty($_SESSION['id'])) {
                                                                                                 ?>
@@ -445,7 +415,7 @@ $PRODUCT = new Product($id);
     </div>
 
     <!-- End Content -->
-    <?php include './footer.php'; ?>
+<?php include './footer.php'; ?>
     <!-- End Footer -->
 </div>
 <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
@@ -459,7 +429,6 @@ $PRODUCT = new Product($id);
 <script type="text/javascript" src="js/libs/jquery.elevatezoom.js"></script>
 <script type="text/javascript" src="js/theme.js"></script> 
 <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-
 <script src="js/ajax/login.js" type="text/javascript"></script>
 <script src="comment/validation.js" type="text/javascript"></script>
 <script src="js/ajax/add_to_cart.js" type="text/javascript"></script>

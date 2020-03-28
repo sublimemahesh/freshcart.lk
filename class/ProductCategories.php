@@ -43,7 +43,7 @@ class ProductCategories {
         $query = "INSERT INTO `product_categories` (`name`,`icon`,`banner`,`sort`) VALUES  ('"
                 . $this->name . "', '"
                 . $this->icon . "', '"
-                . $this->banner . "', '" 
+                . $this->banner . "', '"
                 . $this->sort . "')";
 
 
@@ -76,10 +76,10 @@ class ProductCategories {
 
     public function update() {
 
-        $query = "UPDATE  `product_categories` SET " 
+        $query = "UPDATE  `product_categories` SET "
                 . "`name` ='" . $this->name . "', "
                 . "`icon` ='" . $this->icon . "', "
-                . "`banner` ='" . $this->banner . "' " 
+                . "`banner` ='" . $this->banner . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
@@ -95,7 +95,8 @@ class ProductCategories {
 
     public function delete() {
 
-
+        unlink(Helper::getSitePath() . "upload/product-categories/icon/" . $this->icon);
+        unlink(Helper::getSitePath() . "upload/product-categories/banner/" . $this->banner);
         $query = 'DELETE FROM `product_categories` WHERE id="' . $this->id . '"';
 
         $db = new Database();

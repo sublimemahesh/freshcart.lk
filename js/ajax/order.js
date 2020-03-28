@@ -38,7 +38,6 @@ $(document).ready(function () {
             });
             return false;
         } else {
-            alert(111);
             var member = $('#member').val();
             var country = $('#txtCountry').val();
             var address = $('#txtAddress').val();

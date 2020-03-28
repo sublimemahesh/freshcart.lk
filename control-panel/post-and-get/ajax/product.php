@@ -138,3 +138,15 @@ if ($_POST['action'] == 'DELIVER') {
     header('Content-type: application/json');
     exit();
 }
+
+//GEt subcategory product
+if ($_POST['action'] == 'GETSUBCATEGORIESBYCATEGORY') {
+
+    $SUB_CATEGORY = new SubCategory(NULL);
+
+    $result = $SUB_CATEGORY->getSubCategoriesByCategory($_POST["id"]);
+
+    echo json_encode($result);
+    header('Content-type: application/json');
+    exit();
+}

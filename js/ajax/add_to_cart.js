@@ -70,9 +70,10 @@ $(document).ready(function () {
 //Delete cart
     $(document).on('click', '.delete', function () {
         var product_id = $(this).attr("id");
+        
         swal({
             title: "Remove.!",
-            text: "Do you really want to remove this cart?...",
+            text: "Do you really want to remove this item?...",
             type: "info",
             showCancelButton: true,
             confirmButtonColor: "#ac2925",

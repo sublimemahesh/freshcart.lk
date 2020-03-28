@@ -18,7 +18,7 @@
     width: 100%; }
 
 #p-margin-0{
-   margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 .navbar .navbar-brand {
     white-space: nowrap;
@@ -8137,4 +8137,11 @@ html.ie11 .bs-searchbox .form-control {
 
 #CDSWIDSSP{
     width:100% !important;
+}
+.view-btn {
+    padding: 5px 8px;
+    color: #fff;
+    background-color: #FF9800;
+    border-radius: 3px;
+    border: 0;
 }

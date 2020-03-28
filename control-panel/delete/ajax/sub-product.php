@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . '/../../auth.php');
 
 if ($_POST['option'] == 'delete') {
 
-    $SUB_PRODUCT = new SubProduct($_POST['id']); 
+    $SUB_PRODUCT = new SubCategory($_POST['id']); 
 
     $result = $SUB_PRODUCT->delete();
 

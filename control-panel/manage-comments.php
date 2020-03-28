@@ -60,7 +60,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                         <div class="d">
                                                             <a href="#"  class="delete-comment" data-id="<?php echo $comments['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
                                                             <a href="edit-comment.php?id=<?php echo $comments['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
-                                                            <a href="arrange-comment.php?id=<?php echo $comments['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
+                                                            <a href="arrange-comments.php?id=<?php echo $comments['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
                                                             <?php
                                                             if ($comments['is_active'] == 1) {
                                                                 echo 'Active';

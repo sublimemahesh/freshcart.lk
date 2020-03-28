@@ -37,8 +37,8 @@ if (!empty($_SESSION["shopping_cart"])) {
                 . ' <input type="number" name="quantity"   class="quty-size form-control  text-center quantity"  product_id=' . $value["product_id"] . ' value="' . $value["product_quantity"] . '" min="1" max="10"/>
                      </div> '
                 . '</td>'
-                . '<td class="product-remove">Rs: ' . number_format($value["product_price"], 2) . '</td>'
-                . '<td class="product-remove">Rs: ' . number_format($value["product_quantity"] * $value["product_price"], 2) . '</td>'
+                . '<td class="product-remove text-right">Rs: ' . number_format($value["product_price"], 2) . '</td>'
+                . '<td class="product-remove text-right">Rs: ' . number_format($value["product_quantity"] * $value["product_price"], 2) . '</td>'
                 //  . '<td class="product-remove">Rs: ' . $value["product_quantity"] . '</td>'
                 //hidden values in form 
                 . ' <input type="hidden" class="form-control  "  product_id="' . $value["product_id"] . '" /> '
@@ -51,8 +51,8 @@ if (!empty($_SESSION["shopping_cart"])) {
         $total_item = $total_item + 1;
     }
     $output .= '<tr>'
-            . '<td class="product-remove" colspan="4" align="right"> Total </td>'
-            . '<td class="product-remove"  align="right" >Rs: ' . number_format($total_price, 2) . '</td>'
+            . '<td class="product-remove text-bold" colspan="4" align="right"> Total </td>'
+            . '<td class="product-remove text-bold"  align="right" >Rs: ' . number_format($total_price, 2) . '</td>'
             . '<td class="product-remove" > </td>'
             . '</tr>';
 } else {

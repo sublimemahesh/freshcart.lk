@@ -19,7 +19,7 @@ $SUB_CATEGORY = new SubCategory($id);
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Create products</title>
+        <title>Create product</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -49,10 +49,10 @@ $SUB_CATEGORY = new SubCategory($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2> "<?php echo $SUB_CATEGORY->name ?>" - Create Products</h2>
+                                <h2>Create Product - "<?php echo $SUB_CATEGORY->name ?>" </h2>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="create-sub-category.php?id=<?php echo $category ?>">
+                                        <a href="create-sub-category.php?id=<?php echo $SUB_CATEGORY->category; ?>">
                                             <i class="material-icons">list</i> 
                                         </a>
                                     </li>
@@ -88,7 +88,7 @@ $SUB_CATEGORY = new SubCategory($id);
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="number" id="price" class="form-control"  autocomplete="off" name="price" required="true" min="0">
-                                                <label class="form-label">Price</label>
+                                                <label class="form-label">Price (Rs)</label>
                                             </div>
                                         </div>
                                     </div>
@@ -96,18 +96,41 @@ $SUB_CATEGORY = new SubCategory($id);
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="number" id="discount" class="form-control"  autocomplete="off" name="discount"  min="0">
-                                                <label class="form-label">Discount</label>
+                                                <label class="form-label">Discount (%)</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="unite" class="form-control"  autocomplete="off" name="unite" required="true" min="0">
-                                                <label class="form-label">Unite</label>
+                                                <input type="text" id="unite" class="form-control"  autocomplete="off" name="unite" required="true">
+                                                <label class="form-label">Unit</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input class="filled-in chk-col-pink" type="checkbox" checked name="in_stock" value="1" id="rememberme" />
+                                            <label for="rememberme">In Stock</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="min_qty" class="form-control"  autocomplete="off" name="min_qty" required="true" min="0">
+                                                <label class="form-label">Min Quantity</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="max_qty" class="form-control"  autocomplete="off" name="max_qty" required="true" min="0">
+                                                <label class="form-label">Max Quantity</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
 
 
                                     <div class="col-md-12">

@@ -56,6 +56,13 @@ $DIS = new District($id);
                                 <h2>
                                     Edit District
                                 </h2>
+                                <ul class="header-dropdown">
+                                    <li class="">
+                                        <a href="manage-district.php">
+                                            <i class="material-icons">list</i> 
+                                        </a>
+                                    </li>
+                                </ul>
 
                             </div>
                             <div class="body row">

@@ -67,6 +67,52 @@ $PRODUCT = new Product($id);
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
+                                                <select class="form-control" autocomplete="off" id="category"  name="category"  required="true" > 
+                                                    <option> -- Please Select the Category -- </option> 
+                                                    <?php
+                                                    $CATEGORY = new ProductCategories(NULL);
+                                                    foreach ($CATEGORY->all() as $key => $category) {
+                                                        if ($category['id'] == $PRODUCT->category) {
+                                                            ?>
+                                                            <option selected="" value="<?php echo $category['id']; ?>" required="true" > <?php echo $category['name'] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option  value="<?php echo $category['id']; ?>" required="true" > <?php echo $category['name'] ?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line" id="sub_category_bar">
+                                                <select class="form-control" autocomplete="off" id="sub_category"  name="sub_category"  required="true" > 
+                                                    <option> -- Please Select the Sub Category -- </option> 
+                                                    <?php
+                                                    $SUBCAT = new SubCategory(NULL);
+                                                    foreach ($SUBCAT->getSubCategoriesByCategory($PRODUCT->category) as $key => $sub_category) {
+                                                        if ($sub_category['id'] == $PRODUCT->sub_category) {
+                                                            ?>
+                                                            <option selected="" value="<?php echo $sub_category['id']; ?>" required="true" > <?php echo $sub_category['name'] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option  value="<?php echo $sub_category['id']; ?>" required="true" > <?php echo $sub_category['name'] ?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
                                                 <select class="form-control" autocomplete="off" id="brand"  name="brand"  required="true" > 
                                                     <option> -- Please Select the Brand -- </option> 
                                                     <?php
@@ -107,8 +153,8 @@ $PRODUCT = new Product($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="unite" class="form-control"  value="<?php echo $PRODUCT->unite; ?>"  name="unite"  required="TRUE" min="0">
-                                                <label class="form-label">Unite</label>
+                                                <input type="text" id="unite" class="form-control"  value="<?php echo $PRODUCT->unite; ?>"  name="unite"  required="TRUE">
+                                                <label class="form-label">Unit</label>
                                             </div>
                                         </div>
                                     </div>
@@ -120,11 +166,33 @@ $PRODUCT = new Product($id);
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input class="filled-in chk-col-pink" type="checkbox" <?php if($PRODUCT->in_stock == 1) { echo 'checked'; } ?> name="in_stock" value="1" id="rememberme" />
+                                            <label for="rememberme">In Stock</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="min_qty" class="form-control" value="<?php echo $PRODUCT->min_qty; ?>" autocomplete="off" name="min_qty" required="true" min="0">
+                                                <label class="form-label">Min Quantity</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="max_qty" class="form-control" value="<?php echo $PRODUCT->max_qty; ?>" autocomplete="off" name="max_qty" required="true" min="0">
+                                                <label class="form-label">Max Quantity</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             
-                                            <input type="file" id="image" class="form-control" value="<?php echo $PRODUCT->image_name; ?>"  name="image" required="true">
+                                            <input type="file" id="image" class="form-control" value="<?php echo $PRODUCT->image_name; ?>"  name="image">
                                                 <img src="../upload/product-categories/sub-category/product/photos/<?php echo $PRODUCT->image_name; ?>"  class="  img img-responsive img-thumbnail"  alt="old image" width="20%" >
                                          
                                         </div>
@@ -167,7 +235,7 @@ $PRODUCT = new Product($id);
         <script src="js/admin.js"></script>
         <script src="js/demo.js"></script>
         <script src="js/add-new-ad.js" type="text/javascript"></script>
-
+        <script src="js/admin-js/sub-category.js" type="text/javascript"></script>
 
         <script src="tinymce/js/tinymce/tinymce.min.js"></script>
         <script>
